@@ -1,0 +1,1489 @@
+// Multi-Language Translation System for Suraksha Bandhan v3.0
+const I18N = {
+  currentLang: 'hi',
+
+  languages: {
+    en: { name: 'English' },
+    hi: { name: 'हिन्दी (Hindi)' },
+    bn: { name: 'বাংলা (Bengali)' },
+    ta: { name: 'தமிழ் (Tamil)' },
+    te: { name: 'తెలుగు (Telugu)' },
+    mr: { name: 'मराठी (Marathi)' },
+    gu: { name: 'ગુજરાતી (Gujarati)' }
+  },
+
+  strings: {
+    en: {
+      appName: 'Suraksha Bandhan',
+      appTagline: 'Disaster Early Warning & Emergency Response System',
+      locationDetecting: 'Detecting live location...',
+      locateBtn: 'GPS',
+      changeCityBtn: 'Change City',
+      offlineBanner: 'Offline Mode: Displaying saved emergency data and offline guides.',
+      liveTicker: 'LIVE EMERGENCY NETWORK ACTIVE: All systems monitored 24x7',
+      // Nav
+      navHome: 'Home',
+      navAlerts: 'Alerts',
+      navMap: 'Map',
+      navCommunity: 'Community',
+      navGuides: 'Guides',
+      navProfile: 'Profile',
+      // Status
+      statusSafe: 'All Clear - Normal Atmospheric Conditions',
+      statusSafeDesc: 'No severe hazard warnings active in your direct locality.',
+      distance: 'Distance',
+      updated: 'Updated',
+      statusWarning: 'Weather / Flood Advisory Active',
+      statusDanger: 'RED ALERT: Urgent Hazard in Effect',
+      // Speed-dial buttons & spoken audio
+      speakSafetySummary: 'Listen to Safety Report',
+      emergency112Label: 'National Emergency',
+      emergency108Label: 'Ambulance 24x7',
+      emergency101Label: 'Fire Brigade',
+      emergency1070Label: 'Disaster Relief',
+      // Family safe banner
+      familySafeTitle: 'Let your family know you are safe',
+      familySafeDesc: 'Share your live safe location via WhatsApp in 1 tap',
+      shareWhatsAppBtn: 'Share on WhatsApp',
+      // SOS
+      sosTitle: 'EMERGENCY SOS',
+      sosSubtitle: 'Press & Hold 3 Seconds or Tap for Instant Dial 112',
+      sosHint: 'Hold 3s to alert emergency contacts & dispatch GPS',
+      sosActivated: '🚨 SOS DISPATCHED! Dialing 112 & Notifying Contacts...',
+      call112: 'Call 112 (National)',
+      iAmSafeBtn: 'I Am Safe',
+      reportHazardBtn: 'Report Hazard',
+      // Weather
+      weatherTitle: 'Atmospheric Risk & Weather',
+      aqiTitle: 'Air Quality Index (AQI)',
+      humidity: 'Humidity',
+      wind: 'Wind',
+      feelsLike: 'Feels like',
+      // River
+      riverTitle: 'Nearby River & CWC Basin Monitor',
+      riverNormal: 'Normal Flow',
+      riverWarning: 'High Risk - Warning Level',
+      riverCritical: 'CRITICAL - Above Danger Mark',
+      cwcStation: 'CWC Flood Gauge Station',
+      waterLevel: 'Current Level',
+      dangerLevel: 'Danger Mark',
+      riverStatus: 'Status',
+      // Actions
+      quickActions: 'Rapid Actions',
+      evacRoutes: 'Safe Shelters',
+      evacDesc: 'Nearest flood shelters',
+      firstAid: 'First Aid',
+      firstAidDesc: 'CPR & emergency care',
+      hospitals: 'Hospitals',
+      hospitalsDesc: '24x7 Trauma centers',
+      helplines: 'Helplines',
+      helplinesDesc: '112, 108, 101',
+      directLinesTitle: 'Direct Emergency Lines',
+      // Checklist
+      checklistTitle: 'Disaster Preparedness Checklist',
+      checklistItem1: 'Emergency 72-hr bag packed with water & non-perishable food',
+      checklistItem2: 'Charged power banks, LED torch, extra batteries',
+      checklistItem3: 'Important documents sealed in waterproof plastic pouch',
+      checklistItem4: 'Family emergency meeting point agreed outside flood zone',
+      // Accessibility & audio
+      speechReadAlert: 'Listen (Audio)',
+      speechStop: 'Stop Audio',
+      fontSizeToggle: 'Font Size',
+      // Common
+      refresh: 'Refresh',
+      viewAll: 'View All',
+      dismiss: 'Dismiss',
+      critical: 'Critical',
+      high: 'High',
+      medium: 'Medium',
+      low: 'Low',
+      share: 'Share',
+      save: 'Save',
+      cancel: 'Cancel',
+      close: 'Close',
+      submit: 'Submit Report',
+
+      // Map Page
+      mapCenterMe: 'Center on Me',
+      mapAllFacilities: 'All Facilities',
+      mapSafeShelters: 'Safe Shelters',
+      mapHospitals: 'Hospitals',
+      mapRiverGauges: 'River Gauges',
+      mapCommunityHazards: 'Community Hazards',
+      mapNearestShelters: 'Nearest Shelters & Evacuation Centers',
+      mapCapacity: 'Capacity',
+      mapNoShelters: 'No shelters loaded.',
+      mapNavigate: 'Navigate (Google Maps)',
+      mapYouAreHere: 'You Are Here',
+      mapSafeShelterTag: 'Safe Shelter',
+      mapTraumaTag: 'Emergency Trauma',
+      mapRiverStationTag: 'CWC River Station',
+      mapCitizenReportTag: 'Citizen Report',
+
+      // Community Page
+      commReportsTitle: 'Citizen Hazard Reports',
+      commReportHazardBtn: 'Report Hazard',
+      commReportsDesc: 'Live crowdsourced reports by local residents for flooded roads, fallen electric poles, landslides, and blocked routes.',
+      commStatusBoardTitle: '"I Am Safe" Family Status Board',
+      commShareStatusBtn: 'Share Status',
+      commStatusBoardDesc: 'Check the safety status of relatives and community members during the ongoing emergency.',
+      commNoReports: 'No community hazards reported yet. Tap below to report.',
+      commNoCheckins: 'No check-ins yet. Tap "I Am Safe" to share status.',
+      commSafeBadge: 'SAFE',
+
+      // Guides Page
+      guidesTitle: 'Disaster Survival & First Aid Guides',
+      guideFloodTitle: 'Flood Safety Guide',
+      guideFloodDesc: 'Moving water survival, roof signaling, water boiling.',
+      guideEarthquakeTitle: 'Earthquake Survival',
+      guideEarthquakeDesc: 'Drop, Cover, and Hold On rules for home and outdoors.',
+      guideCycloneTitle: 'Cyclone & Gale Storms',
+      guideCycloneDesc: 'Window fortification, surviving the calm eye, evacuation.',
+      guideLightningTitle: 'Lightning & Thunderstorms',
+      guideLightningDesc: '30/30 safety rule, lightning squat posture, indoor safety.',
+      guideFirstAidTitle: 'Emergency First Aid',
+      guideFirstAidDesc: 'Direct bleeding control, Adult CPR, burns, snakebites.',
+      guideBefore: 'Before the Event',
+      guideDuring: 'During the Event',
+      guideAfter: 'After the Event',
+
+      // Profile Page
+      profileGuestUser: 'Guest Citizen',
+      profileNoPhone: 'No phone set',
+      profileBloodLabel: 'Blood Group',
+      profileBloodNotSet: 'Blood Group: Not Set',
+      profileEditBtn: 'Edit My Profile & Emergency Contacts',
+      profileSavedContactsTitle: 'Saved Emergency Contacts',
+      profileNoContactsHint: 'No emergency contacts saved yet. Tap "Edit Profile" below.',
+      profileModalTitle: 'Edit Emergency Profile',
+      profileFullNameLabel: 'Full Name',
+      profilePhoneLabel: 'Your Phone Number',
+      profileSelectBlood: 'Select Blood Group',
+      profilePrimaryContact: 'Primary Emergency Contact',
+      profileContactNamePlaceholder: 'Contact Name (e.g. Father/Spouse)',
+      profileContactPhonePlaceholder: 'Contact Phone (+91 98765 43210)',
+      profileSaveBtn: 'Save Profile to Cloud',
+
+      // Hazard Report Modal
+      hazardModalTitle: 'Report Local Hazard / Obstruction',
+      hazardSelectType: 'Select Hazard Type:',
+      hazardWaterlogging: 'Waterlogging / Flood',
+      hazardWaterloggingSub: 'Flooded road / street',
+      hazardFallenTree: 'Fallen Tree / Blocked Road',
+      hazardFallenTreeSub: 'Blocked road / route',
+      hazardLiveWire: 'Live Wire / Electric Pole',
+      hazardLiveWireSub: 'Electric shock risk',
+      hazardLandslide: 'Landslide / Debris',
+      hazardLandslideSub: 'Rockfall / mud obstruction',
+      hazardFire: 'Fire Hazard / Smoke',
+      hazardFireSub: 'Flames / smoke',
+      hazardBridgeDamage: 'Bridge / Road Damage',
+      hazardBridgeDamageSub: 'Collapsed structure',
+      hazardLocationLabel: 'Location / Landmark',
+      hazardDescLabel: 'Situation Details',
+      hazardDescPlaceholder: 'Describe water depth, traffic blockage, immediate risk...',
+      hazardNameLabel: 'Your Name (Optional)',
+      hazardNamePlaceholder: 'Local Citizen',
+      hazardSubmitBtn: 'Publish to Community Map',
+
+      // Other Modals
+      cityModalTitle: 'Choose Your City / Region',
+      cityModalDesc: 'Select your city to get instant local river water level, flood warnings, hospitals, and shelters:',
+      citySearchPlaceholder: '🔍 Type city name...',
+      helplinesModalTitle: 'National Emergency Helplines (Pan-India)',
+      hospitalsModalTitle: 'Nearby 24x7 Emergency Hospitals',
+      firstAidModalTitle: 'Emergency First Aid Protocols'
+    },
+
+    hi: {
+      appName: 'सुरक्षा बंधन',
+      appTagline: 'आपदा पूर्व चेतावनी एवं आपातकालीन प्रतिक्रिया प्रणाली',
+      locationDetecting: 'लाइव स्थान खोजा जा रहा है...',
+      locateBtn: 'जीपीएस',
+      changeCityBtn: 'शहर बदलें',
+      offlineBanner: 'ऑफलाइन मोड: सुरक्षित आपातकालीन डेटा और गाइड प्रदर्शित हो रहे हैं।',
+      liveTicker: 'लाइव आपदा नेटवर्क सक्रिय: सभी प्रणालियों की 24x7 निगरानी',
+      // Nav
+      navHome: 'होम',
+      navAlerts: 'अलर्ट',
+      navMap: 'मैप',
+      navCommunity: 'समुदाय',
+      navGuides: 'गाइड',
+      navProfile: 'प्रोफाइल',
+      // Status
+      statusSafe: 'स्थिति सामान्य - कोई तत्काल खतरा नहीं',
+      statusSafeDesc: 'आपके क्षेत्र में कोई गंभीर आपदा चेतावनी सक्रिय नहीं है। स्थिति सामान्य है।',
+      distance: 'दूरी',
+      updated: 'अपडेट किया गया',
+      statusWarning: 'मौसम/बाढ़ परामर्श सक्रिय - सतर्क रहें',
+      statusDanger: 'रेड अलर्ट: अति गंभीर आपदा चेतावनी सक्रिय',
+      // Speed-dial buttons & spoken audio
+      speakSafetySummary: 'सुरक्षा स्थिति बोलकर सुनें',
+      emergency112Label: 'राष्ट्रीय आपातकाल',
+      emergency108Label: 'एम्बुलेंस सेवा',
+      emergency101Label: 'दमकल व फायर सेवा',
+      emergency1070Label: 'बाढ़ व आपदा राहत',
+      // Family safe banner
+      familySafeTitle: 'अपने परिवार को बताएं कि आप सुरक्षित हैं',
+      familySafeDesc: 'एक टैप में व्हाट्सएप द्वारा अपनी लोकेशन व सुरक्षित स्थिति भेजें',
+      shareWhatsAppBtn: 'WhatsApp पर बताएं',
+      // SOS
+      sosTitle: 'आपातकालीन एसओएस (SOS)',
+      sosSubtitle: '3 सेकंड दबाकर रखें या 112 डायल करने के लिए टैप करें',
+      sosHint: '3 सेकंड दबाए रखें ताकि परिजनों को लोकेशन और संदेश भेजा जा सके',
+      sosActivated: '🚨 एसओएस सक्रिय! 112 डायल किया जा रहा है और परिजनों को सूचना भेजी जा रही है...',
+      call112: '112 डायल करें',
+      iAmSafeBtn: 'मैं सुरक्षित हूँ',
+      reportHazardBtn: 'खतरे की सूचना दें',
+      // Weather
+      weatherTitle: 'स्थानीय मौसम एवं वायुमंडलीय जोखिम',
+      aqiTitle: 'वायु गुणवत्ता (AQI) एवं स्वास्थ्य सुरक्षा',
+      humidity: 'नमी',
+      wind: 'हवा',
+      feelsLike: 'महसूस होता है',
+      // River
+      riverTitle: 'निकटतम नदी एवं केंद्रीय जल आयोग स्थिति',
+      riverNormal: 'प्रवाह सामान्य',
+      riverWarning: 'मध्यम जोखिम - चेतावनी स्तर',
+      riverCritical: 'गंभीर बाढ़ - खतरे के निशान से ऊपर',
+      cwcStation: 'केंद्रीय जल आयोग (CWC) बाढ़ निगरानी स्टेशन',
+      waterLevel: 'वर्तमान जलस्तर',
+      dangerLevel: 'खतरे का निशान',
+      riverStatus: 'स्थिति',
+      // Actions
+      quickActions: 'त्वरित आपातकालीन सहायता',
+      evacRoutes: 'राहत शिविर',
+      evacDesc: 'सुरक्षित शरणस्थल खोजें',
+      firstAid: 'प्राथमिक उपचार',
+      firstAidDesc: 'सीपीआर व रक्तस्राव नियंत्रण',
+      hospitals: 'आपातकालीन अस्पताल',
+      hospitalsDesc: '24x7 ट्रॉमा सेंटर एवं ब्लड बैंक',
+      helplines: 'हेल्पलाइन नंबर',
+      helplinesDesc: '112, 108, 101 पर कॉल',
+      directLinesTitle: 'सीधी आपातकालीन हेल्पलाइन',
+      // Checklist
+      checklistTitle: 'आपदा पूर्व तैयारी चेकलिस्ट',
+      checklistItem1: '72 घंटे के लिए पानी और सूखा भोजन युक्त इमरजेंसी बैग तैयार रखें',
+      checklistItem2: 'चार्ज पावर बैंक, टॉर्च और अतिरिक्त बैटरियां साथ रखें',
+      checklistItem3: 'महत्वपूर्ण सरकारी दस्तावेज वाटरप्रूफ बैग में सुरक्षित रखें',
+      checklistItem4: 'बाढ़ क्षेत्र से बाहर परिवार के मिलने का स्थान तय करें',
+      // Accessibility & audio
+      speechReadAlert: 'बोलकर सुनाएं (ऑडियो)',
+      speechStop: 'ऑडियो रोकें',
+      fontSizeToggle: 'फॉन्ट आकार',
+      // Common
+      refresh: 'डेटा अपडेट करें',
+      viewAll: 'सभी देखें',
+      dismiss: 'हटाएं',
+      critical: 'गंभीर',
+      high: 'उच्च',
+      medium: 'मध्यम',
+      low: 'सामान्य',
+      share: 'शेयर करें',
+      save: 'सहेजें',
+      cancel: 'रद्द करें',
+      close: 'बंद करें',
+      submit: 'रिपोर्ट भेजें',
+
+      // Map Page
+      mapCenterMe: 'मेरी लोकेशन',
+      mapAllFacilities: 'सभी सुविधाएं',
+      mapSafeShelters: 'सुरक्षित शरणस्थल',
+      mapHospitals: 'अस्पताल',
+      mapRiverGauges: 'नदी गेज',
+      mapCommunityHazards: 'स्थानीय खतरे',
+      mapNearestShelters: 'निकटतम राहत शिविर एवं शरणस्थल',
+      mapCapacity: 'क्षमता',
+      mapNoShelters: 'कोई शरणस्थल लोड नहीं हुआ।',
+      mapNavigate: 'रास्ता देखें (Google Maps)',
+      mapYouAreHere: 'आप यहाँ हैं',
+      mapSafeShelterTag: 'सुरक्षित शरणस्थल',
+      mapTraumaTag: 'आपातकालीन ट्रॉमा',
+      mapRiverStationTag: 'CWC नदी निगरानी स्टेशन',
+      mapCitizenReportTag: 'नागरिक रिपोर्ट',
+
+      // Community Page
+      commReportsTitle: 'नागरिक आपदा व खतरा रिपोर्ट',
+      commReportHazardBtn: 'खतरे की सूचना दें',
+      commReportsDesc: 'जलभराव, गिरे पेड़, बिजली के खंभे और बंद रास्तों की नागरिकों द्वारा दी गई लाइव सूचनाएं।',
+      commStatusBoardTitle: '"मैं सुरक्षित हूँ" परिवार स्थिति बोर्ड',
+      commShareStatusBtn: 'स्थिति शेयर करें',
+      commStatusBoardDesc: 'आपदा के दौरान अपने परिजनों और पड़ोसियों की सुरक्षा स्थिति देखें।',
+      commNoReports: 'अभी कोई खतरे की रिपोर्ट दर्ज नहीं है। रिपोर्ट दर्ज करने के लिए ऊपर टैप करें।',
+      commNoCheckins: 'अभी कोई चेक-इन नहीं है। अपनी स्थिति बताने के लिए "मैं सुरक्षित हूँ" टैप करें।',
+      commSafeBadge: 'सुरक्षित',
+
+      // Guides Page
+      guidesTitle: 'आपदा सुरक्षा एवं प्राथमिक उपचार गाइड',
+      guideFloodTitle: 'बाढ़ सुरक्षा गाइड',
+      guideFloodDesc: 'बहते पानी से बचाव, छत से संकेत, पानी उबालना।',
+      guideEarthquakeTitle: 'भूकंप बचाव',
+      guideEarthquakeDesc: 'झुकें, ढकें और पकड़ें नियम घर और बाहर।',
+      guideCycloneTitle: 'चक्रवात एवं आंधी तूफान',
+      guideCycloneDesc: 'खिड़कियों की सुरक्षा, शांत केंद्र में सतर्कता, सुरक्षित निकासी।',
+      guideLightningTitle: 'आकाशीय बिजली व गरज',
+      guideLightningDesc: '30/30 सुरक्षा नियम, झुककर बैठने की मुद्रा, इनडोर सुरक्षा।',
+      guideFirstAidTitle: 'आपातकालीन प्राथमिक उपचार',
+      guideFirstAidDesc: 'रक्तस्राव रोकना, सीपीआर, जलने पर उपचार, सांप के काटने पर बचाव।',
+      guideBefore: 'आपदा से पहले',
+      guideDuring: 'आपदा के दौरान',
+      guideAfter: 'आपदा के बाद',
+
+      // Profile Page
+      profileGuestUser: 'अतिथि नागरिक',
+      profileNoPhone: 'फोन नंबर दर्ज नहीं',
+      profileBloodLabel: 'रक्त समूह',
+      profileBloodNotSet: 'रक्त समूह: दर्ज नहीं',
+      profileEditBtn: 'प्रोफाइल एवं आपातकालीन संपर्क बदलें',
+      profileSavedContactsTitle: 'सुरक्षित आपातकालीन संपर्क',
+      profileNoContactsHint: 'अभी कोई आपातकालीन संपर्क नहीं जुड़ा है। नीचे "प्रोफाइल बदलें" पर टैप करें।',
+      profileModalTitle: 'आपातकालीन प्रोफाइल संपादित करें',
+      profileFullNameLabel: 'पूरा नाम',
+      profilePhoneLabel: 'आपका मोबाइल नंबर',
+      profileSelectBlood: 'रक्त समूह चुनें',
+      profilePrimaryContact: 'मुख्य आपातकालीन संपर्क',
+      profileContactNamePlaceholder: 'संपर्क का नाम (उदा. पिता/जीवनसाथी)',
+      profileContactPhonePlaceholder: 'संपर्क फोन (+91 98765 43210)',
+      profileSaveBtn: 'क्लाउड पर प्रोफाइल सहेजें',
+
+      // Hazard Report Modal
+      hazardModalTitle: 'स्थानीय आपदा / खतरे की रिपोर्ट दर्ज करें',
+      hazardSelectType: 'आपदा या खतरे का प्रकार चुनें:',
+      hazardWaterlogging: 'जलभराव / बाढ़',
+      hazardWaterloggingSub: 'सड़क पर पानी भरा है',
+      hazardFallenTree: 'पेड़ गिरा / रास्ता बंद',
+      hazardFallenTreeSub: 'रास्ता अवरुद्ध है',
+      hazardLiveWire: 'बिजली तार टूटा',
+      hazardLiveWireSub: 'खंभा या तार गिरा',
+      hazardLandslide: 'भूस्खलन / मलबा',
+      hazardLandslideSub: 'पहाड़ खिसका',
+      hazardFire: 'आग की घटना',
+      hazardFireSub: 'धुआं या लपटें',
+      hazardBridgeDamage: 'पुल/सड़क क्षति',
+      hazardBridgeDamageSub: 'पुल टूटा या धंसा',
+      hazardLocationLabel: 'स्थान या लैंडमार्क',
+      hazardDescLabel: 'विवरण (Description)',
+      hazardDescPlaceholder: 'जैसे: 2 फीट पानी भरा है, कारें नहीं निकल पा रहीं...',
+      hazardNameLabel: 'आपका नाम (वैकल्पिक)',
+      hazardNamePlaceholder: 'स्थानीय नागरिक',
+      hazardSubmitBtn: 'नागरिक सुरक्षा मैप पर दर्ज करें',
+
+      // Other Modals
+      cityModalTitle: 'अपना शहर या क्षेत्र चुनें',
+      cityModalDesc: 'अपने क्षेत्र के नदी जलस्तर, बाढ़ चेतावनी, अस्पताल और राहत शिविर देखने के लिए शहर चुनें:',
+      citySearchPlaceholder: '🔍 शहर का नाम खोजें...',
+      helplinesModalTitle: 'राष्ट्रीय आपातकालीन हेल्पलाइन (अखिल भारतीय)',
+      hospitalsModalTitle: 'निकटतम 24x7 आपातकालीन अस्पताल',
+      firstAidModalTitle: 'आपातकालीन प्राथमिक उपचार प्रक्रियाएं'
+    },
+
+    bn: {
+      appName: 'সুরক্ষা বন্ধন',
+      appTagline: 'দুর্যোগ পূর্ব সতর্কতা ও জরুরি সাড়া প্রদান ব্যবস্থা',
+      locationDetecting: 'অবস্থান শনাক্ত করা হচ্ছে...',
+      locateBtn: 'জিপিএস',
+      changeCityBtn: 'শহর পরিবর্তন',
+      offlineBanner: 'অফলাইন মোড: সংরক্ষিত জরুরি তথ্য প্রদর্শিত হচ্ছে।',
+      liveTicker: 'জরুরি নেটওয়ার্ক সক্রিয়: সার্বক্ষণিক পর্যবেক্ষণ',
+      navHome: 'হোম',
+      navAlerts: 'সতর্কতা',
+      navMap: 'ম্যাপ',
+      navCommunity: 'কমিউনিটি',
+      navGuides: 'গাইড',
+      navProfile: 'প্রোফাইল',
+      statusSafe: 'পরিস্থিতি স্বাভাবিক - কোনো ঝুঁকি নেই',
+      statusWarning: 'সতর্কবার্তা সক্রিয় - প্রস্তুত থাকুন',
+      statusDanger: 'রেড অ্যালার্ট: জরুরি দুর্যোগ সতর্কতা',
+      speakSafetySummary: 'নিরাপত্তা রিপোর্ট শুনুন',
+      emergency112Label: 'জাতীয় জরুরী সেবা',
+      emergency108Label: 'অ্যাম্বুলেন্স সেবা',
+      emergency101Label: 'দমকল বাহিনী',
+      emergency1070Label: 'দুর্যোগ ত্রাণ সহায়তা',
+      familySafeTitle: 'পরিবারকে জানান আপনি নিরাপদ',
+      familySafeDesc: '১ ট্যাপে হোয়াটসঅ্যাপে নিরাপদ অবস্থান শেয়ার করুন',
+      shareWhatsAppBtn: 'WhatsApp-এ জানান',
+      sosTitle: 'জরুরি এসওএস (SOS)',
+      sosSubtitle: '৩ সেকেন্ড চেপে ধরুন বা ১১২ নম্বরে কল করুন',
+      sosHint: 'পরিজনদের অবস্থান ও বার্তা পাঠাতে ৩ সেকেন্ড চেপে রাখুন',
+      sosActivated: '🚨 এসওএস সক্রিয়! ১১২ ডায়াল করা হচ্ছে...',
+      call112: '১১২ ডায়াল করুন',
+      iAmSafeBtn: 'আমি নিরাপদ আছি',
+      reportHazardBtn: 'বিপদ রিপোর্ট করুন',
+      weatherTitle: 'আবহাওয়া ও পরিবেশ ঝুঁকি',
+      aqiTitle: 'বায়ু মান সূচক (AQI)',
+      humidity: 'আর্দ্রতা',
+      wind: 'বাতাস',
+      feelsLike: 'অনুভূত তাপমাত্রা',
+      riverTitle: 'কাছের নদী ও জলস্তর পর্যবেক্ষণ',
+      riverNormal: 'স্বাভাবিক প্রবাহ',
+      riverWarning: 'সতর্কতা স্তর স্পর্শ করেছে',
+      riverCritical: 'বিপজ্জনক স্তর অতিক্রম করেছে',
+      cwcStation: 'কেন্দ্রীয় জল কমিশন (CWC) পর্যবেক্ষণ কেন্দ্র',
+      waterLevel: 'বর্তমান জলস্তর',
+      dangerLevel: 'বিপদের মাত্রা',
+      riverStatus: 'নদীর অবস্থা',
+      quickActions: 'জরুরি পদক্ষেপ',
+      evacRoutes: 'আশ্রয়কেন্দ্র',
+      evacDesc: 'নিকটতম নিরাপদ স্থান',
+      firstAid: 'প্রাথমিক চিকিৎসা',
+      firstAidDesc: 'সিপিআর ও জরুরি চিকিৎসা',
+      hospitals: 'জরুরি হাসপাতাল',
+      hospitalsDesc: '২৪x৭ ট্রমা সেন্টার',
+      helplines: 'হেল্পলাইন নম্বর',
+      helplinesDesc: '১১২, ১০৮, ১০১ সরাসরি কল',
+      directLinesTitle: 'জরুরি হটলাইন নম্বর',
+      checklistTitle: 'দুর্যোগ প্রস্তুতি চেকলিস্ট',
+      checklistItem1: '৭২ ঘণ্টার পানীয় জল ও শুকনো খাবারের জরুরি ব্যাগ',
+      checklistItem2: 'চার্জড পাওয়ার ব্যাংক ও টর্চলাইট প্রস্তুত রাখুন',
+      checklistItem3: 'গুরুত্বপূর্ণ কাগজপত্র ওয়াটারপ্রুফ ব্যাগে রাখুন',
+      checklistItem4: 'বন্যা অঞ্চলের বাইরে পরিবারের নিরাপদ সাক্ষাতের স্থান',
+      speechReadAlert: 'শুনে নিন (অডিও)',
+      speechStop: 'অডিও থামান',
+      fontSizeToggle: 'হরফের আকার',
+      refresh: 'রিফ্রেশ',
+      viewAll: 'সব দেখুন',
+      dismiss: 'মুছুন',
+      critical: 'সংকটপূর্ণ',
+      high: 'উচ্চ',
+      medium: 'মাঝারি',
+      low: 'সাধারণ',
+      share: 'শেয়ার',
+      save: 'সংরক্ষণ',
+      cancel: 'বাতিল',
+      close: 'বন্ধ করুন',
+      submit: 'রিপোর্ট জমা দিন',
+
+      // Map Page
+      mapCenterMe: 'আমার অবস্থান',
+      mapAllFacilities: 'সব সুবিধাসমূহ',
+      mapSafeShelters: 'নিরাপদ আশ্রয়কেন্দ্র',
+      mapHospitals: 'হাসপাতাল',
+      mapRiverGauges: 'নদী গেজ',
+      mapCommunityHazards: 'স্থানীয় বিপদ',
+      mapNearestShelters: 'নিকটবর্তী আশ্রয় ও ত্রাণ কেন্দ্র',
+      mapCapacity: 'ধারণক্ষমতা',
+      mapNoShelters: 'কোন আশ্রয়কেন্দ্র পাওয়া যায়নি।',
+      mapNavigate: 'পথ দেখুন (Google Maps)',
+      mapYouAreHere: 'আপনি এখানে আছেন',
+      mapSafeShelterTag: 'নিরাপদ আশ্রয়',
+      mapTraumaTag: 'জরুরি ট্রমা সেন্টার',
+      mapRiverStationTag: 'CWC নদী কেন্দ্র',
+      mapCitizenReportTag: 'নাগরিক রিপোর্ট',
+
+      // Community Page
+      commReportsTitle: 'নাগরিক দুর্যোগ ও বিপদ রিপোর্ট',
+      commReportHazardBtn: 'বিপদ রিপোর্ট করুন',
+      commReportsDesc: 'জলমগ্ন রাস্তা, ভেঙে পড়া বিদ্যুতের খুঁটি ও ভূমিধসের সরাসরি নাগরিক রিপোর্ট।',
+      commStatusBoardTitle: '"আমি নিরাপদ" পারিবারিক অবস্থা বোর্ড',
+      commShareStatusBtn: 'অবস্থা শেয়ার করুন',
+      commStatusBoardDesc: 'চলমান জরুরি পরিস্থিতিতে আত্মীয় ও পাড়া-প্রতিবেশীদের নিরাপত্তা জানুন।',
+      commNoReports: 'এখনও কোনো বিপদের রিপোর্ট নেই। রিপোর্ট করতে উপরে ট্যাপ করুন।',
+      commNoCheckins: 'এখনও কেউ স্ট্যাটাস শেয়ার করেনি। "আমি নিরাপদ আছি" ট্যাপ করুন।',
+      commSafeBadge: 'নিরাপদ',
+
+      // Guides Page
+      guidesTitle: 'দুর্যোগ মোকাবিলা ও প্রাথমিক চিকিৎসা গাইড',
+      guideFloodTitle: 'বন্যা নিরাপত্তা নির্দেশিকা',
+      guideFloodDesc: 'প্রবাহিত জল থেকে বাঁচা, ছাদ থেকে সংকেত, জল ফোটানো।',
+      guideEarthquakeTitle: 'ভূমিকম্প সুরক্ষা',
+      guideEarthquakeDesc: 'ড্রপ, কভার এবং হোল্ড নিয়ম ঘরে ও বাইরে।',
+      guideCycloneTitle: 'ঘূর্ণিঝড় ও ঝড়বৃষ্টি',
+      guideCycloneDesc: 'জানালা সুরক্ষিত করা, ঝড়ের শান্ত কেন্দ্রে সতর্কতা।',
+      guideLightningTitle: 'বজ্রপাত ও বিদ্যুৎ চমকানো',
+      guideLightningDesc: '৩০/৩০ নিয়ম, নিচু হয়ে বসার ভঙ্গি, ঘরের ভেতরে থাকুন।',
+      guideFirstAidTitle: 'জরুরি প্রাথমিক চিকিৎসা',
+      guideFirstAidDesc: 'রক্তপাত বন্ধ, সিপিআর, পোড়া ও সাপে কাটার চিকিৎসা।',
+      guideBefore: 'দুর্যোগের পূর্বে',
+      guideDuring: 'দুর্যোগের সময়',
+      guideAfter: 'দুর্যোগের পরে',
+
+      // Profile Page
+      profileGuestUser: 'অতিথি নাগরিক',
+      profileNoPhone: 'ফোন নম্বর নেই',
+      profileBloodLabel: 'রক্তের গ্রুপ',
+      profileBloodNotSet: 'রক্তের গ্রুপ: নির্ধারণ করা নেই',
+      profileEditBtn: 'প্রোফাইল ও জরুরি নম্বর সম্পাদনা',
+      profileSavedContactsTitle: 'সংরক্ষিত জরুরি নম্বর',
+      profileNoContactsHint: 'কোনো জরুরি নম্বর যোগ করা নেই। নিচে "প্রোফাইল সম্পাদনা" ট্যাপ করুন।',
+      profileModalTitle: 'জরুরি প্রোফাইল সম্পাদনা করুন',
+      profileFullNameLabel: 'পুরো নাম',
+      profilePhoneLabel: 'আপনার মোবাইল নম্বর',
+      profileSelectBlood: 'রক্তের গ্রুপ নির্বাচন করুন',
+      profilePrimaryContact: 'প্রধান জরুরি যোগাযোগ',
+      profileContactNamePlaceholder: 'নাম (যেমন: পিতা/স্ত্রী)',
+      profileContactPhonePlaceholder: 'ফোন নম্বর (+91 98765 43210)',
+      profileSaveBtn: 'ক্লাউডে প্রোফাইল সংরক্ষণ করুন',
+
+      // Hazard Report Modal
+      hazardModalTitle: 'স্থানীয় বিপদ বা বাধার রিপোর্ট করুন',
+      hazardSelectType: 'বিপদের ধরন বেছে নিন:',
+      hazardWaterlogging: 'জলমগ্নতা / বন্যা',
+      hazardWaterloggingSub: 'রাস্তায় জল জমেছে',
+      hazardFallenTree: 'গাছ ভেঙে রাস্তা বন্ধ',
+      hazardFallenTreeSub: 'রাস্তা অবরুদ্ধ',
+      hazardLiveWire: 'ছেঁড়া বিদ্যুতের তার',
+      hazardLiveWireSub: 'বিদ্যুৎস্পৃষ্ট হওয়ার ঝুঁকি',
+      hazardLandslide: 'ভূমিধস / পাথর',
+      hazardLandslideSub: 'পাহাড় ধসে রাস্তা বন্ধ',
+      hazardFire: 'অগ্নিকাণ্ড',
+      hazardFireSub: 'ধোঁয়া বা আগুনের শিখা',
+      hazardBridgeDamage: 'সেতু/রাস্তার ক্ষতি',
+      hazardBridgeDamageSub: 'সেতু ভেঙে পড়েছে',
+      hazardLocationLabel: 'স্থান বা ল্যান্ডমার্ক',
+      hazardDescLabel: 'বিবরণ',
+      hazardDescPlaceholder: 'যেমন: ২ ফুট জল জমেছে, গাড়ি চলাচল বন্ধ...',
+      hazardNameLabel: 'আপনার নাম (ঐচ্ছিক)',
+      hazardNamePlaceholder: 'স্থানীয় বাসিন্দা',
+      hazardSubmitBtn: 'কমিউনিটি ম্যাপে প্রকাশ করুন',
+
+      // Other Modals
+      cityModalTitle: 'আপনার শহর বেছে নিন',
+      cityModalDesc: 'নদীর জলস্তর ও ত্রাণ শিবির দেখতে আপনার শহর নির্বাচন করুন:',
+      citySearchPlaceholder: '🔍 শহরের নাম লিখুন...',
+      helplinesModalTitle: 'জাতীয় জরুরি হেল্পলাইন নম্বর (সর্বভারতীয়)',
+      hospitalsModalTitle: 'নিকটবর্তী ২৪x৭ জরুরি হাসপাতাল',
+      firstAidModalTitle: 'জরুরি প্রাথমিক চিকিৎসা নির্দেশাবলী'
+    },
+
+    ta: {
+      appName: 'சுரக்ஷா பந்தன்',
+      appTagline: 'பேரிடர் முன் எச்சரிக்கை மற்றும் அவசரகால மீட்பு அமைப்பு',
+      locationDetecting: 'இருப்பிடம் கண்டறியப்படுகிறது...',
+      locateBtn: 'ஜிபிஎஸ்',
+      changeCityBtn: 'நகரம் மாற்று',
+      offlineBanner: 'ஆஃப்லைன் பயன்முறை: சேமிக்கப்பட்ட வழிகாட்டிகள்.',
+      liveTicker: 'நேரடி அவசரகால நெட்வொர்க் இயங்குகிறது',
+      navHome: 'முகப்பு',
+      navAlerts: 'எச்சரிக்கை',
+      navMap: 'வரைபடம்',
+      navCommunity: 'சமூகம்',
+      navGuides: 'வழிகாட்டி',
+      navProfile: 'சுயவிவரம்',
+      statusSafe: 'இயல்பு நிலை - அச்சுறுத்தல் இல்லை',
+      statusWarning: 'எச்சரிக்கை செயலில் உள்ளது',
+      statusDanger: 'சிவப்பு எச்சரிக்கை: உடனடி ஆபத்து',
+      speakSafetySummary: 'பாதுகாப்பு அறிக்கை கேளுங்கள்',
+      emergency112Label: 'தேசிய அவசர உதவி',
+      emergency108Label: 'ஆம்புலன்ஸ் சேவை',
+      emergency101Label: 'தீயணைப்பு படை',
+      emergency1070Label: 'பேரிடர் நிவாரணம்',
+      familySafeTitle: 'குடும்பத்திற்கு பாதுகாப்பு தகவல் தெரிவிக்கவும்',
+      familySafeDesc: '1 தட்டலில் வாட்ஸ்அப்பில் உங்கள் நிலையை பகிரவும்',
+      shareWhatsAppBtn: 'WhatsApp-ல் பகிரவும்',
+      sosTitle: 'அவசர எஸ்ஓஎஸ் (SOS)',
+      sosSubtitle: '3 வினாடிகள் அழுத்திப் பிடிக்கவும் அல்லது 112 டயல் செய்யவும்',
+      sosHint: 'உடனடி மீட்புக்கு 3 வினாடிகள் அழுத்திப் பிடிக்கவும்',
+      sosActivated: '🚨 SOS இயக்கப்பட்டது! 112 அழைக்கப்படுகிறது...',
+      call112: '112 அழைக்கவும்',
+      iAmSafeBtn: 'நான் பாதுகாப்பாக உள்ளேன்',
+      reportHazardBtn: 'ஆபத்தை தெரிவிக்கவும்',
+      weatherTitle: 'வானிலை & சுற்றுச்சூழல் ஆபத்து',
+      aqiTitle: 'காற்றுத் தரம் (AQI)',
+      humidity: 'ஈரப்பதம்',
+      wind: 'காற்று',
+      feelsLike: 'உணரப்படும் வெப்பநிலை',
+      riverTitle: 'அருகிலுள்ள நதி நீர்மட்டம்',
+      riverNormal: 'சாதாரண நீர்மட்டம்',
+      riverWarning: 'எச்சரிக்கை அளவை எட்டியுள்ளது',
+      riverCritical: 'ஆபத்து அளவைத் தாண்டியது',
+      cwcStation: 'மத்திய நீர் ஆணையம் (CWC) மையம்',
+      waterLevel: 'தற்போதைய நீர்மட்டம்',
+      dangerLevel: 'ஆபத்து அளவு',
+      riverStatus: 'நதி நிலை',
+      quickActions: 'விரைவு நடவடிக்கைகள்',
+      evacRoutes: 'பாதுகாப்பு முகாம்கள்',
+      evacDesc: 'பாதுகாப்பான இடங்கள்',
+      firstAid: 'முதலுதவி',
+      firstAidDesc: 'சிபிஆர் & காய சிகிச்சை',
+      hospitals: 'மருத்துவமனைகள்',
+      hospitalsDesc: '24x7 அவசர சிகிச்சை',
+      helplines: 'உதவி எண்கள்',
+      helplinesDesc: '112, 108, 101 நேரடி அழைப்பு',
+      directLinesTitle: 'நேரடி அவசர உதவி எண்கள்',
+      checklistTitle: 'பேரிடர் தயார்நிலை சரிபார்ப்பு பட்டியல்',
+      checklistItem1: '72 மணி நேரத்திற்கு தேவையான உணவு மற்றும் குடிநீர் பை',
+      checklistItem2: 'சார்ஜ் செய்யப்பட்ட பவர் பேங்க், டார்ச் லைட்',
+      checklistItem3: 'முக்கிய ஆவணங்களை நீர்ப்புகா பையில் வைக்கவும்',
+      checklistItem4: 'வெள்ள அபாயம் இல்லாத பகுதியில் குடும்ப சந்திப்பு இடம்',
+      speechReadAlert: 'கேளுங்கள் (ஆடியோ)',
+      speechStop: 'நிறுத்து',
+      fontSizeToggle: 'எழுத்து அளவு',
+      refresh: 'புதுப்பி',
+      viewAll: 'அனைத்தும் பார்',
+      dismiss: 'நீக்கு',
+      critical: 'அதிமுக்கியம்',
+      high: 'அதிகம்',
+      medium: 'மிதமானது',
+      low: 'குறைவு',
+      share: 'பகிர்',
+      save: 'சேமி',
+      cancel: 'ரத்து',
+      close: 'மூடு',
+      submit: 'அனுப்பு',
+
+      // Map Page
+      mapCenterMe: 'என் இருப்பிடம்',
+      mapAllFacilities: 'அனைத்து வசதிகள்',
+      mapSafeShelters: 'பாதுகாப்பு முகாம்கள்',
+      mapHospitals: 'மருத்துவமனைகள்',
+      mapRiverGauges: 'நதி நீர்மட்டம்',
+      mapCommunityHazards: 'சமூக ஆபத்துகள்',
+      mapNearestShelters: 'அருகிலுள்ள நிவாரண முகாம்கள்',
+      mapCapacity: 'கொள்ளளவு',
+      mapNoShelters: 'முகாம்கள் ஏற்றப்படவில்லை.',
+      mapNavigate: 'வழிசெலுத்து (Google Maps)',
+      mapYouAreHere: 'நீங்கள் இங்கே உள்ளீர்கள்',
+      mapSafeShelterTag: 'பாதுகாப்பான முகாம்',
+      mapTraumaTag: 'அவசர சிகிச்சை மையம்',
+      mapRiverStationTag: 'CWC நதி நிலையம்',
+      mapCitizenReportTag: 'குடிமக்கள் அறிக்கை',
+
+      // Community Page
+      commReportsTitle: 'பொதுமக்கள் ஆபத்து அறிக்கைகள்',
+      commReportHazardBtn: 'ஆபத்தை தெரிவிக்கவும்',
+      commReportsDesc: 'வெள்ள நீர், மரங்கள் விழுந்தது, மின்கம்பங்கள் சாய்ந்தது குறித்த நேரடி அறிக்கைகள்.',
+      commStatusBoardTitle: '"நான் பாதுகாப்பாக உள்ளேன்" குடும்ப நிலை பலகை',
+      commShareStatusBtn: 'நிலையை பகிரவும்',
+      commStatusBoardDesc: 'பேரிடர் நேரத்தில் உறவினர்கள் மற்றும் மக்களின் பாதுகாப்பு நிலையை அறியவும்.',
+      commNoReports: 'ஆபத்து அறிக்கைகள் எதுவும் இல்லை. தெரிவிக்க மேலே தட்டவும்.',
+      commNoCheckins: 'பதிவுகள் எதுவும் இல்லை. உங்கள் நிலையை தெரிவிக்க "நான் பாதுகாப்பாக உள்ளேன்" என்பதை அழுத்தவும்.',
+      commSafeBadge: 'பாதுகாப்பு',
+
+      // Guides Page
+      guidesTitle: 'பேரிடர் தற்காப்பு & முதலுதவி வழிகாட்டி',
+      guideFloodTitle: 'வெள்ள பாதுகாப்பு வழிகாட்டி',
+      guideFloodDesc: 'நீர் ஓட்டத்தில் தப்பித்தல், கூரை சமிக்ஞை, குடிநீர் காய்ச்சுதல்.',
+      guideEarthquakeTitle: 'நிலநடுக்க தற்காப்பு',
+      guideEarthquakeDesc: 'குனிந்து, மறைந்து, பிடித்துக்கொள்ளும் விதிகள்.',
+      guideCycloneTitle: 'புயல் மற்றும் சூறாவளி',
+      guideCycloneDesc: 'ஜன்னல் பாதுகாப்பு, புயல் மைய அமைதி, வெளியேற்றம்.',
+      guideLightningTitle: 'மின்னல் மற்றும் இடிமின்னல்',
+      guideLightningDesc: '30/30 விதி, மின்னல் பாதுகாப்பு உட்காரும் முறை.',
+      guideFirstAidTitle: 'அவசர முதலுதவி',
+      guideFirstAidDesc: 'இரத்தப்போக்கு கட்டுப்பாடு, சிபிஆர், தீக்காயம், பாம்புக்கடி.',
+      guideBefore: 'நிகழ்வுக்கு முன்',
+      guideDuring: 'நிகழ்வின் போது',
+      guideAfter: 'நிகழ்வுக்கு பின்',
+
+      // Profile Page
+      profileGuestUser: 'விருந்தினர் குடிமகன்',
+      profileNoPhone: 'தொலைபேசி எண் இல்லை',
+      profileBloodLabel: 'இரத்த வகை',
+      profileBloodNotSet: 'இரத்த வகை: அமைக்கப்படவில்லை',
+      profileEditBtn: 'சுயவிவரம் & அவசர தொடர்புகளை திருத்து',
+      profileSavedContactsTitle: 'சேமிக்கப்பட்ட அவசர தொடர்புகள்',
+      profileNoContactsHint: 'அவசர தொடர்புகள் எதுவும் சேர்க்கப்படவில்லை. கீழே "திருத்து" என்பதை அழுத்தவும்.',
+      profileModalTitle: 'அவசர சுயவிவரத்தை திருத்து',
+      profileFullNameLabel: 'முழு பெயர்',
+      profilePhoneLabel: 'உங்கள் கைபேசி எண்',
+      profileSelectBlood: 'இரத்த வகையைத் தேர்ந்தெடுக்கவும்',
+      profilePrimaryContact: 'முதன்மை அவசர தொடர்பு',
+      profileContactNamePlaceholder: 'பெயர் (எ.கா. தந்தை/துணைவர்)',
+      profileContactPhonePlaceholder: 'தொடர்பு எண் (+91 98765 43210)',
+      profileSaveBtn: 'சுயவிவரத்தை கிளவுடில் சேமிக்கவும்',
+
+      // Hazard Report Modal
+      hazardModalTitle: 'உள்ளூர் ஆபத்து அல்லது தடையை தெரிவிக்கவும்',
+      hazardSelectType: 'ஆபத்தின் வகையைத் தேர்ந்தெடுக்கவும்:',
+      hazardWaterlogging: 'வெள்ள நீர் தேக்கம்',
+      hazardWaterloggingSub: 'சாலையில் நீர் தேங்கியுள்ளது',
+      hazardFallenTree: 'மரம் விழுந்தது',
+      hazardFallenTreeSub: 'பாதை அடைக்கப்பட்டுள்ளது',
+      hazardLiveWire: 'மின்கம்பி அறுந்தது',
+      hazardLiveWireSub: 'மின் அதிர்ச்சி ஆபத்து',
+      hazardLandslide: 'நிலச்சரிவு',
+      hazardLandslideSub: 'பாறை மற்றும் மண்சரிவு',
+      hazardFire: 'தீ விபத்து',
+      hazardFireSub: 'புகை அல்லது தீப்பிழம்பு',
+      hazardBridgeDamage: 'பாலம்/சாலை சேதம்',
+      hazardBridgeDamageSub: 'இடிந்த கட்டுமானம்',
+      hazardLocationLabel: 'இடம் / அடையாளம்',
+      hazardDescLabel: 'விவரங்கள்',
+      hazardDescPlaceholder: 'நீரின் ஆழம், போக்குவரத்து அடைப்பு ஆகியவற்றை விவரிக்கவும்...',
+      hazardNameLabel: 'உங்கள் பெயர் (விருப்பமானது)',
+      hazardNamePlaceholder: 'உள்ளூர்வாசி',
+      hazardSubmitBtn: 'சமூக வரைபடத்தில் வெளியிடவும்',
+
+      // Other Modals
+      cityModalTitle: 'உங்கள் நகரத்தைத் தேர்ந்தெடுக்கவும்',
+      cityModalDesc: 'நதி நீர்மட்டம் மற்றும் நிவாரண முகாம்களைக் காண நகரத்தைத் தேர்ந்தெடுக்கவும்:',
+      citySearchPlaceholder: '🔍 நகரத்தின் பெயரை தட்டச்சு செய்க...',
+      helplinesModalTitle: 'தேசிய அவசர உதவி எண்கள் (அனைத்திந்திய)',
+      hospitalsModalTitle: 'அருகிலுள்ள 24x7 அவசர மருத்துவமனைகள்',
+      firstAidModalTitle: 'அவசர முதலுதவி நடைமுறைகள்'
+    },
+
+    te: {
+      appName: 'సురక్షా బంధన్',
+      appTagline: 'విపత్తు ముందస్తు హెచ్చరిక & అత్యవసర స్పందన వ్యవస్థ',
+      locationDetecting: 'స్థానాన్ని గుర్తిస్తోంది...',
+      locateBtn: 'జిపిఎస్',
+      changeCityBtn: 'నగరం మార్చండి',
+      offlineBanner: 'ఆఫ్‌లైన్ మోడ్: సేవ్ చేయబడిన డేటా చూపబడుతోంది.',
+      liveTicker: 'ప్రత్యక్ష అత్యవసర నెట్‌వర్క్ చురుకుగా ఉంది',
+      navHome: 'హోమ్',
+      navAlerts: 'హెచ్చరికలు',
+      navMap: 'మ్యాప్',
+      navCommunity: 'సమాజం',
+      navGuides: 'గైడ్',
+      navProfile: 'ప్రొఫైల్',
+      statusSafe: 'పరిస్థితి సాధారణం - ఎటువంటి ప్రమాదం లేదు',
+      statusWarning: 'హెచ్చరిక జారీ చేయబడింది - అప్రమత్తంగా ఉండండి',
+      statusDanger: 'రెడ్ అలర్ట్: తక్షణ విపత్తు ప్రమాదం',
+      speakSafetySummary: 'భద్రతా నివేదిక వినండి',
+      emergency112Label: 'జాతీయ అత్యవసర',
+      emergency108Label: 'అంబులెన్స్ సేవ',
+      emergency101Label: 'అగ్నిమాపక సేవ',
+      emergency1070Label: 'విపత్తు సహాయం',
+      familySafeTitle: 'మీరు సురక్షితంగా ఉన్నారని కుటుంబానికి తెలియజేయండి',
+      familySafeDesc: '1 ట్యాప్‌లో వాట్సాప్‌లో సురక్షిత స్థానాన్ని షేర్ చేయండి',
+      shareWhatsAppBtn: 'WhatsApp లో తెలియజేయండి',
+      sosTitle: 'అత్యవసర ఎస్ఓఎస్ (SOS)',
+      sosSubtitle: '3 సెకన్లు నొక్కి పట్టుకోండి లేదా 112 కి కాల్ చేయండి',
+      sosHint: 'లొకేషన్ మరియు సందేశం పంపడానికి 3 సెకన్లు నొక్కండి',
+      sosActivated: '🚨 SOS సక్రియం చేయబడింది! 112 కి కాల్ చేస్తోంది...',
+      call112: '112 కి కాల్ చేయండి',
+      iAmSafeBtn: 'నేను సురక్షితంగా ఉన్నాను',
+      reportHazardBtn: 'ప్రమాదాన్ని నివేదించండి',
+      weatherTitle: 'వాతావరణం & పర్యావరణ ముప్పు',
+      aqiTitle: 'గాలి నాణ్యత సూచిక (AQI)',
+      humidity: 'తేమ',
+      wind: 'గాలి వేగం',
+      feelsLike: 'అనిపించే ఉష్ణోగ్రత',
+      riverTitle: 'సమీప నది నీటి మట్టం',
+      riverNormal: 'ప్రవాహం సాధారణం',
+      riverWarning: 'హెచ్చరిక స్థాయికి చేరుకుంది',
+      riverCritical: 'ప్రమాద స్థాయిని మించి ప్రవహిస్తోంది',
+      cwcStation: 'కేంద్ర జల సంఘం (CWC) కేంద్రం',
+      waterLevel: 'ప్రస్తుత నీటిమట్టం',
+      dangerLevel: 'ప్రమాద స్థాయి',
+      riverStatus: 'నది పరిస్థితి',
+      quickActions: 'త్వరిత సహాయం',
+      evacRoutes: 'సురక్షిత ఆశ్రయాలు',
+      evacDesc: 'సమీప ఆశ్రయాలు',
+      firstAid: 'ప్రథమ చికిత్స',
+      firstAidDesc: 'గాయాల చికిత్స & సంరక్షణ',
+      hospitals: 'ఆసుపత్రులు',
+      hospitalsDesc: '24x7 అత్యవసర చికిత్స',
+      helplines: 'హెల్ప్‌లైన్లు',
+      helplinesDesc: '112, 108, 101 కి కాల్',
+      directLinesTitle: 'నేరుగా అత్యవసర లైన్లు',
+      checklistTitle: 'విపత్తు సంసిద్ధత తనిఖీ జాబితా',
+      checklistItem1: '72 గంటల అత్యవసర ఆహారం మరియు మంచినీటి కిట్',
+      checklistItem2: 'ఛార్జ్ చేయబడిన పవర్ బ్యాంకులు మరియు టార్చ్ లైట్లు',
+      checklistItem3: 'ముఖ్యమైన పత్రాలను వాటర్‌ప్రూఫ్ పౌచ్‌లో భద్రపరచండి',
+      checklistItem4: 'వరద రహిత ప్రాంతంలో కుటుంబ సమావేశ స్థలం నిర్ణయించండి',
+      speechReadAlert: 'వినండి (ఆడియో)',
+      speechStop: 'ఆపండి',
+      fontSizeToggle: 'అక్షరాల పరిమాణం',
+      refresh: 'రిఫ్రెష్',
+      viewAll: 'అన్నీ చూడండి',
+      dismiss: 'తీసివేయి',
+      critical: 'తీవ్రమైనది',
+      high: 'ఎక్కువ',
+      medium: 'మధ్యస్థం',
+      low: 'తక్కువ',
+      share: 'షేర్ చేయండి',
+      save: 'సేవ్',
+      cancel: 'రద్దు చేయి',
+      close: 'మూసివేయి',
+      submit: 'సమర్పించండి',
+
+      // Map Page
+      mapCenterMe: 'నా స్థానం',
+      mapAllFacilities: 'అన్ని సౌకర్యాలు',
+      mapSafeShelters: 'సురక్షిత ఆశ్రయాలు',
+      mapHospitals: 'ఆసుపత్రులు',
+      mapRiverGauges: 'నది గేజ్‌లు',
+      mapCommunityHazards: 'సమాజ ప్రమాదాలు',
+      mapNearestShelters: 'సమీప ఆశ్రయాలు & సహాయ కేంద్రాలు',
+      mapCapacity: 'సామర్థ్యం',
+      mapNoShelters: 'ఆశ్రయాలు లోడ్ కాలేదు.',
+      mapNavigate: 'మార్గం చూడండి (Google Maps)',
+      mapYouAreHere: 'మీరు ఇక్కడ ఉన్నారు',
+      mapSafeShelterTag: 'సురక్షిత ఆశ్రయం',
+      mapTraumaTag: 'అత్యవసర ట్రామా సెంటర్',
+      mapRiverStationTag: 'CWC నది కేంద్రం',
+      mapCitizenReportTag: 'పౌరుల నివేదిక',
+
+      // Community Page
+      commReportsTitle: 'పౌరుల ప్రమాద నివేదికలు',
+      commReportHazardBtn: 'ప్రమాదాన్ని నివేదించండి',
+      commReportsDesc: 'రోడ్లపై నీరు నిలవడం, పడిపోయిన విద్యుత్ స్తంభాలు, కొండచరియల తాజా నివేదికలు.',
+      commStatusBoardTitle: '"నేను సురక్షితం" కుటుంబ స్థితి బోర్డు',
+      commShareStatusBtn: 'స్థితిని షేర్ చేయండి',
+      commStatusBoardDesc: 'విపత్తు సమయంలో బంధువులు మరియు స్థానికుల భద్రతా స్థితిని తెలుసుకోండి.',
+      commNoReports: 'ఇంకా ఎటువంటి నివేదికలు లేవు. రిపోర్ట్ చేయడానికి పైన నొక్కండి.',
+      commNoCheckins: 'ఇంకా ఎవరూ చెక్-ఇన్ చేయలేదు. "నేను సురక్షితంగా ఉన్నాను" నొక్కండి.',
+      commSafeBadge: 'సురక్షితం',
+
+      // Guides Page
+      guidesTitle: 'విపత్తు రక్షణ & ప్రథమ చికిత్స మార్గదర్శకాలు',
+      guideFloodTitle: 'వరద భద్రతా గైడ్',
+      guideFloodDesc: 'ప్రవహించే నీటి నుండి రక్షణ, పైకప్పు సంకేతాలు, నీటిని మరిగించడం.',
+      guideEarthquakeTitle: 'భూకంప రక్షణ',
+      guideEarthquakeDesc: 'డ్రాప్, కవర్, హోల్డ్ నియమాలు ఇంట్లో మరియు బయట.',
+      guideCycloneTitle: 'తుఫాను మరియు పెనుగాలులు',
+      guideCycloneDesc: 'కిటికీల రక్షణ, తుఫాను ప్రశాంత కంటి సమయంలో జాగ్రత్త.',
+      guideLightningTitle: 'పిడుగుపాటు & ఉరుములు',
+      guideLightningDesc: '30/30 నియమం, పిడుగు రక్షణ కూర్చునే భంగిమ, ఇంట్లోనే ఉండండి.',
+      guideFirstAidTitle: 'అత్యవసర ప్రథమ చికిత్స',
+      guideFirstAidDesc: 'రక్తస్రావం ఆపడం, సిపిఆర్, కాలిన గాయాలు, పాముకాటు చికిత్స.',
+      guideBefore: 'విపత్తు ముందు',
+      guideDuring: 'విపత్తు సమయంలో',
+      guideAfter: 'విపత్తు తర్వాత',
+
+      // Profile Page
+      profileGuestUser: 'అతిథి పౌరుడు',
+      profileNoPhone: 'ఫోన్ నంబర్ నమోదు కాలేదు',
+      profileBloodLabel: 'రక్త వర్గం',
+      profileBloodNotSet: 'రక్త వర్గం: సెట్ చేయలేదు',
+      profileEditBtn: 'ప్రొఫైల్ & అత్యవసర పరిచయాలను సవరించండి',
+      profileSavedContactsTitle: 'భద్రపరచిన అత్యవసర పరిచయాలు',
+      profileNoContactsHint: 'ఇంకా పరిచయాలు జోడించలేదు. క్రింద "సవరించండి" నొక్కండి.',
+      profileModalTitle: 'అత్యవసర ప్రొఫైల్ సవరణ',
+      profileFullNameLabel: 'పూర్తి పేరు',
+      profilePhoneLabel: 'మీ మొబైల్ నంబర్',
+      profileSelectBlood: 'రక్త వర్గాన్ని ఎంచుకోండి',
+      profilePrimaryContact: 'ప్రధాన అత్యవసర పరిచయం',
+      profileContactNamePlaceholder: 'పేరు (ఉదా. తండ్రి/భార్య/భర్త)',
+      profileContactPhonePlaceholder: 'ఫోన్ నంబర్ (+91 98765 43210)',
+      profileSaveBtn: 'క్లౌడ్‌లో ప్రొఫైల్‌ను భద్రపరచండి',
+
+      // Hazard Report Modal
+      hazardModalTitle: 'స్థానిక ప్రమాదం లేదా అడ్డంకిని నివేదించండి',
+      hazardSelectType: 'ప్రమాదం రకాన్ని ఎంచుకోండి:',
+      hazardWaterlogging: 'నీరు నిలవడం / వరద',
+      hazardWaterloggingSub: 'రోడ్డుపై నీరు నిలిచింది',
+      hazardFallenTree: 'చెట్టు పడిపోయింది',
+      hazardFallenTreeSub: 'దారి మూసుకుపోయింది',
+      hazardLiveWire: 'విద్యుత్ తీగ తెగిపడింది',
+      hazardLiveWireSub: 'షాక్ తగిలే ప్రమాదం',
+      hazardLandslide: 'కొండచరియలు విరిగిపడటం',
+      hazardLandslideSub: 'రాళ్ళు మరియు మట్టి పడింది',
+      hazardFire: 'అగ్ని ప్రమాదం',
+      hazardFireSub: 'మంటలు లేదా పొగ',
+      hazardBridgeDamage: 'వంతెన/రోడ్డు దెబ్బతిన్నది',
+      hazardBridgeDamageSub: 'కూలిపోయిన నిర్మాణం',
+      hazardLocationLabel: 'స్థలం / ల్యాండ్‌మార్క్',
+      hazardDescLabel: 'వివరాలు',
+      hazardDescPlaceholder: 'నీటి లోతు, ట్రాఫిక్ సమస్య మొదలైనవి వివరించండి...',
+      hazardNameLabel: 'మీ పేరు (ఐచ్ఛికం)',
+      hazardNamePlaceholder: 'స్థానిక నివాసి'
+    },
+
+    mr: {
+      appName: 'सुरक्षा बंधन',
+      appTagline: 'आपत्ती पूर्व चेतावणी व आपत्कालीन प्रतिसाद प्रणाली',
+      locationDetecting: 'थेट स्थान शोधत आहे...',
+      locateBtn: 'जीपीएस',
+      changeCityBtn: 'शहर बदला',
+      offlineBanner: 'ऑफलाइन मोड: जतन केलेली माहिती दाखवत आहे.',
+      liveTicker: 'थेट आपत्कालीन नेटवर्क कार्यरत आहे',
+      navHome: 'होम',
+      navAlerts: 'अलर्ट',
+      navMap: 'नकाशा',
+      navCommunity: 'समुदाय',
+      navGuides: 'मार्गदर्शक',
+      navProfile: 'प्रोफाइल',
+      statusSafe: 'परिस्थिती सामान्य - धोका नाही',
+      statusWarning: 'हवामान/पूर इशारा सक्रिय',
+      statusDanger: 'रेड अलर्ट: तातडीचा आपत्ती धोका',
+      speakSafetySummary: 'सुरक्षा अहवाल ऐका',
+      emergency112Label: 'राष्ट्रीय आणीबाणी',
+      emergency108Label: 'रुग्णवाहिका सेवा',
+      emergency101Label: 'अग्निशामक दल',
+      emergency1070Label: 'आपत्ती निवारण',
+      familySafeTitle: 'कुटुंबाला कळवा की तुम्ही सुरक्षित आहात',
+      familySafeDesc: 'एका क्लिकवर व्हॉट्सॲपवर सुरक्षित स्थान पाठवा',
+      shareWhatsAppBtn: 'WhatsApp वर पाठवा',
+      sosTitle: 'आपत्कालीन एसओएस (SOS)',
+      sosSubtitle: '३ सेकंद दाबून ठेवा किंवा ११२ वर कॉल करा',
+      sosHint: 'लोकेशन व संदेश पाठवण्यासाठी ३ सेकंद दाबून ठेवा',
+      sosActivated: '🚨 SOS पाठवला! ११२ ला कॉल केला जात आहे...',
+      call112: '११२ डायल करा',
+      iAmSafeBtn: 'मी सुरक्षित आहे',
+      reportHazardBtn: 'धोक्याची तक्रार करा',
+      weatherTitle: 'स्थानिक हवामान आणि जोखीम',
+      aqiTitle: 'हवेची गुणवत्ता (AQI)',
+      humidity: 'आर्द्रता',
+      wind: 'वारा',
+      feelsLike: 'जाणवणारे तापमान',
+      riverTitle: 'जवळची नदी व जलपातळी',
+      riverNormal: 'प्रवाह सामान्य',
+      riverWarning: 'धोका पातळीजवळ पोहोचला',
+      riverCritical: 'धोक्याची पातळी ओलांडली',
+      cwcStation: 'केंद्रीय जल आयोग (CWC) केंद्र',
+      waterLevel: 'सध्याची पातळी',
+      dangerLevel: 'धोक्याची पातळी',
+      riverStatus: 'नदीची स्थिती',
+      quickActions: 'जलद कृती',
+      evacRoutes: 'सुरक्षित निवारे',
+      evacDesc: 'जवळचे मदत केंद्र',
+      firstAid: 'प्रथमोपचार',
+      firstAidDesc: 'सीपीआर व जखम उपचार',
+      hospitals: 'रुग्णालये',
+      hospitalsDesc: '२४x७ ट्रॉमा सेंटर',
+      helplines: 'हेल्पलाइन नंबर',
+      helplinesDesc: '११२, १०८, १०१ थेट संपर्क',
+      directLinesTitle: 'थेट आपत्कालीन संपर्क',
+      checklistTitle: 'आपत्ती पूर्वतयारी यादी',
+      checklistItem1: '७२ तासांसाठी पाणी आणि सुका खाऊची बॅग',
+      checklistItem2: 'चार्ज केलेले पॉवर बँक आणि बॅटरी टॉर्च',
+      checklistItem3: 'महत्त्वाची कागदपत्रे वॉटरप्रूफ पिशवीत ठेवा',
+      checklistItem4: 'पूर क्षेत्राबाहेर कुटुंबाच्या भेटीचे ठिकाण',
+      speechReadAlert: 'ऐका (ऑडिओ)',
+      speechStop: 'ऑडिओ थांबवा',
+      fontSizeToggle: 'फॉन्ट आकार',
+      refresh: 'रिफ्रेश',
+      viewAll: 'सर्व पहा',
+      dismiss: 'काढून टाका',
+      critical: 'अत्यंत गंभीर',
+      high: 'उच्च',
+      medium: 'मध्यम',
+      low: 'कमी',
+      share: 'शेअर',
+      save: 'जतन करा',
+      cancel: 'रद्द करा',
+      close: 'बंद करा',
+      submit: 'अहवाल पाठवा',
+
+      // Map Page
+      mapCenterMe: 'माझे स्थान',
+      mapAllFacilities: 'सर्व सुविधा',
+      mapSafeShelters: 'सुरक्षित निवारे',
+      mapHospitals: 'रुग्णालये',
+      mapRiverGauges: 'नदी पाणी पातळी',
+      mapCommunityHazards: 'स्थानिक धोके',
+      mapNearestShelters: 'जवळचे निवारा आणि मदत केंद्र',
+      mapCapacity: 'क्षमता',
+      mapNoShelters: 'कोणतेही निवारे लोड झाले नाहीत.',
+      mapNavigate: 'मार्ग पहा (Google Maps)',
+      mapYouAreHere: 'तुम्ही येथे आहात',
+      mapSafeShelterTag: 'सुरक्षित निवारा',
+      mapTraumaTag: 'आपत्कालीन ट्रॉमा',
+      mapRiverStationTag: 'CWC नदी केंद्र',
+      mapCitizenReportTag: 'नागरिक अहवाल',
+
+      // Community Page
+      commReportsTitle: 'नागरिक आपत्ती व धोका अहवाल',
+      commReportHazardBtn: 'धोक्याची तक्रार करा',
+      commReportsDesc: 'पाणी साचणे, पडलेली झाडे, विजेचे खांब आणि बंद रस्ते याबद्दल थेट माहिती.',
+      commStatusBoardTitle: '"मी सुरक्षित आहे" कुटुंब सुरक्षा फलक',
+      commShareStatusBtn: 'स्थिती शेअर करा',
+      commStatusBoardDesc: 'आपत्तीच्या काळात नातेवाईक आणि नागरिकांची सुरक्षितता तपासा.',
+      commNoReports: 'अद्याप कोणतेही धोके नोंदवलेले नाहीत. तक्रार करण्यासाठी वर टॅप करा.',
+      commNoCheckins: 'अद्याप कोणतीही नोंद नाही. तुमची स्थिती सांगण्यासाठी "मी सुरक्षित आहे" दाबा.',
+      commSafeBadge: 'सुरक्षित',
+
+      // Guides Page
+      guidesTitle: 'आपत्ती बचाव व प्रथमोपचार मार्गदर्शक',
+      guideFloodTitle: 'पूर सुरक्षा मार्गदर्शक',
+      guideFloodDesc: 'वाहत्या पाण्यापासून बचाव, छतावरून संकेत, पाणी उकळणे.',
+      guideEarthquakeTitle: 'भूकंप बचाव',
+      guideEarthquakeDesc: 'खाली वाका, कव्हर घ्या आणि धरा नियम घरात व बाहेर.',
+      guideCycloneTitle: 'चक्रीवादळ व वादळी वारे',
+      guideCycloneDesc: 'खिडक्यांचे संरक्षण, वादळाच्या शांत डोळ्यात सतर्कता.',
+      guideLightningTitle: 'वीज व मेघगर्जना',
+      guideLightningDesc: '३०/३० नियम, वाकून बसण्याची योग्य मुद्रा, घरातच राहा.',
+      guideFirstAidTitle: 'आपत्कालीन प्रथमोपचार',
+      guideFirstAidDesc: 'रक्तस्त्राव थांबवणे, सीपीआर, भाजणे आणि सर्पदंश उपचार.',
+      guideBefore: 'आपत्तीपूर्वी',
+      guideDuring: 'आपत्तीदरम्यान',
+      guideAfter: 'आपत्तीनंतर',
+
+      // Profile Page
+      profileGuestUser: 'अतिथी नागरिक',
+      profileNoPhone: 'फोन नंबर नोंदवलेला नाही',
+      profileBloodLabel: 'रक्तगट',
+      profileBloodNotSet: 'रक्तगट: निवडलेला नाही',
+      profileEditBtn: 'प्रोफाइल व आपत्कालीन संपर्क बदला',
+      profileSavedContactsTitle: 'जतन केलेले आपत्कालीन संपर्क',
+      profileNoContactsHint: 'कोणतेही संपर्क जोडलेले नाहीत. खाली "प्रोफाइल बदला" वर टॅप करा.',
+      profileModalTitle: 'आपत्कालीन प्रोफाइल संपादित करा',
+      profileFullNameLabel: 'पूर्ण नाव',
+      profilePhoneLabel: 'तुमचा मोबाईल नंबर',
+      profileSelectBlood: 'रक्तगट निवडा',
+      profilePrimaryContact: 'मुख्य आपत्कालीन संपर्क',
+      profileContactNamePlaceholder: 'नाव (उदा. वडील/पती/पत्नी)',
+      profileContactPhonePlaceholder: 'संपर्क फोन (+91 98765 43210)',
+      profileSaveBtn: 'क्लाउडवर प्रोफाइल जतन करा',
+
+      // Hazard Report Modal
+      hazardModalTitle: 'स्थानिक धोका किंवा अडथळ्याची तक्रार करा',
+      hazardSelectType: 'धोक्याचा प्रकार निवडा:',
+      hazardWaterlogging: 'पाणी साचणे / पूर',
+      hazardWaterloggingSub: 'रस्त्यावर पाणी साचले आहे',
+      hazardFallenTree: 'झाड पडले / रस्ता बंद',
+      hazardFallenTreeSub: 'वाहतूक ठप्प',
+      hazardLiveWire: 'विजेची तार तुटली',
+      hazardLiveWireSub: 'शॉक लागण्याचा धोका',
+      hazardLandslide: 'दरड कोसळणे',
+      hazardLandslideSub: 'दगड व माती घसरली',
+      hazardFire: 'आगीची घटना',
+      hazardFireSub: 'धूर किंवा ज्वाळा',
+      hazardBridgeDamage: 'पूल/रस्त्याचे नुकसान',
+      hazardBridgeDamageSub: 'पूल खचला किंवा कोसळला',
+      hazardLocationLabel: 'स्थान / खूण',
+      hazardDescLabel: 'तपशील',
+      hazardDescPlaceholder: 'पाण्याची पातळी, अडथळा इत्यादीचे वर्णन करा...',
+      hazardNameLabel: 'तुमचे नाव (पर्यायी)',
+      hazardNamePlaceholder: 'स्थानिक रहिवासी',
+      hazardSubmitBtn: 'समुदाय नकाशावर प्रसिद्ध करा',
+
+      // Other Modals
+      cityModalTitle: 'तुमचे शहर निवडा',
+      cityModalDesc: 'नदी पातळी आणि मदत केंद्र पाहण्यासाठी शहर निवडा:',
+      citySearchPlaceholder: '🔍 शहराचे नाव शोधा...',
+      helplinesModalTitle: 'राष्ट्रीय आपत्कालीन हेल्पलाइन (अखिल भारतीय)',
+      hospitalsModalTitle: 'जवळची २४x७ आपत्कालीन रुग्णालये',
+      firstAidModalTitle: 'आपत्कालीन प्रथमोपचार पद्धती'
+    },
+
+    gu: {
+      appName: 'સુરક્ષા બંધન',
+      appTagline: 'આપત્તિ પૂર્વ ચેતવણી અને કટોકટી પ્રતિસાદ પ્રણાલી',
+      locationDetecting: 'લાઇવ સ્થાન શોધાઈ રહ્યું છે...',
+      locateBtn: 'જીપીએસ',
+      changeCityBtn: 'શહેર બદલો',
+      offlineBanner: 'ઑફલાઇન મોડ: સેવ કરેલ માહિતી દર્શાવી રહ્યું છે.',
+      liveTicker: 'લાઇવ આપત્તિ નેટવર્ક સક્રિય છે',
+      navHome: 'હોમ',
+      navAlerts: 'ચેતવણી',
+      navMap: 'નકશો',
+      navCommunity: 'સમુદાય',
+      navGuides: 'ગાઇડ',
+      navProfile: 'પ્રોફાઇલ',
+      statusSafe: 'સ્થિતિ સામાન્ય - કોઈ તાત્કાલિક જોખમ નથી',
+      statusSafeDesc: 'તમારા વિસ્તારમાં કોઈ ગંભીર આપત્તિ ચેતવણી સક્રિય નથી.',
+      distance: 'અંતર',
+      updated: 'અપડેટ થયેલ',
+      statusWarning: 'હવામાન/પૂર સલાહકાર સક્રિય',
+      statusDanger: 'રેડ એલર્ટ: ગંભીર આપત્તિ ચેતવણી',
+      speakSafetySummary: 'સુરક્ષા અહેવાલ સાંભળો',
+      emergency112Label: 'રાષ્ટ્રીય આપાતકાલ',
+      emergency108Label: 'એમ્બ્યુલન્સ સેવા',
+      emergency101Label: 'ફાયર બ્રિગેડ',
+      emergency1070Label: 'આપત્તિ રાહત',
+      familySafeTitle: 'પરિવારને જણાવો કે તમે સુરક્ષિત છો',
+      familySafeDesc: 'એક ક્લિકમાં વોટ્સએપ પર સુરક્ષિત સ્થિતિ મોકલો',
+      shareWhatsAppBtn: 'WhatsApp પર જણાવો',
+      sosTitle: 'કટોકટી એસઓએસ (SOS)',
+      sosSubtitle: '૩ સેકન્ડ દબાવી રાખો અથવા ૧૧૨ ડાયલ કરો',
+      sosHint: 'પરિવારને સ્થાન અને સંદેશ મોકલવા ૩ સેકન્ડ દબાવી રાખો',
+      sosActivated: '🚨 SOS સક્રિય! ૧૧૨ ડાયલ થઈ રહ્યું છે...',
+      call112: '૧૧૨ ડાયલ કરો',
+      iAmSafeBtn: 'હું સુરક્ષિત છું',
+      reportHazardBtn: 'જોખમની જાણ કરો',
+      weatherTitle: 'સ્થાનિક હવામાન અને જોખમ',
+      aqiTitle: 'હવાની ગુણવત્તા (AQI)',
+      humidity: 'ભેજ',
+      wind: 'પવન',
+      feelsLike: 'અનુભવાતું તાપમાન',
+      riverTitle: 'નજીકની નદી અને જળસ્તર',
+      riverNormal: 'પ્રવાહ સામાન્ય',
+      riverWarning: 'ચેતવણી સ્તર નજીક',
+      riverCritical: 'ખતરાના નિશાનથી ઉપર',
+      cwcStation: 'કેન્દ્રીય જળ આયોગ (CWC) સ્ટેશન',
+      waterLevel: 'વર્તમાન જળસ્તર',
+      dangerLevel: 'જોખમની સપાટી',
+      riverStatus: 'નદીની સ્થિતિ',
+      quickActions: 'ઝડપી સહાય',
+      evacRoutes: 'સલામત આશ્રયસ્થાનો',
+      evacDesc: 'નજીકના આશ્રય કેન્દ્રો',
+      firstAid: 'પ્રાથમિક સારવાર',
+      firstAidDesc: 'સીપીઆર અને ઇમરજન્સી કેર',
+      hospitals: 'હોસ્પિટલો',
+      hospitalsDesc: '૨૪x૭ ટ્રોમા સેન્ટર',
+      helplines: 'હેલ્પલાઇન નંબર',
+      helplinesDesc: '૧૧૨, ૧૦૮, ૧૦૧ સીધો કોલ',
+      directLinesTitle: 'સીધા કટોકટી સંપર્ક',
+      checklistTitle: 'આપત્તિ સજ્જતા ચેકલિસ્ટ',
+      checklistItem1: '૭૨ કલાક માટે પીવાનું પાણી અને ડ્રાય ફૂડ કિટ',
+      checklistItem2: 'ચાર્જ કરેલ પાવર બેંક અને ટોર્ચ સાથે રાખો',
+      checklistItem3: 'મહત્વપૂર્ણ દસ્તાવેજો વોટરપ્રૂફ બેગમાં રાખો',
+      checklistItem4: 'પૂર ઝોનની બહાર પરિવાર માટે સુરક્ષિત સ્થળ નક્કી કરો',
+      speechReadAlert: 'સાંભળો (ઓડિયો)',
+      speechStop: 'ઓડિયો બંધ કરો',
+      fontSizeToggle: 'ફોન્ટ કદ',
+      refresh: 'અપડેટ કરો',
+      viewAll: 'બધું જુઓ',
+      dismiss: 'કાઢી નાખો',
+      critical: 'ગંભીર',
+      high: 'ઉચ્ચ',
+      medium: 'મધ્યમ',
+      low: 'ઓછું',
+      share: 'શેર કરો',
+      save: 'સાચવો',
+      cancel: 'રદ કરો',
+      close: 'બંધ કરો',
+      submit: 'રિપોર્ટ મોકલો',
+
+      // Map Page
+      mapCenterMe: 'મારું સ્થાન',
+      mapAllFacilities: 'તમામ સુવિધાઓ',
+      mapSafeShelters: 'સલામત આશ્રયસ્થાનો',
+      mapHospitals: 'હોસ્પિટલો',
+      mapRiverGauges: 'નદી ગેજ',
+      mapCommunityHazards: 'સ્થાનિક જોખમો',
+      mapNearestShelters: 'નજીકના આશ્રય અને રાહત કેન્દ્રો',
+      mapCapacity: 'ક્ષમતા',
+      mapNoShelters: 'કોઈ આશ્રયસ્થાનો મળ્યા નથી.',
+      mapNavigate: 'રસ્તો જુઓ (Google Maps)',
+      mapYouAreHere: 'તમે અહીં છો',
+      mapSafeShelterTag: 'સલામત આશ્રય',
+      mapTraumaTag: 'ઇમરજન્સી ટ્રોમા',
+      mapRiverStationTag: 'CWC નદી સ્ટેશન',
+      mapCitizenReportTag: 'નાગરિક અહેવાલ',
+
+      // Community Page
+      commReportsTitle: 'નાગરિક આપત્તિ અને જોખમ અહેવાલ',
+      commReportHazardBtn: 'જોખમની જાણ કરો',
+      commReportsDesc: 'પાણી ભરાવું, પડેલા ઝાડ, વીજળીના થાંભલા અને બંધ રસ્તાઓની લાઈવ માહિતી.',
+      commStatusBoardTitle: '"હું સુરક્ષિત છું" કૌટુંબિક સ્થિતિ બોર્ડ',
+      commShareStatusBtn: 'સ્થિતિ શેર કરો',
+      commStatusBoardDesc: 'કટોકટીના સમયે સગા-સંબંધીઓ અને નાગરિકોની સલામતી તપાસો.',
+      commNoReports: 'હજુ કોઈ જોખમ નોંધાયેલ નથી. જાણ કરવા માટે ઉપર ટેપ કરો.',
+      commNoCheckins: 'હજુ કોઈ ચેક-ઇન નથી. સ્થિતિ જણાવવા "હું સુરક્ષિત છું" દબાવો.',
+      commSafeBadge: 'સુરક્ષિત',
+
+      // Guides Page
+      guidesTitle: 'આપત્તિ સુરક્ષા અને પ્રાથમિક સારવાર માર્ગદર્શિકા',
+      guideFloodTitle: 'પૂર સુરક્ષા માર્ગદર્શિકા',
+      guideFloodDesc: 'વહેતા પાણીથી બચાવ, છત પરથી સંકેત, પાણી ઉકાળવું.',
+      guideEarthquakeTitle: 'ધરતીકંપ બચાવ',
+      guideEarthquakeDesc: 'નીચા નમો, કવર લો અને પકડી રાખો નિયમો.',
+      guideCycloneTitle: 'વાવાઝોડું અને તોફાની પવનો',
+      guideCycloneDesc: 'બારીઓની સુરક્ષા, વાવાઝોડાના શાંત કેન્દ્રમાં સાવચેતી.',
+      guideLightningTitle: 'વીજળી અને ગાજવીજ',
+      guideLightningDesc: '૩૦/૩૦ નિયમ, વાંકા વળીને બેસવાની મુદ્રા, ઘરમાં જ રહો.',
+      guideFirstAidTitle: 'કટોકટી પ્રાથમિક સારવાર',
+      guideFirstAidDesc: 'રક્તસ્રાવ નિયંત્રણ, સીપીઆર, દાઝ્યાનો ઉપચાર, સાપના ડંખથી બચાવ.',
+      guideBefore: 'આપત્તિ પહેલાં',
+      guideDuring: 'આપત્તિ દરમિયાન',
+      guideAfter: 'આપત્તિ પછી',
+
+      // Profile Page
+      profileGuestUser: 'અતિથિ નાગરિક',
+      profileNoPhone: 'ફોન નંબર દાખલ નથી',
+      profileBloodLabel: 'બ્લડ ગ્રુપ',
+      profileBloodNotSet: 'બ્લડ ગ્રુપ: પસંદ કરેલ નથી',
+      profileEditBtn: 'પ્રોફાઇલ અને કટોકટી સંપર્કો સંપાદિત કરો',
+      profileSavedContactsTitle: 'સેવ કરેલા કટોકટી સંપર્કો',
+      profileNoContactsHint: 'કોઈ સંપર્કો ઉમેરેલા નથી. નીચે "પ્રોફાઇલ સંપાદિત કરો" પર ટેપ કરો.',
+      profileModalTitle: 'કટોકટી પ્રોફાઇલ સંપાદિત કરો',
+      profileFullNameLabel: 'પૂરું નામ',
+      profilePhoneLabel: 'તમારો મોબાઈલ નંબર',
+      profileSelectBlood: 'બ્લડ ગ્રુપ પસંદ કરો',
+      profilePrimaryContact: 'મુખ્ય કટોકટી સંપર્ક',
+      profileContactNamePlaceholder: 'સંપર્ક નામ (દા.ત. પિતા/જીવનસાથી)',
+      profileContactPhonePlaceholder: 'સંપર્ક ફોન (+91 98765 43210)',
+      profileSaveBtn: 'ક્લાઉડમાં પ્રોફાઇલ સાચવો',
+
+      // Hazard Report Modal
+      hazardModalTitle: 'સ્થાનિક જોખમ અથવા અવરોધની જાણ કરો',
+      hazardSelectType: 'જોખમનો પ્રકાર પસંદ કરો:',
+      hazardWaterlogging: 'પાણી ભરાવું / પૂર',
+      hazardWaterloggingSub: 'રસ્તા પર પાણી ભરાયું છે',
+      hazardFallenTree: 'ઝાડ પડ્યું / રસ્તો બંધ',
+      hazardFallenTreeSub: 'રસ્તો બ્લોક છે',
+      hazardLiveWire: 'વીજળીનો તાર તૂટ્યો',
+      hazardLiveWireSub: 'ઇલેક્ટ્રિક કરંટનો ભય',
+      hazardLandslide: 'ભૂસ્ખલન / કાટમાળ',
+      hazardLandslideSub: 'પથ્થર અને માટી ધસી પડી',
+      hazardFire: 'આગની ઘટના',
+      hazardFireSub: 'ધુમાડો અથવા જ્વાળાઓ',
+      hazardBridgeDamage: 'પુલ/રસ્તાને નુકસાન',
+      hazardBridgeDamageSub: 'પુલ તૂટી ગયો કે બેસી ગયો',
+      hazardLocationLabel: 'સ્થળ / લેન્ડમાર્ક',
+      hazardDescLabel: 'વિગતો',
+      hazardDescPlaceholder: 'પાણીનું સ્તર, ટ્રાફિક જામ વગેરેનું વર્ણન કરો...',
+      hazardNameLabel: 'તમારું નામ (વૈકલ્પિક)',
+      hazardNamePlaceholder: 'સ્થાનિક નાગરિક',
+      hazardSubmitBtn: 'સમુદાય નકશા પર મોકલો',
+
+      // Other Modals
+      cityModalTitle: 'તમારું શહેર પસંદ કરો',
+      cityModalDesc: 'નદીની સપાટી અને રાહત કેન્દ્રો જોવા માટે શહેર પસંદ કરો:',
+      citySearchPlaceholder: '🔍 શહેરનું નામ શોધો...',
+      helplinesModalTitle: 'રાષ્ટ્રીય કટોકટી હેલ્પલાઇન (અખિલ ભારત)',
+      hospitalsModalTitle: 'નજીકની ૨૪x૭ ઇમરજન્સી હોસ્પિટલો',
+      firstAidModalTitle: 'કટોકટી પ્રાથમિક સારવાર પદ્ધતિઓ'
+    }
+  },
+
+  get(key) {
+    const lang = this.strings[this.currentLang] || this.strings.en;
+    return lang[key] || this.strings.en[key] || key;
+  },
+
+  setLanguage(langCode) {
+    if (this.strings[langCode]) {
+      this.currentLang = langCode;
+      localStorage.setItem('suraksha_lang', langCode);
+      this.applyTranslations();
+      document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: langCode } }));
+      if (window.VoiceEngine && typeof window.VoiceEngine.preloadSafetySummary === 'function') {
+        window.VoiceEngine.preloadSafetySummary();
+      }
+    }
+  },
+
+  init() {
+    const saved = localStorage.getItem('suraksha_lang');
+    this.currentLang = (saved && this.strings[saved]) ? saved : 'hi';
+    this.applyTranslations();
+  },
+
+  applyTranslations() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = this.get(key);
+      if (val) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.setAttribute('placeholder', val);
+        } else {
+          el.textContent = val;
+        }
+      }
+    });
+
+    const curr = this.languages[this.currentLang];
+    const nameEl = document.getElementById('currentLangName');
+    if (nameEl && curr) nameEl.textContent = curr.name;
+
+    // Highlight active chip in the quick language bar
+    document.querySelectorAll('.lang-chip').forEach(chip => {
+      chip.classList.toggle('active', chip.getAttribute('data-lang') === this.currentLang);
+    });
+
+    // Re-render alerts and feeds with localized strings
+    if (window.AppState && window.AppState.alerts && typeof window.renderAlertCards === 'function') {
+      const container = document.getElementById('alertsContainer');
+      const allContainer = document.getElementById('allAlertsContainer');
+      window.renderAlertCards(window.AppState.alerts, container, 3);
+      if (allContainer) window.renderAlertCards(window.AppState.alerts, allContainer, 20);
+    }
+
+    // Re-render emergency helplines
+    if (typeof window.fetchHelplines === 'function') {
+      window.fetchHelplines();
+    }
+
+    // Re-render user profile
+    if (typeof window.renderProfileView === 'function') {
+      window.renderProfileView();
+    }
+
+    // Re-render community reports & checkins
+    if (typeof window.fetchHazardReports === 'function') {
+      window.fetchHazardReports();
+    }
+    if (typeof window.fetchSafetyCheckins === 'function') {
+      window.fetchSafetyCheckins();
+    }
+
+    // Re-render shelters list on Map page
+    if (typeof window.renderSheltersList === 'function') {
+      window.renderSheltersList();
+    }
+
+    // Re-render map markers if map is initialized
+    if (window.MapController && window.MapController.map) {
+      window.MapController.updateUserLocation();
+      window.MapController.loadAllFacilities();
+    }
+
+    // Re-render river status
+    if (window.AppState && window.AppState.closestRiver) {
+      const r = window.AppState.closestRiver;
+      const riskEl = document.getElementById('riverRisk');
+      if (riskEl) {
+        let riskKey = 'riverNormal';
+        if (r.status === 'critical') riskKey = 'riverCritical';
+        else if (r.status === 'warning') riskKey = 'riverWarning';
+        riskEl.textContent = this.get(riskKey);
+      }
+    }
+
+    // Re-render atmospheric risk banner with active language
+    if (typeof window.renderAtmosphericRiskBanner === 'function') {
+      window.renderAtmosphericRiskBanner();
+    }
+
+    // Re-render location ribbon in the user's active language
+    const locEl = document.getElementById('locationText');
+    if (locEl && window.AppState && window.AppState.userLocation && window.AppState.userLocation.city) {
+      locEl.textContent = this.localizeLocation(window.AppState.userLocation.city);
+    }
+  },
+
+  locationNames: {
+    'Kanpur': { hi: 'कानपुर', bn: 'কানপুর', ta: 'கான்பூர்', te: 'కాన్పూర్', mr: 'कानपूर', gu: 'કાનપુર' },
+    'Lucknow': { hi: 'लखनऊ', bn: 'লখনৌ', ta: 'லக்னோ', te: 'లక్నో', mr: 'लखनौ', gu: 'લખનૌ' },
+    'Varanasi': { hi: 'वाराणसी', bn: 'বারাণসী', ta: 'வாரணாசி', te: 'వారణాసి', mr: 'वाराणसी', gu: 'વારાણસી' },
+    'Prayagraj': { hi: 'प्रयागराज', bn: 'প্রয়াগরাজ', ta: 'பிரயாக்ராஜ்', te: 'ప్రయాగ్‌రాజ్', mr: 'प्रयागराज', gu: 'પ્રયાગરાજ' },
+    'Delhi': { hi: 'दिल्ली', bn: 'দিল্লি', ta: 'டெல்லி', te: 'ఢిల్లీ', mr: 'दिल्ली', gu: 'દિલ્હી' },
+    'New Delhi': { hi: 'नई दिल्ली', bn: 'নয়াদিল্লি', ta: 'புது தில்லி', te: 'న్యూ ఢిల్లీ', mr: 'नवी दिल्ली', gu: 'નવી દિલ્હી' },
+    'Mumbai': { hi: 'मुंबई', bn: 'মুম্বই', ta: 'மும்பை', te: 'ముంబై', mr: 'मुंबई', gu: 'મુંબઈ' },
+    'Kolkata': { hi: 'कोलकाता', bn: 'কলকাতা', ta: 'கொல்கத்தா', te: 'కోల్‌కతా', mr: 'कोलकाता', gu: 'કોલકાતા' },
+    'Patna': { hi: 'पटना', bn: 'পাটনা', ta: 'பாட்னா', te: 'పాట్నా', mr: 'पाटणा', gu: 'પટના' },
+    'Chennai': { hi: 'चेन्नई', bn: 'চেন্নাই', ta: 'சென்னை', te: 'చెన్నై', mr: 'சென்னை', gu: 'ચેન્નાઈ' },
+    'Bengaluru': { hi: 'बेंगलुरु', bn: 'বেঙ্গালুরু', ta: 'பெங்களூரு', te: 'బెంగళూరు', mr: 'बंगळुरू', gu: 'બેંગલુરુ' },
+    'Hyderabad': { hi: 'हैदराबाद', bn: 'হায়দরাবাদ', ta: 'ஹைதராபாத்', te: 'హైదరాబాద్', mr: 'हैदराबाद', gu: 'હૈદરાબાદ' },
+    'Guwahati': { hi: 'गुवाहाटी', bn: 'গুয়াহাটি', ta: 'குவஹாத்தி', te: 'గౌహతి', mr: 'गुवाहाटी', gu: 'ગુવાહાટી' },
+    'Bhubaneswar': { hi: 'भुवनेश्वर', bn: 'ভুবনেশ্বর', ta: 'புவனேஸ்வர்', te: 'భువనేశ్వర్', mr: 'भुवनेश्वर', gu: 'ભુવનેશ્વર' },
+    'Dehradun': { hi: 'देहरादून', bn: 'দেরাদুন', ta: 'டேராடூன்', te: 'డెహ్రాడూన్', mr: 'डेहराडून', gu: 'દહેરાદૂન' },
+    'Shimla': { hi: 'शिमला', bn: 'শিমলা', ta: 'சிம்லா', te: 'సిమ్లా', mr: 'शिमला', gu: 'શિમલા' },
+    'Jaipur': { hi: 'जयपुर', bn: 'জয়পুর', ta: 'ஜெய்ப்பூர்', te: 'జైపూర్', mr: 'जयपूर', gu: 'જયપુર' },
+    'Ahmedabad': { hi: 'अहमदाबाद', bn: 'আহমেদাবাদ', ta: 'அகமதாபாத்', te: 'అహ్மதாబాద్', mr: 'अहमदाबाद', gu: 'અમદાવાદ' },
+    'Kochi': { hi: 'कोच्चि', bn: 'কোচি', ta: 'கொச்சி', te: 'కొచ్చి', mr: 'कोची', gu: 'કોચી' },
+    'Current Location': { hi: 'वर्तमान स्थान', bn: 'বর্তমান অবস্থান', ta: 'தற்போதைய இடம்', te: 'ప్రస్తుత స్థానం', mr: 'सध्याचे स्थान', gu: 'હાલનું સ્થાન' },
+    'Detected Location': { hi: 'खोजा गया स्थान', bn: 'শনাক্তকৃত অবস্থান', ta: 'கண்டறியப்பட்ட இடம்', te: 'గుర్తించబడిన స్థానం', mr: 'शोधलेले स्थान', gu: 'શોધાયેલ સ્થાન' },
+    'Near my location': { hi: 'मेरे स्थान के पास', bn: 'আমার অবস্থানের কাছে', ta: 'எனது இடத்திற்கு அருகில்', te: 'నా స్థానానికి సమీపంలో', mr: 'माझ्या स्थानाजवळ', gu: 'મારા સ્થાનની નજીક' },
+    'Uttar Pradesh': { hi: 'उत्तर प्रदेश', bn: 'উত্তর প্রদেশ', ta: 'உத்தரப் பிரதேசம்', te: 'ఉత్తర ప్రదేశ్', mr: 'उत्तर प्रदेश', gu: 'ઉત્તર પ્રદેશ' },
+    'Kanpur Nagar': { hi: 'कानपुर नगर', bn: 'কানপুর নগর', ta: 'கான்பூர் நகர்', te: 'కాన్పూర్ నగర్', mr: 'कानपूर नगर', gu: 'કાનપુર નગર' },
+    'Civil Lines': { hi: 'सिविल लाइन्स', bn: 'সিভিল লাইনস', ta: 'சிவில் லைன்ஸ்', te: 'సివిల్ లైన్స్', mr: 'सिव्हिल लाइन्स', gu: 'સિવિલ લાઇન્સ' },
+    'Bhadrak': { hi: 'भद्रक', bn: 'ভদ্রক', ta: 'பத்ரக்', te: 'భద్రక్', mr: 'भद्रक', gu: 'ભદ્રક' },
+    'South Delhi': { hi: 'दक्षिण दिल्ली', bn: 'দক্ষিণ দিল্লি', ta: 'தெற்கு டெல்லி', te: 'దక్షిణ ఢిల్లీ', mr: 'दक्षिण दिल्ली', gu: 'દક્ષિણ દિલ્હી' },
+    'Central Delhi': { hi: 'मध्य दिल्ली', bn: 'মধ্য দিল্লি', ta: 'மத்திய டெல்லி', te: 'మధ్య ఢిల్లీ', mr: 'मध्य दिल्ली', gu: 'મધ્ય દિલ્હી' },
+    'North 24 Parganas': { hi: 'उत्तर 24 परगना', bn: 'উত্তর ২৪ পরগনা', ta: 'வடக்கு 24 பர்கானாஸ்', te: 'ఉత్తర 24 పరగణాలు', mr: 'उत्तर २४ परगणा', gu: 'ઉત્તર ૨૪ પરગણા' },
+    'Kamrup Metropolitan': { hi: 'कामरूप मेट्रोपॉलिटन', bn: 'কামরূপ মেট্রোপলিটন', ta: 'காம்ரூப் பெருநகரம்', te: 'కామరూప్ మెట్రోపాలిటన్', mr: 'कामरूप मेट्रोपॉलिटन', gu: 'કામરૂપ મેટ્રોપોલિટન' },
+    'Bhadradri Kothagudem': { hi: 'भद्राद्री कोठागुडेम', bn: 'ভদ্রাদ্রি কোথাগুডেম', ta: 'பத்ராத்ரி கொத்தகூடம்', te: 'భద్రాద్రి కొత్తగూడెం', mr: 'भद्राद्री कोठागुडेम', gu: 'భદ્રાદ્રી કોથાગુડેમ' },
+    'Vijayawada': { hi: 'विजयवाड़ा', bn: 'বিজয়ওয়াড়া', ta: 'விஜயவாடா', te: 'విజయవాడ', mr: 'विजयवाडा', gu: 'વિજયવાડા' },
+    'Tiruchirappalli': { hi: 'तिरुचिरापल्ली', bn: 'তিরুচিরাপল্লী', ta: 'திருச்சிராப்பள்ளி', te: 'తిరుచిరాపల్లి', mr: 'तिरुचिरापल्ली', gu: 'તિરુચિરાપલ્લી' },
+    'Cuttack': { hi: 'कटक', bn: 'কটক', ta: 'கட்டாக்', te: 'కటక్', mr: 'कटक', gu: 'કટક' },
+    'Narmadapuram': { hi: 'नर्मदापुरम', bn: 'নর্মদাপুরম', ta: 'நர்மதாபுரம்', te: 'నర్మదాపురం', mr: 'नर्मदापुरम', gu: 'નર્મદાપુરમ' },
+    'Maharashtra': { hi: 'महाराष्ट्र', bn: 'মহারাষ্ট্র', ta: 'மகாராஷ்டிரா', te: 'మహారాష్ట్ర', mr: 'महाराष्ट्र', gu: 'મહારાષ્ટ્ર' },
+    'West Bengal': { hi: 'पश्चिम बंगाल', bn: 'পশ্চিমবঙ্গ', ta: 'மேற்கு வங்காளம்', te: 'పశ్చిమ బెంగాల్', mr: 'पश्चिम बंगाल', gu: 'પશ્ચિમ બંગાળ' },
+    'Tamil Nadu': { hi: 'तमिलनाडु', bn: 'তামিলনাড়ু', ta: 'தமிழ்நாடு', te: 'తమిళనాడు', mr: 'तामिळनाडू', gu: 'તમિલનાડુ' },
+    'Karnataka': { hi: 'कर्नाटक', bn: 'কর্ণাটক', ta: 'கர்நாடகா', te: 'కర్ణాటక', mr: 'कर्नाटक', gu: 'કર્ણાટક' },
+    'Telangana': { hi: 'तेलंगाना', bn: 'তেলেঙ্গানা', ta: 'தெலுங்கானா', te: 'తెలంగాణ', mr: 'तेलंगणा', gu: 'તેલંગાણા' },
+    'Andhra Pradesh': { hi: 'आंध्र प्रदेश', bn: 'অন্ধ্র প্রদেশ', ta: 'ஆந்திரப் பிரதேசம்', te: 'ఆంధ్ర ప్రదేశ్', mr: 'ఆంధ్ర ప్రదేశ్', gu: 'આંધ્ર પ્રદેશ' },
+    'Assam': { hi: 'असम', bn: 'আসাম', ta: 'அசாம்', te: 'அస్సాం', mr: 'आसाम', gu: 'આસામ' },
+    'Odisha': { hi: 'ओडिशा', bn: 'ওড়িশা', ta: 'ஒடிசா', te: 'ఒడిశా', mr: 'ओडिशा', gu: 'ઓડિશા' },
+    'Madhya Pradesh': { hi: 'मध्य प्रदेश', bn: 'মধ্য প্রদেশ', ta: 'மத்திய பிரதேசம்', te: 'మధ్యప్రదేశ్', mr: 'मध्य प्रदेश', gu: 'મધ્ય પ્રદેશ' },
+    'Near user': { hi: 'मेरे स्थान के पास', bn: 'আমার অবস্থানের কাছে', ta: 'பயனர் அருகில்', te: 'వినియోగదారు దగ్గర', mr: 'वापरकर्त्याजवळ', gu: 'વપરાશકર્તા નજીક' },
+    'Safe Location': { hi: 'सुरक्षित स्थान', bn: 'নিরাপদ স্থান', ta: 'பாதுகாப்பான இடம்', te: 'సురక్షిత స్థానం', mr: 'सुरक्षित ठिकाण', gu: 'સુરક્ષિત સ્થળ' },
+    'Regional': { hi: 'क्षेत्रीय (Regional)', bn: 'আঞ্চলিক', ta: 'பிராந்திய', te: 'ప్రాంతీయ', mr: 'प्रादेशिक', gu: 'પ્રાદેશિક' }
+  },
+
+  localizeLocation(name) {
+    if (!name) return '';
+    const lang = this.currentLang;
+    if (lang === 'en') {
+      return name.split('(')[0].trim();
+    }
+    const clean = name.replace(/\s*\([^)]*\)/g, '').trim();
+    if (this.locationNames[clean] && this.locationNames[clean][lang]) {
+      return this.locationNames[clean][lang];
+    }
+    for (const [eng, trans] of Object.entries(this.locationNames)) {
+      if (clean.toLowerCase().includes(eng.toLowerCase()) && trans[lang]) {
+        return clean.replace(new RegExp(eng, 'i'), trans[lang]);
+      }
+    }
+    // If name already contains parentheses like "Kanpur (कानपुर)" and lang is hi, extract Hindi part
+    if (lang === 'hi' && name.includes('(')) {
+      const match = name.match(/\(([^)]+)\)/);
+      if (match && match[1]) return match[1].trim();
+    }
+    return name;
+  },
+
+  
+  localizeHazardType(type) {
+    if (!type) return '';
+    const lang = this.currentLang;
+    const types = {
+      waterlogging: {
+        en: 'WATERLOGGING / FLOOD',
+        hi: 'जलभराव / बाढ़',
+        bn: 'জলমগ্নতা / বন্যা',
+        ta: 'வெள்ளப்பெருக்கு',
+        te: 'వరద నీరు చేరడం',
+        mr: 'पाणी साचणे / पूर',
+        gu: 'પાણી ભરાવું / પૂર'
+      },
+      fallen_tree: {
+        en: 'FALLEN TREE / BLOCKED ROAD',
+        hi: 'गिरा हुआ पेड़ / अवरुद्ध मार्ग',
+        bn: 'গাছ পড়ে রাস্তা বন্ধ',
+        ta: 'மரம் விழுந்து பாதை அடைப்பு',
+        te: 'చెట్టు కూలి రహదారి మూసివేత',
+        mr: 'झाड पडून रस्ता बंद',
+        gu: 'વૃક્ષ પડવાથી રસ્તો બંધ'
+      },
+      live_wire: {
+        en: 'LIVE ELECTRIC WIRE DOWN',
+        hi: 'टूटा हुआ बिजली का तार (करंट खतरा)',
+        bn: 'ছিঁড়ে পড়া বিদ্যুতের তার',
+        ta: 'மின்கம்பி அறுந்து விழுந்துள்ளது',
+        te: 'తెగిపడిన విద్యుత్ వైర్',
+        mr: 'तुटलेली वीजतार (शॉक धोका)',
+        gu: 'તૂટેલો વીજળીનો વાયર'
+      },
+      landslide: {
+        en: 'LANDSLIDE / DEBRIS',
+        hi: 'भूस्खलन एवं मलबा अवरोध',
+        bn: 'ভূমিধস ও ধ্বংসাবশেষ',
+        ta: 'நிலச்சரிவு / இடிபாடுகள்',
+        te: 'కొండచరియలు విరిగిపడటం',
+        mr: 'दरड कोसळणे / ढिगारा',
+        gu: 'જમીન ધસી પડવી / કાટમાળ'
+      },
+      fire: {
+        en: 'FIRE HAZARD',
+        hi: 'आग / अग्निकांड खतरा',
+        bn: 'অগ্নিকাণ্ড ঝুঁকি',
+        ta: 'தீ விபத்து ஆபத்து',
+        te: 'అగ్ని ప్రమాదం',
+        mr: 'आग / अग्निशमन धोका',
+        gu: 'આગનો ખતરો'
+      },
+      bridge_damage: {
+        en: 'DAMAGED BRIDGE / STRUCTURE',
+        hi: 'क्षतिग्रस्त पुल / संरचना',
+        bn: 'ক্ষতিগ্রস্ত সেতু',
+        ta: 'சேதமடைந்த பாலம்',
+        te: 'దెబ్బతిన్న వంతెన',
+        mr: 'नादुरुस्त पूल',
+        gu: 'ક્ષતિગ્રસ્ત પુલ'
+      }
+    };
+    const t = type.toLowerCase().trim();
+    if (types[t] && types[t][lang]) return types[t][lang];
+    if (types[t] && types[t].hi && lang !== 'en') return types[t].hi;
+    return type.toUpperCase();
+  },
+
+  localizeAmenity(amenity) {
+    if (!amenity) return '';
+    const lang = this.currentLang;
+    if (lang === 'en') return amenity;
+
+    const amMap = {
+      'Drinking Water Tanker': { hi: 'पेयजल टैंकर', bn: 'পানীয় জল ট্যাঙ্কার', ta: 'குடிநீர் டேங்கர்' },
+      'Clean Water': { hi: 'स्वच्छ पेयजल', bn: 'বিশুদ্ধ জল', ta: 'சுத்தமான தண்ணீர்' },
+      'Emergency Generator': { hi: 'आपातकालीन जनरेटर', bn: 'জরুরি জেনারেটর', ta: 'அவசர ஜெனரேட்டர்' },
+      'Dry Ration Storage': { hi: 'सूखा राशन भण्डार', bn: 'শুকনো রেশন', ta: 'உலர்ந்த ரேஷன்' },
+      'Food Distribution Lines': { hi: 'भोजन वितरण व्यवस्था', bn: 'খাবার বিতরণ', ta: 'உணவு விநியோகம்' },
+      'Primary Health Desk': { hi: 'प्राथमिक स्वास्थ्य डेस्क', bn: 'প্রাথমিক স্বাস্থ্য কেন্দ্র', ta: 'முதலுதவி மையம்' },
+      'First Aid Station': { hi: 'प्राथमिक उपचार केंद्र', bn: 'ফার্স্ট এইড স্টেশন', ta: 'முதலுதவி நிலையம்' },
+      'Medical Ward (50 cots)': { hi: 'मेडिकल वार्ड (50 बिस्तर)', bn: 'মেডিকেল ওয়ার্ড (৫০ শয্যা)', ta: 'மருத்துவ வார்டு (50 படுக்கைகள்)' },
+      'Clean Toilets': { hi: 'स्वच्छ शौचालय', bn: 'পরিচ্ছন্ন শৌচাগার', ta: 'சுத்தமான கழிப்பறை' },
+      'Mobile Charging Station': { hi: 'मोबाइल चार्जिंग सुविधा', bn: 'মোবাইল চার্জিং সুবিধা', ta: 'மொபைல் சார்ஜிங் வசதி' },
+      'CCTV Security': { hi: 'सीसीटीवी सुरक्षा', bn: 'সিসিটিভি নিরাপত্তা', ta: 'சிசிடிவி பாதுகாப்பு' },
+      'Helipad Access': { hi: 'हेलीपैड सुविधा', bn: 'হেলিপ্যাড সুবিধা', ta: 'ஹெலிபேட் வசதி' },
+      'High-capacity Kitchen': { hi: 'सामुदायिक रसोई', bn: 'কমিউনিটি কিচেন', ta: 'சமூக சமையலறை' },
+      'Separate Women/Children Pavilions': { hi: 'महिला एवं बाल विशेष कक्ष', bn: 'মহিলা ও শিশু আশ্রয়', ta: 'பெண்கள் குழந்தைகள் பகுதி' },
+      'SDRF Base': { hi: 'एसडीआरएफ बचाव दल बेस', bn: 'এসডিআরএফ ক্যাম্প', ta: 'மீட்புப் படை தளம்' }
+    };
+
+    if (amMap[amenity] && amMap[amenity][lang]) return amMap[amenity][lang];
+    if (lang === 'hi' && amMap[amenity] && amMap[amenity].hi) return amMap[amenity].hi;
+    return amenity;
+  }
+};
+
+window.I18N = I18N;

@@ -1,0 +1,201 @@
+{
+  "users": {},
+  "profiles": {},
+  "sosEvents": [
+    {
+      "id": "SOS-1792179684520-9N7A",
+      "timestamp": 1792179684520,
+      "status": "resolved",
+      "resolved": true,
+      "name": "Ramesh Kumar",
+      "phone": "+91 9876543210",
+      "location": {
+        "lat": 26.4499,
+        "lon": 80.3319,
+        "city": "Kanpur"
+      },
+      "medicalInfo": {
+        "bloodGroup": "B+"
+      },
+      "emergencyContacts": [
+        {
+          "name": "Family",
+          "phone": "+91 9123456780"
+        }
+      ],
+      "resolvedAt": 1792179684554,
+      "resolutionNote": "Reached safe flood relief camp"
+    },
+    {
+      "id": "SOS-1792178945376-6AK1",
+      "timestamp": 1792178945376,
+      "status": "active",
+      "resolved": false,
+      "name": "Test Citizen",
+      "phone": "9876543210",
+      "location": {
+        "lat": 26.4499,
+        "lon": 80.3319,
+        "city": "Kanpur"
+      },
+      "medicalInfo": {},
+      "emergencyContacts": []
+    }
+  ],
+  "hazardReports": [
+    {
+      "id": "REP-1792261667221-NQUK",
+      "timestamp": 1792261667221,
+      "status": "verified",
+      "upvotes": 1,
+      "type": "live_wire",
+      "description": "nbghft",
+      "coordinates": {
+        "lat": 26.925448280323742,
+        "lon": 81.19887942379134
+      },
+      "address": "Current Location",
+      "reporterName": "Citizen Reporter",
+      "severity": "high",
+      "photoUrl": null
+    }
+  ],
+  "safetyCheckins": [
+    {
+      "id": "CHK-1792261646847",
+      "timestamp": 1792261646847,
+      "name": "Citizen",
+      "phone": null,
+      "location": {
+        "lat": 26.925448280323742,
+        "lon": 81.19887942379134,
+        "city": "Current Location"
+      },
+      "status": "SAFE",
+      "message": "I am safe and in a secure location."
+    },
+    {
+      "id": "CHK-1792261626944",
+      "timestamp": 1792261626944,
+      "name": "Citizen",
+      "phone": null,
+      "location": {
+        "lat": 26.925448280323742,
+        "lon": 81.19887942379134,
+        "city": "Current Location"
+      },
+      "status": "SAFE",
+      "message": "I am safe and in a secure location."
+    },
+    {
+      "id": "CHK-1792261597182",
+      "timestamp": 1792261597182,
+      "name": "Citizen",
+      "phone": null,
+      "location": {
+        "lat": 26.4499,
+        "lon": 80.3319,
+        "city": "Kanpur"
+      },
+      "status": "SAFE",
+      "message": "I am safe and in a secure location."
+    },
+    {
+      "id": "CHK-1792178945382",
+      "timestamp": 1792178945382,
+      "name": "Test Citizen",
+      "phone": null,
+      "location": {
+        "lat": null,
+        "lon": null,
+        "city": "Safe Zone"
+      },
+      "status": "SAFE",
+      "message": "I am safe in shelter"
+    }
+  ],
+  "activityLogs": [
+    {
+      "id": "LOG-1792261667221",
+      "timestamp": 1792261667221,
+      "type": "hazard_reported",
+      "description": "Hazard reported: live_wire",
+      "details": {
+        "reportId": "REP-1792261667221-NQUK"
+      }
+    },
+    {
+      "id": "LOG-1792261646847",
+      "timestamp": 1792261646847,
+      "type": "safety_checkin",
+      "description": "User checkin: Safe status declared",
+      "details": {
+        "name": "Citizen"
+      }
+    },
+    {
+      "id": "LOG-1792261626944",
+      "timestamp": 1792261626944,
+      "type": "safety_checkin",
+      "description": "User checkin: Safe status declared",
+      "details": {
+        "name": "Citizen"
+      }
+    },
+    {
+      "id": "LOG-1792261597182",
+      "timestamp": 1792261597182,
+      "type": "safety_checkin",
+      "description": "User checkin: Safe status declared",
+      "details": {
+        "name": "Citizen"
+      }
+    },
+    {
+      "id": "LOG-1792179684554",
+      "timestamp": 1792179684554,
+      "type": "sos_resolved",
+      "description": "SOS SOS-1792179684520-9N7A marked resolved",
+      "details": {
+        "sosId": "SOS-1792179684520-9N7A"
+      }
+    },
+    {
+      "id": "LOG-1792179684520",
+      "timestamp": 1792179684520,
+      "type": "sos_dispatched",
+      "description": "SOS emergency triggered",
+      "details": {
+        "sosId": "SOS-1792179684520-9N7A",
+        "location": {
+          "lat": 26.4499,
+          "lon": 80.3319,
+          "city": "Kanpur"
+        }
+      }
+    },
+    {
+      "id": "LOG-1792178945382",
+      "timestamp": 1792178945382,
+      "type": "safety_checkin",
+      "description": "User checkin: Safe status declared",
+      "details": {
+        "name": "Test Citizen"
+      }
+    },
+    {
+      "id": "LOG-1792178945376",
+      "timestamp": 1792178945376,
+      "type": "sos_dispatched",
+      "description": "SOS emergency triggered",
+      "details": {
+        "sosId": "SOS-1792178945376-6AK1",
+        "location": {
+          "lat": 26.4499,
+          "lon": 80.3319,
+          "city": "Kanpur"
+        }
+      }
+    }
+  ]
+}

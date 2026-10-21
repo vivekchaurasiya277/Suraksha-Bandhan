@@ -1,0 +1,199 @@
+[
+  {
+    "id": "guide-flood",
+    "title": "Flood Survival & Water Rescue Guide",
+    "title_hi": "बाढ़ जीवन रक्षा एवं जल बचाव मार्गदर्शिका",
+    "icon": "fa-water",
+    "category": "water",
+    "color": "#3498db",
+    "readTime": "3 min",
+    "summary": "Step-by-step actions before, during, and after rising floodwaters.",
+    "summary_hi": "बाढ़ से पहले, दौरान और बाद में उठाए जाने वाले सुरक्षा कदम।",
+    "before": [
+      "Keep 72-hour disaster emergency bag with torch, batteries, ORS, dry fruits, chlorine tablets, and waterproof document pouch.",
+      "Identify the highest nearby multi-storey building or designated flood shelter.",
+      "Learn how to shut off main electric breakers and LPG cylinders."
+    ],
+    "before_hi": [
+      "72 घंटे का आपदा बैग तैयार रखें: टॉर्च, अतिरिक्त बैटरी, ओआरएस, सूखा राशन, क्लोरीन की गोलियां और वाटरप्रूफ बैग में जरूरी कागजात।",
+      "आस-पास की सबसे ऊंची पक्की इमारत या नजदीकी सरकारी राहत आश्रय को पहचानें।",
+      "घर के मुख्य बिजली ब्रेकर और रसोई गैस (LPG) सिलेंडर को बंद करना सीखें।"
+    ],
+    "during": [
+      "Never walk, swim, or drive through moving water. 6 inches of rapid water can knock you down; 2 feet can float a car.",
+      "If trapped in a building, climb to the roof; take a bright cloth or whistle to signal rescue helicopters/boats.",
+      "Do not touch fallen electric wires or water in contact with downed power lines."
+    ],
+    "during_hi": [
+      "बहते पानी में कभी न चलें, न तैरें और न ही गाड़ी चलाएं। मात्र 6 इंच गहरा बहता पानी इंसान को गिरा सकता है और 2 फीट पानी कार को बहा ले जाता है।",
+      "यदि इमारत में फंस जाएं, तो छत पर चढ़ें; राहत हेलीकॉप्टर या नाव को संकेत देने के लिए चमकीला कपड़ा या सीटी का उपयोग करें।",
+      "टूटे हुए बिजली के खंभों, तारों या पानी में डूबे तारों को कभी न छुएं।"
+    ],
+    "after": [
+      "Do not return home until local district authorities announce the area safe.",
+      "Boil all drinking water for minimum 10 minutes or use water purification drops.",
+      "Watch for snakes and reptiles that seek refuge in flooded structures."
+    ],
+    "after_hi": [
+      "जब तक जिला प्रशासन क्षेत्र को सुरक्षित घोषित न कर दे, घर वापस न लौटें।",
+      "पीने का पानी कम से कम 10 मिनट तक उबालें या वाटर प्यूरीफिकेशन ड्रॉप्स का इस्तेमाल करें।",
+      "बाढ़ के पानी से बचकर घर में घुसे सांपों और जहरीले कीड़ों से सावधान रहें।"
+    ]
+  },
+  {
+    "id": "guide-earthquake",
+    "title": "Earthquake Safety: Drop, Cover, Hold On",
+    "title_hi": "भूकंप सुरक्षा: झुकें, ढकें, और पकड़ें (Drop, Cover, Hold On)",
+    "icon": "fa-house-crack",
+    "category": "ground",
+    "color": "#e74c3c",
+    "readTime": "3 min",
+    "summary": "Proven seismic survival techniques for indoors, outdoors, and vehicles.",
+    "summary_hi": "भूकंप के दौरान जीवन रक्षा की प्रमाणित तकनीकें।",
+    "before": [
+      "Fasten tall shelves, water heaters, and heavy framed mirrors securely to walls.",
+      "Identify safe drop spots under sturdy wooden tables or desks in every room.",
+      "Maintain a pair of sturdy shoes and flashlight right beside your bed."
+    ],
+    "before_hi": [
+      "भारी अलमारियों, वॉटर हीटर और भारी शीशों को दीवारों से मजबूती से बांधें।",
+      "प्रत्येक कमरे में मजबूत मेज या डेस्क के नीचे सुरक्षित छिपने की जगह पहचानें।",
+      "बिस्तर के पास मजबूत जूते और टॉर्च हमेशा तैयार रखें।"
+    ],
+    "during": [
+      "DROP down onto your hands and knees. This protects against being knocked over.",
+      "COVER your head and neck under a sturdy table or desk. If no shelter, cover head with arms beside an interior wall.",
+      "HOLD ON to your shelter until shaking completely stops. DO NOT run outside during active shaking; falling glass/debris is the #1 killer."
+    ],
+    "during_hi": [
+      "झुकें (DROP): तुरंत हाथों और घुटनों के बल नीचे बैठ जाएं। यह आपको गिरने से बचाता है।",
+      "ढकें (COVER): मजबूत मेज या डेस्क के नीचे अपना सिर और गर्दन ढकें। यदि मेज न हो, तो भीतरी दीवार के सहारे बैठें।",
+      "पकड़ें (HOLD ON): जब तक कंपन पूरी तरह न रुक जाए, मेज को कसकर पकड़े रहें। बाहर भागने की कोशिश न करें; गिरता मलबा सबसे घातक होता है।"
+    ],
+    "after": [
+      "Expect aftershocks. Check yourself and neighbors for injuries.",
+      "Sniff for gas leaks. If you smell gas, open windows, turn off main valve, evacuate immediately.",
+      "Do not use matches, lighters, or open flames until gas lines are cleared."
+    ],
+    "after_hi": [
+      "भूकंप के बाद के झटकों (Aftershocks) के लिए तैयार रहें। अपनी और पड़ोसियों की चोटों की जांच करें।",
+      "गैस रिसाव सूंघें। यदि गैस की गंध आए, तो खिड़कियां खोलें, मुख्य वाल्व बंद करें और तुरंत बाहर जाएं।",
+      "माचिस, लाइटर या खुली आग का इस्तेमाल तब तक न करें जब तक गैस लाइन सुरक्षित न हो जाए।"
+    ]
+  },
+  {
+    "id": "guide-cyclone",
+    "title": "Severe Cyclone & Gale Wind Protocols",
+    "title_hi": "चक्रवाती तूफान एवं तेज हवाओं से बचाव",
+    "icon": "fa-wind",
+    "category": "storm",
+    "color": "#9b59b6",
+    "readTime": "4 min",
+    "summary": "Coastal evacuation, home fortification, and surviving the eye of the storm.",
+    "summary_hi": "तटीय चक्रवात, घर की सुरक्षा और निकासी योजना।",
+    "before": [
+      "Trim dead tree branches near your house. Clear gutters and secure loose roof sheets.",
+      "Keep batteries, radios tuned to All India Radio, and cell phones charged fully.",
+      "If ordered to evacuate by district administration, leave for the shelter immediately."
+    ],
+    "before_hi": [
+      "घर के पास के सूखे पेड़ और कमजोर डालियां काटें। छत पर रखी ढीली टिन शेड और वस्तुओं को बांधें।",
+      "बैटरी, आकाशवाणी सुनने वाला रेडियो और मोबाइल फोन पूरी तरह चार्ज रखें।",
+      "यदि प्रशासन निकासी का आदेश दे, तो तुरंत चक्रवात आश्रय स्थल के लिए निकलें।"
+    ],
+    "during": [
+      "Stay in the strongest, windowless room on the ground or middle floor.",
+      "Beware the Eye of the Storm: if winds suddenly calm down, DO NOT go outside. The second half of the cyclone will strike with reverse winds.",
+      "Keep clear of glass windows."
+    ],
+    "during_hi": [
+      "घर के सबसे मजबूत, बिना खिड़की वाले कमरे में जमीन या निचली मंजिल पर रहें।",
+      "तूफान की आंख (Eye of Storm) का भ्रम: यदि हवाएं अचानक शांत हो जाएं, तो बाहर न जाएं; चक्रवात का दूसरा भाग विपरीत दिशा से दोगुनी ताकत से टकराएगा।",
+      "कांच की खिड़कियों और दरवाजों से दूर रहें।"
+    ],
+    "after": [
+      "Stay inside shelter until officially declared safe. Beware of downed live wires.",
+      "Report gas leaks, broken sewage pipes, or water contamination to authorities on 1070."
+    ],
+    "after_hi": [
+      "आधिकारिक रूप से सुरक्षित घोषित होने तक आश्रय स्थल में रहें। टूटे तारों से दूर रहें।",
+      "गैस रिसाव, टूटी सीवर पाइप या दूषित पानी की सूचना आपातकालीन नंबर 1070 पर दें।"
+    ]
+  },
+  {
+    "id": "guide-lightning",
+    "title": "Thunderstorm & Lightning Protection",
+    "title_hi": "आकाशीय बिजली (वज्रपात) से जीवन रक्षा",
+    "icon": "fa-bolt",
+    "category": "storm",
+    "color": "#f39c12",
+    "readTime": "2 min",
+    "summary": "How to stay alive during intense convective electrical storms.",
+    "summary_hi": "बिजली कड़कने और गिरने के दौरान क्या करें और क्या न करें।",
+    "before": [
+      "Follow the 30/30 Rule: If time between lightning flash and thunder is under 30 seconds, you are in strike zone.",
+      "Check weather alerts on Damini mobile app or Suraksha Bandhan."
+    ],
+    "before_hi": [
+      "30/30 नियम याद रखें: यदि बिजली की चमक और गड़गड़ाहट के बीच का समय 30 सेकंड से कम है, तो आप खतरे के दायरे में हैं।",
+      "दामिनी मोबाइल ऐप या सुरक्षा बंधन पर बिजली गिरने की लाइव चेतावनी देखें।"
+    ],
+    "during": [
+      "Get inside a fully enclosed brick/concrete building or closed metal car.",
+      "NEVER stand under an isolated tree, near barbed wire, or on high ridges.",
+      "Avoid using plumbing (showering, washing dishes) or corded landlines.",
+      "If caught in open: Crouch low with feet together, head tucked in hands. NEVER lie flat on the ground."
+    ],
+    "during_hi": [
+      "तुरंत पक्की छत वाले कंक्रीट मकान या पूरी तरह बंद कार के अंदर जाएं।",
+      "अकेले खड़े पेड़, लोहे की बाड़ या ऊंची पहाड़ी के पास कभी खड़े न हों।",
+      "नल के पानी का उपयोग (नहाना, बर्तन धोना) और तार वाले फोन का उपयोग न करें।",
+      "यदि खुले मैदान में फंस जाएं: घुटनों के बल झुकें, पैर आपस में सटाएं और सिर को हाथों से ढकें। जमीन पर कभी सीधा न लेटें।"
+    ],
+    "after": [
+      "Lightning victims DO NOT carry electrical charge. Begin immediate CPR if the victim has no pulse or is not breathing.",
+      "Call 108 immediately."
+    ],
+    "after_hi": [
+      "बिजली के शिकार व्यक्ति में कोई करंट नहीं रहता। यदि नब्ज न चले तो तुरंत सीपीआर शुरू करें।",
+      "एम्बुलेंस के लिए 108 पर तुरंत कॉल करें।"
+    ]
+  },
+  {
+    "id": "guide-firstaid",
+    "title": "Emergency First Aid & Trauma Response",
+    "title_hi": "आपातकालीन प्राथमिक चिकित्सा एवं जीवन रक्षा",
+    "icon": "fa-kit-medical",
+    "category": "medical",
+    "color": "#27ae60",
+    "readTime": "4 min",
+    "summary": "Life-saving steps for severe bleeding, CPR, burns, fractures, and shock.",
+    "summary_hi": "खून बहना, सीपीआर, जलना और फ्रैक्चर के त्वरित उपचार के नियम।",
+    "before": [
+      "Maintain a comprehensive First Aid Kit: sterile gauze, bandages, antiseptic solution, burn ointment, scissors, tourniquet, ORS, paracetamol."
+    ],
+    "before_hi": [
+      "घर में प्राथमिक चिकित्सा किट रखें: रोगाणुरोधी पट्टी, रुई, एंटीसेप्टिक लोशन, बर्न क्रीम, कैंची, ओआरएस और दर्द निवारक दवा।"
+    ],
+    "during": [
+      "Severe Bleeding: Press sterile cloth directly on wound with firm continuous pressure for 10 minutes. Elevate limb if no fracture.",
+      "Adult CPR: Place heel of hand on center of chest. Push hard and fast (100-120 beats per minute) at 2 inches depth. 30 compressions : 2 breaths.",
+      "Burns: Cool immediately under gentle running tap water for 15-20 minutes. Do NOT apply ice, butter, or ink.",
+      "Snakebite: Keep patient calm and completely still. Immobilize bitten limb with a splint below heart level. Transport directly to hospital for Anti-Snake Venom (ASV). NEVER cut or suck the wound!"
+    ],
+    "during_hi": [
+      "गंभीर रक्तस्राव: साफ कपड़े से घाव पर 10 मिनट तक लगातार सीधा दबाव बनाएं। यदि हड्डी न टूटी हो, तो घायल अंग को दिल के स्तर से ऊपर उठाएं।",
+      "वयस्क सीपीआर: हथेली के पिछले हिस्से को छाती के केंद्र पर रखें। 2 इंच की गहराई तक 100-120 प्रति मिनट की गति से 30 बार दबाएं और 2 बार मुंह से सांस दें।",
+      "जलना: जले हुए अंग पर तुरंत 15-20 मिनट तक नल का सामान्य ठंडा पानी डालें। कभी भी बर्फ, मक्खन या स्याही न लगाएं।",
+      "सांप का काटना: पीड़ित को शांत रखें और बिल्कुल हिलने न दें। कटे हुए अंग को दिल के नीचे रख कर लकड़ी से सहारा दें। तुरंत एंटी-स्नेक वेनम के लिए अस्पताल ले जाएं। कभी घाव को काटें या चूसें नहीं!"
+    ],
+    "after": [
+      "Keep casualty warm with blanket to prevent medical shock.",
+      "Provide exact medical history to arriving 108 emergency crew."
+    ],
+    "after_hi": [
+      "घायल व्यक्ति को कंबल से ढक कर गर्म रखें ताकि वह सदमे (Medical Shock) में न जाए।",
+      "आने वाली 108 एम्बुलेंस टीम को पूरी सही जानकारी दें।"
+    ]
+  }
+]

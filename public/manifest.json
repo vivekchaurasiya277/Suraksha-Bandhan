@@ -1,0 +1,18 @@
+{
+  "name": "Suraksha Bandhan - Disaster Early Warning System",
+  "short_name": "Suraksha Bandhan",
+  "description": "India's real-time community disaster early warning, emergency SOS, and safe evacuation network.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#e74c3c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23e74c3c'/><path d='M50 18 L76 30 V52 C76 68 50 82 50 82 C50 82 24 68 24 52 V30 Z' fill='white'/><path d='M44 38 H56 V58 H44 Z M44 64 H56 V72 H44 Z' fill='%23e74c3c'/></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

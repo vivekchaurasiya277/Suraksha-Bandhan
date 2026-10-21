@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="Suraksha Bandhan - Disaster Early Warning System for India. Real-time alerts, SOS, weather, river water levels, evacuation routes.">
+  <meta name="theme-color" content="#d63031">
+  <title>Suraksha Bandhan - Disaster Early Warning System</title>
+  
+  <link rel="manifest" href="/manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="app-container" id="appRoot">
+
+  <!-- TOP EMERGENCY TICKER -->
+  <div class="emergency-ticker">
+    <div class="ticker-content">
+      <i class="fas fa-tower-broadcast"></i>
+      <span data-i18n="liveTicker">LIVE EMERGENCY NETWORK ACTIVE: All systems monitored 24x7</span>
+    </div>
+    <div class="live-status-pill online" id="networkLiveBadge">
+      <span class="live-dot green"></span> Live Server Sync
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-top">
+      <a href="#" class="logo" onclick="switchPage('home')">
+        <i class="fas fa-shield-halved"></i>
+        <div class="logo-text">
+          <h1 data-i18n="appName">Suraksha Bandhan</h1>
+          <p data-i18n="appTagline">Disaster Early Warning & Emergency Response System</p>
+        </div>
+      </a>
+
+      <div class="header-controls">
+        <!-- Accessibility: Font Size Adjuster -->
+        <button class="header-btn round-btn" onclick="cycleFontSize()" id="fontSizeBtn" title="Adjust Font Size (सामान्‍य / बड़ा आकार)">
+          <span id="fontSizeBadge" style="font-weight:900;font-size:13px;letter-spacing:-0.5px;">A<sup style="font-size:9px;">+</sup></span>
+        </button>
+
+        <!-- Dark / Light Mode Toggle -->
+        <button class="header-btn round-btn" id="darkToggle" title="Toggle Dark/Light Mode">
+          <i class="fas fa-moon" id="darkToggleIcon"></i>
+        </button>
+
+        <!-- Language Selector -->
+        <div class="lang-dropdown-wrapper">
+          <button class="header-btn" id="langDropdownBtn">
+            <i class="fas fa-language" style="font-size:15px;"></i>
+            <span id="currentLangName">हिन्दी (Hindi)</span>
+            <i class="fas fa-chevron-down" style="font-size:10px;"></i>
+          </button>
+          <div class="lang-menu" id="langDropdownMenu">
+            <div class="lang-option" data-lang="en">English</div>
+            <div class="lang-option" data-lang="hi">हिन्दी (Hindi)</div>
+            <div class="lang-option" data-lang="bn">বাংলা (Bengali)</div>
+            <div class="lang-option" data-lang="ta">தமிழ் (Tamil)</div>
+            <div class="lang-option" data-lang="te">తెలుగు (Telugu)</div>
+            <div class="lang-option" data-lang="mr">मराठी (Marathi)</div>
+            <div class="lang-option" data-lang="gu">ગુજરાતી (Gujarati)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Location Ribbon -->
+    <div class="location-ribbon">
+      <div class="location-info" onclick="openCityPickerModal()" style="cursor:pointer;" title="Tap to select your city">
+        <i class="fas fa-location-dot"></i>
+        <span id="locationText" data-i18n="locationDetecting">Detecting live location...</span>
+        <i class="fas fa-chevron-down" style="font-size:10px;opacity:0.8;margin-left:4px;"></i>
+      </div>
+      <div class="location-buttons-group">
+        <button class="btn-locate" onclick="openCityPickerModal()" style="background:rgba(255,255,255,0.25);" title="Select City">
+          <i class="fas fa-city"></i> <span data-i18n="changeCityBtn">Change City</span>
+        </button>
+        <button class="btn-locate" id="locateBtn" title="Detect GPS Location">
+          <i class="fas fa-crosshairs"></i> <span data-i18n="locateBtn">GPS</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- QUICK 1-TAP LANGUAGE SWITCHER CHIPS -->
+  <div class="lang-quick-bar">
+    <button class="lang-chip active" data-lang="hi" onclick="I18N.setLanguage('hi')">हिन्दी</button>
+    <button class="lang-chip" data-lang="en" onclick="I18N.setLanguage('en')">English</button>
+    <button class="lang-chip" data-lang="bn" onclick="I18N.setLanguage('bn')">বাংলা</button>
+    <button class="lang-chip" data-lang="ta" onclick="I18N.setLanguage('ta')">தமிழ்</button>
+    <button class="lang-chip" data-lang="te" onclick="I18N.setLanguage('te')">తెలుగు</button>
+    <button class="lang-chip" data-lang="mr" onclick="I18N.setLanguage('mr')">मराठी</button>
+    <button class="lang-chip" data-lang="gu" onclick="I18N.setLanguage('gu')">ગુજરાતી</button>
+  </div>
+
+  <!-- STATUS BANNER -->
+  <div class="status-banner safe" id="statusBanner">
+    <div class="status-icon"><i class="fas fa-shield-check"></i></div>
+    <div>
+      <div class="status-title" data-i18n="statusSafe">All Clear - Normal Atmospheric Conditions</div>
+      <div class="status-desc" data-i18n="statusSafeDesc">No severe hazard warnings active in your direct locality.</div>
+    </div>
+  </div>
+
+  <!-- DESKTOP NAV BAR -->
+  <nav class="desktop-nav">
+    <button class="nav-item active" data-page="home"><i class="fas fa-gauge-high"></i> <span data-i18n="navHome">Home</span></button>
+    <button class="nav-item" data-page="alerts"><i class="fas fa-bell"></i> <span data-i18n="navAlerts">Alerts</span></button>
+    <button class="nav-item" data-page="map"><i class="fas fa-map-location-dot"></i> <span data-i18n="navMap">Map</span></button>
+    <button class="nav-item" data-page="community"><i class="fas fa-users-viewfinder"></i> <span data-i18n="navCommunity">Community</span></button>
+    <button class="nav-item" data-page="guides"><i class="fas fa-book-medical"></i> <span data-i18n="navGuides">Guides</span></button>
+    <button class="nav-item" data-page="profile"><i class="fas fa-user-shield"></i> <span data-i18n="navProfile">Profile</span></button>
+  </nav>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <!-- ===== 1. HOME DASHBOARD PAGE ===== -->
+    <section class="page-section active" id="page-home">
+
+      <!-- Speak Safety Status Audio Assistant Button -->
+      <button class="voice-summary-btn" onclick="VoiceEngine.speakSafetySummary()" title="Listen to safety advisory">
+        <i class="fas fa-volume-high"></i>
+        <span data-i18n="speakSafetySummary">Listen to Safety Report</span>
+      </button>
+
+      <!-- 4 Big Emergency Speed-Dial Buttons for Normal Public -->
+      <div class="public-emergency-call-grid">
+        <a href="tel:112" class="call-btn-large emergency-112" title="National Emergency Helpline">
+          <div class="call-badge">24x7</div>
+          <i class="fas fa-phone-volume"></i>
+          <div class="call-label">
+            <strong>112</strong>
+            <span data-i18n="emergency112Label">National Emergency</span>
+          </div>
+        </a>
+        <a href="tel:108" class="call-btn-large emergency-108" title="Ambulance & Medical Emergency">
+          <div class="call-badge">24x7</div>
+          <i class="fas fa-ambulance"></i>
+          <div class="call-label">
+            <strong>108</strong>
+            <span data-i18n="emergency108Label">Ambulance 24x7</span>
+          </div>
+        </a>
+        <a href="tel:101" class="call-btn-large emergency-101" title="Fire Rescue Service">
+          <div class="call-badge">24x7</div>
+          <i class="fas fa-fire-extinguisher"></i>
+          <div class="call-label">
+            <strong>101</strong>
+            <span data-i18n="emergency101Label">Fire Brigade</span>
+          </div>
+        </a>
+        <a href="tel:1070" class="call-btn-large emergency-1070" title="State Disaster & Flood Relief">
+          <div class="call-badge">24x7</div>
+          <i class="fas fa-house-flood-water"></i>
+          <div class="call-label">
+            <strong>1070</strong>
+            <span data-i18n="emergency1070Label">Disaster Relief</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Family Safety Status Share Banner -->
+      <div class="family-safe-banner">
+        <div class="family-safe-content">
+          <i class="fas fa-circle-check"></i>
+          <div class="family-safe-text">
+            <h4 data-i18n="familySafeTitle">Let your family know you are safe</h4>
+            <p data-i18n="familySafeDesc">Share your live safe location via WhatsApp in 1 tap</p>
+          </div>
+        </div>
+        <button class="btn-share-whatsapp-direct" onclick="SosController.triggerSafeCheckin()">
+          <i class="fab fa-whatsapp"></i> <span data-i18n="shareWhatsAppBtn">Share on WhatsApp</span>
+        </button>
+      </div>
+
+      <!-- Responsive Grid Layout -->
+      <div class="dashboard-grid">
+
+        <!-- Left Column: SOS, Weather, River, Alerts -->
+        <div class="dash-left-col">
+
+          <!-- SOS Card with Tactical Emergency Radar Backdrop -->
+          <div class="sos-card">
+            <!-- HUD Telemetry Header -->
+            <div class="sos-hud-header">
+              <div class="sos-hud-tag"><i class="fas fa-satellite-dish"></i> <span>GPS RADAR</span></div>
+              <div class="sos-hud-coords" id="sosGpsCoords">LIVE SATELLITE LOCK</div>
+              <div class="sos-hud-tag pulse"><span class="sos-status-dot"></span> <span>112 READY</span></div>
+            </div>
+
+            <!-- Tactical Radar Stage & Animated Background -->
+            <div class="sos-radar-stage">
+              <!-- Animated 360° Radar Sweep Beam -->
+              <div class="sos-radar-sweep"></div>
+
+              <!-- Concentric Range Circles -->
+              <div class="radar-range-ring r-1"><span class="radar-range-label">5 km</span></div>
+              <div class="radar-range-ring r-2"><span class="radar-range-label">15 km</span></div>
+              <div class="radar-range-ring r-3"><span class="radar-range-label">30 km</span></div>
+
+              <!-- Radar Crosshairs & Compass Cardinal Marks -->
+              <div class="radar-crosshair-h"></div>
+              <div class="radar-crosshair-v"></div>
+              <span class="radar-cardinal card-n">N</span>
+              <span class="radar-cardinal card-s">S</span>
+              <span class="radar-cardinal card-e">E</span>
+              <span class="radar-cardinal card-w">W</span>
+
+              <!-- Dynamic Sonar Waves Expanding outward -->
+              <div class="sos-sonar-wave w-1"></div>
+              <div class="sos-sonar-wave w-2"></div>
+              <div class="sos-sonar-wave w-3"></div>
+
+              <!-- Tactical Target Blips for Nearby Rescue Assets -->
+              <div class="radar-blip blip-hosp">
+                <i class="fas fa-hospital"></i>
+                <span>Hosp</span>
+              </div>
+              <div class="radar-blip blip-shelter">
+                <i class="fas fa-shield-heart"></i>
+                <span>Shelter</span>
+              </div>
+              <div class="radar-blip blip-police">
+                <i class="fas fa-shield"></i>
+                <span>112 Unit</span>
+              </div>
+
+              <!-- Center Glowing Beacon Aura -->
+              <div class="sos-beacon-glow"></div>
+
+              <!-- Main Interactive SOS Button -->
+              <button class="sos-btn" id="sosBtn">
+                <i class="fas fa-phone-volume"></i>
+                <span>SOS</span>
+              </button>
+              <div class="sos-countdown" id="sosCountdown">3</div>
+            </div>
+
+            <div class="sos-label" data-i18n="sosTitle">EMERGENCY SOS</div>
+            <div class="sos-hint" id="sosHint" data-i18n="sosHint">Hold 3s to alert emergency contacts & dispatch GPS</div>
+
+            <div class="sos-quick-actions-bar">
+              <a href="tel:112" class="sos-aux-btn" style="background:#e74c3c;">
+                <i class="fas fa-phone"></i> <span data-i18n="call112">Call 112 (National)</span>
+              </a>
+              <button class="sos-aux-btn safe-status" onclick="SosController.triggerSafeCheckin()">
+                <i class="fas fa-circle-check"></i> <span data-i18n="iAmSafeBtn">I Am Safe</span>
+              </button>
+              <button class="sos-aux-btn" onclick="openHazardReportModal()">
+                <i class="fas fa-triangle-exclamation"></i> <span data-i18n="reportHazardBtn">Report Hazard</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Weather & Atmospheric Risk Widget -->
+          <div class="weather-card">
+            <div class="weather-header">
+              <span data-i18n="weatherTitle">Atmospheric Risk & Weather</span>
+              <button onclick="detectUserLocation()" style="background:none;border:none;color:white;cursor:pointer;font-size:12px;">
+                <i class="fas fa-rotate"></i>
+              </button>
+            </div>
+
+            <div class="weather-main-row">
+              <div>
+                <div class="weather-temp" id="weatherTemp">--<span>&deg;C</span></div>
+                <div class="weather-feels" id="weatherFeels">Feels like --&deg;C</div>
+                <div class="weather-desc" id="weatherDesc">Analyzing satellite telemetry...</div>
+              </div>
+              <i class="fas fa-cloud-sun weather-icon-large" id="weatherIcon"></i>
+            </div>
+
+            <div class="weather-metrics">
+              <span><i class="fas fa-droplet"></i> <strong id="weatherHumidity">--</strong>% <span data-i18n="humidity">Humidity</span></span>
+              <span><i class="fas fa-wind"></i> <strong id="weatherWind">--</strong> km/h <span data-i18n="wind">Wind</span></span>
+            </div>
+
+            <!-- AQI Indicator -->
+            <div class="aqi-widget aqi-good" id="aqiWidget" style="display:none;">
+              <i class="fas fa-leaf aqi-icon" id="aqiIcon"></i>
+              <div class="aqi-info">
+                <div class="aqi-label" data-i18n="aqiTitle">Air Quality Index</div>
+                <div class="aqi-value" id="aqiValue">AQI Loading...</div>
+                <div class="aqi-bar"><div class="aqi-fill" id="aqiFill" style="width:25%;"></div></div>
+              </div>
+              <div style="font-size:12px;font-weight:700;"><span id="aqiCategory">Good</span></div>
+            </div>
+          </div>
+
+          <!-- CWC River & Water Basin Gauge -->
+          <div class="river-card" id="riverInfoCard" style="display:none;">
+            <div class="river-header">
+              <i class="fas fa-water" style="font-size:24px;"></i>
+              <div>
+                <h4 id="riverName">Ganga - Kanpur Barrage</h4>
+                <small style="opacity:0.9;" data-i18n="cwcStation">CWC Flood Gauge Station</small>
+              </div>
+            </div>
+            <p id="riverDesc" style="font-size:13px;opacity:0.95;margin-top:4px;">Monitoring water gauge level relative to CWC Danger Mark.</p>
+
+            <!-- Visual Progress Gauge Bar -->
+            <div class="river-gauge-wrap">
+              <div class="river-gauge-header">
+                <span><span data-i18n="waterLevel">Current Level</span>: <strong id="riverGaugeCurrent">-- m</strong></span>
+                <span><span data-i18n="dangerLevel">Danger Mark</span>: <strong id="riverGaugeDanger">-- m</strong></span>
+              </div>
+              <div class="river-gauge-bar">
+                <div class="river-gauge-fill" id="riverGaugeFill" style="width: 50%;"></div>
+              </div>
+              <div style="font-size:11px;opacity:0.95;margin-top:6px;display:flex;justify-content:space-between;">
+                <span><span data-i18n="riverStatus">Status</span>: <strong id="riverRisk">Normal</strong></span>
+                <span id="riverGaugePct">--% of Danger Mark</span>
+              </div>
+            </div>
+
+            <div class="river-meta-row">
+              <span><i class="fas fa-location-arrow"></i> Distance: <strong id="riverDistance">--</strong></span>
+              <span><i class="fas fa-clock"></i> Updated: <strong id="riverUpdated">--</strong></span>
+            </div>
+          </div>
+
+          <!-- Active Alerts Card -->
+          <div class="section-card">
+            <div class="section-header">
+              <div class="section-title">
+                <i class="fas fa-bullhorn"></i>
+                <span data-i18n="navAlerts">Active Disaster Alerts</span>
+              </div>
+              <button onclick="switchPage('alerts')" style="background:none;border:none;color:var(--info);font-weight:700;font-size:13px;cursor:pointer;">
+                <span data-i18n="viewAll">View All</span> &rarr;
+              </button>
+            </div>
+            <div id="alertsContainer">
+              <div style="text-align:center;padding:20px;color:var(--text3);">
+                <i class="fas fa-spinner fa-spin"></i> Loading live alerts...
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /dash-left-col -->
+
+        <!-- Right Column: Quick Actions, Map Preview, Emergency Helplines -->
+        <div class="dash-right-col">
+
+          <!-- Quick Action Buttons -->
+          <div class="section-card">
+            <div class="section-header">
+              <div class="section-title">
+                <i class="fas fa-bolt"></i>
+                <span data-i18n="quickActions">Rapid Actions</span>
+              </div>
+            </div>
+            <div class="actions-grid">
+              <div class="action-card" onclick="switchPage('map')">
+                <i class="fas fa-route" style="color:#e74c3c;"></i>
+                <h4 data-i18n="evacRoutes">Evacuation</h4>
+                <p data-i18n="evacDesc">Safe shelters</p>
+              </div>
+              <div class="action-card" onclick="openHospitalsModal()">
+                <i class="fas fa-hospital" style="color:#2980b9;"></i>
+                <h4 data-i18n="hospitals">Hospitals</h4>
+                <p data-i18n="hospitalsDesc">Trauma 24x7</p>
+              </div>
+              <div class="action-card" onclick="openFirstAidModal()">
+                <i class="fas fa-kit-medical" style="color:#27ae60;"></i>
+                <h4 data-i18n="firstAid">First Aid</h4>
+                <p data-i18n="firstAidDesc">CPR & trauma</p>
+              </div>
+              <div class="action-card" onclick="openEmergencyHelplinesModal()">
+                <i class="fas fa-phone-volume" style="color:#f39c12;"></i>
+                <h4 data-i18n="helplines">Helplines</h4>
+                <p data-i18n="helplinesDesc">112, 108, 101</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emergency Directory Preview -->
+          <div class="section-card">
+            <div class="section-header">
+              <div class="section-title">
+                <i class="fas fa-phone-volume"></i>
+                <span data-i18n="directLinesTitle">Direct Emergency Lines</span>
+              </div>
+            </div>
+            <div id="helplinesContainer">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Preparedness Checklist -->
+          <div class="section-card">
+            <div class="section-header">
+              <div class="section-title">
+                <i class="fas fa-list-check"></i>
+                <span data-i18n="checklistTitle">Disaster Preparedness Checklist</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer;">
+                <input type="checkbox" checked style="width:18px;height:18px;accent-color:var(--success);">
+                <span data-i18n="checklistItem1">Emergency 72-hr bag packed with water & non-perishable food</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer;">
+                <input type="checkbox" checked style="width:18px;height:18px;accent-color:var(--success);">
+                <span data-i18n="checklistItem2">Charged power banks, LED torch, extra batteries</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer;">
+                <input type="checkbox" style="width:18px;height:18px;accent-color:var(--success);">
+                <span data-i18n="checklistItem3">Important documents sealed in waterproof plastic pouch</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer;">
+                <input type="checkbox" style="width:18px;height:18px;accent-color:var(--success);">
+                <span data-i18n="checklistItem4">Family emergency meeting point agreed outside flood zone</span>
+              </label>
+            </div>
+          </div>
+
+        </div><!-- /dash-right-col -->
+
+      </div><!-- /dashboard-grid -->
+
+    </section>
+
+    <!-- ===== 2. ALERTS PAGE ===== -->
+    <section class="page-section" id="page-alerts">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span data-i18n="navAlerts">All Active Disaster Alerts</span>
+          </div>
+          <button class="btn-locate" onclick="fetchAlerts()">
+            <i class="fas fa-rotate"></i> <span data-i18n="refresh">Refresh</span>
+          </button>
+        </div>
+
+        <!-- Filter Pills -->
+        <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+          <button class="map-control-btn active" onclick="filterAlertsPage('all', this)"><span data-i18n="viewAll">All</span> (<span id="statTotal">--</span>)</button>
+          <button class="map-control-btn" onclick="filterAlertsPage('critical', this)"><span data-i18n="critical">Critical</span> (<span id="statCritical">--</span>)</button>
+          <button class="map-control-btn" onclick="filterAlertsPage('high', this)"><span data-i18n="high">High</span> (<span id="statHigh">--</span>)</button>
+          <button class="map-control-btn" onclick="filterAlertsPage('medium', this)"><span data-i18n="medium">Medium</span> (<span id="statMedium">--</span>)</button>
+        </div>
+
+        <div id="allAlertsContainer">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. MAP PAGE ===== -->
+    <section class="page-section" id="page-map">
+      <div class="map-view-wrapper">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-map-location-dot"></i>
+            <span data-i18n="navMap">Safe Zones & Facilities Map</span>
+          </div>
+          <button class="btn-locate" onclick="detectUserLocation()">
+            <i class="fas fa-location-crosshairs"></i> <span data-i18n="mapCenterMe">Center on Me</span>
+          </button>
+        </div>
+
+        <div class="map-controls-row">
+          <button class="map-control-btn active" data-filter="all" onclick="MapController.setFilter('all')">
+            <i class="fas fa-layer-group"></i> <span data-i18n="mapAllFacilities">All Facilities</span>
+          </button>
+          <button class="map-control-btn" data-filter="shelter" onclick="MapController.setFilter('shelter')">
+            <i class="fas fa-shield-heart" style="color:#27ae60;"></i> <span data-i18n="mapSafeShelters">Safe Shelters</span>
+          </button>
+          <button class="map-control-btn" data-filter="hospital" onclick="MapController.setFilter('hospital')">
+            <i class="fas fa-hospital" style="color:#2980b9;"></i> <span data-i18n="mapHospitals">Hospitals</span>
+          </button>
+          <button class="map-control-btn" data-filter="river" onclick="MapController.setFilter('river')">
+            <i class="fas fa-water" style="color:#00cec9;"></i> <span data-i18n="mapRiverGauges">River Gauges</span>
+          </button>
+          <button class="map-control-btn" data-filter="hazards" onclick="MapController.setFilter('hazards')">
+            <i class="fas fa-triangle-exclamation" style="color:#e17055;"></i> <span data-i18n="mapCommunityHazards">Community Hazards</span>
+          </button>
+        </div>
+
+        <div id="shelterMap"></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-route"></i>
+            <span data-i18n="mapNearestShelters">Nearest Shelters & Evacuation Centers</span>
+          </div>
+        </div>
+        <div id="nearbyFacilitiesList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. COMMUNITY & CITIZEN REPORTS ===== -->
+    <section class="page-section" id="page-community">
+      <div class="dashboard-grid">
+        <!-- Community Hazard Reports -->
+        <div>
+          <div class="section-card">
+            <div class="section-header">
+              <div class="section-title">
+                <i class="fas fa-bullhorn"></i>
+                <span data-i18n="commReportsTitle">Citizen Hazard Reports</span>
+              </div>
+              <button class="btn-locate" onclick="openHazardReportModal()">
+                <i class="fas fa-plus"></i> <span data-i18n="commReportHazardBtn">Report Hazard</span>
+              </button>
+            </div>
+            <p style="font-size:13px;color:var(--text2);margin-bottom:14px;" data-i18n="commReportsDesc">
+              Live crowdsourced reports by local residents for flooded roads, fallen electric poles, landslides, and blocked routes.
+            </p>
+            <div id="communityReportsList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Safety Check-Ins -->
+        <div>
+          <div class="section-card">
+            <div class="section-header">
+              <div class="section-title">
+                <i class="fas fa-circle-check" style="color:var(--success);"></i>
+                <span data-i18n="commStatusBoardTitle">"I Am Safe" Family Status Board</span>
+              </div>
+              <button class="btn-locate" onclick="SosController.triggerSafeCheckin()" style="background:var(--success);">
+                <i class="fas fa-share-nodes"></i> <span data-i18n="commShareStatusBtn">Share Status</span>
+              </button>
+            </div>
+            <p style="font-size:13px;color:var(--text2);margin-bottom:14px;" data-i18n="commStatusBoardDesc">
+              Check the safety status of relatives and community members during the ongoing emergency.
+            </p>
+            <div id="safetyCheckinsList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. SURVIVAL GUIDES ===== -->
+    <section class="page-section" id="page-guides">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-book-medical"></i>
+            <span data-i18n="guidesTitle">Disaster Survival & First Aid Guides</span>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:16px;">
+          <!-- Flood Guide Card -->
+          <div class="action-card" style="text-align:left;" onclick="openGuideModal('guide-flood')">
+            <div style="font-size:28px;color:#3498db;margin-bottom:8px;"><i class="fas fa-water"></i></div>
+            <h4 data-i18n="guideFloodTitle">Flood Safety Guide</h4>
+            <p data-i18n="guideFloodDesc">Moving water survival, roof signaling, water boiling.</p>
+          </div>
+
+          <!-- Earthquake Guide Card -->
+          <div class="action-card" style="text-align:left;" onclick="openGuideModal('guide-earthquake')">
+            <div style="font-size:28px;color:#e74c3c;margin-bottom:8px;"><i class="fas fa-house-crack"></i></div>
+            <h4 data-i18n="guideEarthquakeTitle">Earthquake Survival</h4>
+            <p data-i18n="guideEarthquakeDesc">Drop, Cover, and Hold On rules for home and outdoors.</p>
+          </div>
+
+          <!-- Cyclone Guide Card -->
+          <div class="action-card" style="text-align:left;" onclick="openGuideModal('guide-cyclone')">
+            <div style="font-size:28px;color:#9b59b6;margin-bottom:8px;"><i class="fas fa-wind"></i></div>
+            <h4 data-i18n="guideCycloneTitle">Cyclone & Gale Storms</h4>
+            <p data-i18n="guideCycloneDesc">Window fortification, surviving the calm eye, evacuation.</p>
+          </div>
+
+          <!-- Lightning Guide Card -->
+          <div class="action-card" style="text-align:left;" onclick="openGuideModal('guide-lightning')">
+            <div style="font-size:28px;color:#f39c12;margin-bottom:8px;"><i class="fas fa-bolt"></i></div>
+            <h4 data-i18n="guideLightningTitle">Lightning & Thunderstorms</h4>
+            <p data-i18n="guideLightningDesc">30/30 safety rule, lightning squat posture, indoor safety.</p>
+          </div>
+
+          <!-- First Aid Guide Card -->
+          <div class="action-card" style="text-align:left;" onclick="openFirstAidModal()">
+            <div style="font-size:28px;color:#27ae60;margin-bottom:8px;"><i class="fas fa-kit-medical"></i></div>
+            <h4 data-i18n="guideFirstAidTitle">Emergency First Aid</h4>
+            <p data-i18n="guideFirstAidDesc">Direct bleeding control, Adult CPR, burns, snakebites.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. PROFILE & MEDICAL INFO ===== -->
+    <section class="page-section" id="page-profile">
+      <div class="section-card" style="text-align:center;padding:32px 20px;">
+        <div style="width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 14px;box-shadow:0 8px 24px rgba(231,76,60,0.3);">
+          <i class="fas fa-user-shield"></i>
+        </div>
+        <h3 id="profileDisplayName" style="font-size:20px;font-weight:800;color:var(--text);margin-bottom:4px;" data-i18n="profileGuestUser">Guest Citizen</h3>
+        <p id="profileDisplayPhone" style="font-size:13px;color:var(--text2);margin-bottom:6px;" data-i18n="profileNoPhone">No phone set</p>
+        <span id="profileDisplayBlood" style="display:inline-block;background:var(--safe-bg);color:var(--success);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;" data-i18n="profileBloodNotSet">Blood Group: Not Set</span>
+
+        <div style="margin-top:18px;">
+          <button class="btn-locate" onclick="openProfileEditModal()" style="background:var(--primary);margin:0 auto;">
+            <i class="fas fa-pen-to-square"></i> <span data-i18n="profileEditBtn">Edit My Profile & Emergency Contacts</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-heart-pulse"></i>
+            <span data-i18n="profileSavedContactsTitle">Saved Emergency Contacts</span>
+          </div>
+        </div>
+        <div id="savedEmergencyContacts">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MOBILE BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-page="home"><i class="fas fa-gauge-high"></i><span data-i18n="navHome">Home</span></button>
+    <button class="nav-item" data-page="alerts"><i class="fas fa-bell"></i><span data-i18n="navAlerts">Alerts</span></button>
+    <button class="nav-item" data-page="map"><i class="fas fa-map-location-dot"></i><span data-i18n="navMap">Map</span></button>
+    <button class="nav-item" data-page="community"><i class="fas fa-users-viewfinder"></i><span data-i18n="navCommunity">Community</span></button>
+    <button class="nav-item" data-page="guides"><i class="fas fa-book-medical"></i><span data-i18n="navGuides">Guides</span></button>
+    <button class="nav-item" data-page="profile"><i class="fas fa-user"></i><span data-i18n="navProfile">Profile</span></button>
+  </nav>
+
+</div><!-- /app-container -->
+
+<!-- FLOATING VOICE READER STOP BUTTON -->
+<button class="global-voice-stop-btn" id="globalVoiceStopBtn">
+  <i class="fas fa-stop"></i> <span data-i18n="speechStop">Stop Audio</span>
+</button>
+
+<!-- GENERIC MODAL OVERLAY -->
+<div class="modal-overlay" id="genericModalOverlay">
+  <div class="modal-box">
+    <div class="mobile-sheet-handle"></div>
+    <div class="modal-header">
+      <h3 id="genericModalTitle">Modal Title</h3>
+      <button class="modal-close-btn" id="genericModalClose">&times;</button>
+    </div>
+    <div id="genericModalBody">
+      <!-- Injected dynamically -->
+    </div>
+  </div>
+</div>
+
+<!-- PERSISTENT MOBILE-SAFE AUDIO ELEMENT -->
+<audio id="surakshaVoiceAudio" preload="auto" playsinline style="display:none;"></audio>
+
+<!-- TOAST CONTAINER -->
+<div class="app-toast" id="appToast"></div>
+
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/js/i18n.js"></script>
+<script src="/js/speech.js"></script>
+<script src="/js/map.js"></script>
+<script src="/js/sos.js"></script>
+<script src="/js/app.js"></script>
+
+<script>
+// Filter alerts on alerts page
+function filterAlertsPage(severity, btn) {
+  document.querySelectorAll('#page-alerts .map-control-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  fetchAlerts(severity);
+}
+
+// Modal Triggers
+function openHospitalsModal() {
+  const content = window.HospitalsModalHTML || '<p style="padding:16px;">Loading hospitals...</p>';
+  const title = window.I18N ? window.I18N.get('hospitalsModalTitle') : 'Nearby 24x7 Emergency Hospitals';
+  openGenericModal(title, content);
+}
+
+function openEmergencyHelplinesModal() {
+  const helplines = AppState.helplines || [];
+  const isHi = window.I18N && window.I18N.currentLang === 'hi';
+  const html = `
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${helplines.map(h => `
+        <div class="contact-card" onclick="window.location.href='tel:${h.number}'">
+          <div class="contact-icon" style="color:${h.color};background:rgba(231,76,60,0.1);"><i class="fas ${h.icon}"></i></div>
+          <div class="contact-info">
+            <h4>${isHi && h.title_hi ? escapeHtml(h.title_hi) : escapeHtml(h.title)} (${h.number})</h4>
+            <p>${escapeHtml(h.description)}</p>
+          </div>
+          <a href="tel:${h.number}" class="contact-call" style="background:${h.color};" onclick="event.stopPropagation();"><i class="fas fa-phone"></i></a>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  const title = window.I18N ? window.I18N.get('helplinesModalTitle') : 'National Emergency Helplines (Pan-India)';
+  openGenericModal(title, html);
+}
+
+function openFirstAidModal() {
+  const lang = window.I18N ? window.I18N.currentLang : 'hi';
+  const isHi = lang !== 'en';
+  const getStr = (k, fb) => (window.I18N ? window.I18N.get(k) : fb);
+
+  const html = isHi ? `
+    <div style="line-height:1.6;font-size:13px;">
+      <h4 style="color:#e74c3c;margin:8px 0 4px;"><i class="fas fa-droplet"></i> गंभीर रक्तस्राव नियंत्रण</h4>
+      <p>साफ और रोगाणुरोधी कपड़े से घाव पर लगातार 10 मिनट तक सीधा दबाव बनाएं। यदि हड्डी न टूटी हो, तो घायल अंग को दिल के स्तर से ऊपर उठाएं। भीगे हुए कपड़े न हटाएं; उसके ऊपर और परतें लगाएं।</p>
+
+      <h4 style="color:#27ae60;margin:16px 0 4px;"><i class="fas fa-heart-pulse"></i> वयस्क सीपीआर (30:2) प्रोटोकॉल</h4>
+      <p>हथेली के पिछले हिस्से को छाती के बीच में रखें। 100-120 प्रति मिनट की तेज गति से 2 इंच गहरा दबाएं। हर 30 बार दबाने के बाद 2 बार मुंह से सांस दें।</p>
+
+      <h4 style="color:#f39c12;margin:16px 0 4px;"><i class="fas fa-fire"></i> जलना और फफोले</h4>
+      <p>जले हुए अंग को तुरंत साफ बहते नल के सामान्य पानी के नीचे 15-20 मिनट तक रखें। कभी भी बर्फ, मक्खन या टूथपेस्ट न लगाएं। साफ प्लास्टिक फिल्म या सूती कपड़े से ढीला ढकें।</p>
+
+      <h4 style="color:#9b59b6;margin:16px 0 4px;"><i class="fas fa-staff-snake"></i> सांप के काटने पर प्राथमिक उपचार</h4>
+      <p>मरीज को पूरी तरह शांत रखें और हिलने न दें। कटे हुए अंग को दिल के स्तर से नीचे रखकर पट्टी या लकड़ी से सहारा दें। बिना देरी किए एंटी-स्नेक वेनम के लिए सरकारी अस्पताल ले जाएं। <strong>घाव को कभी काटें, चूसें या कसकर न बांधें!</strong></p>
+    </div>
+  ` : `
+    <div style="line-height:1.6;font-size:13px;">
+      <h4 style="color:#e74c3c;margin:8px 0 4px;"><i class="fas fa-droplet"></i> Severe Bleeding Control</h4>
+      <p>Apply firm, direct pressure with a clean sterile cloth for at least 10 minutes continuously. Elevate limb above heart level. Do not remove soaked cloths; add more layers on top.</p>
+
+      <h4 style="color:#27ae60;margin:16px 0 4px;"><i class="fas fa-heart-pulse"></i> Adult CPR Protocol (30:2)</h4>
+      <p>Place heel of hand on center of chest. Push hard and fast (100–120 compressions per minute) to a depth of 2 inches. Give 2 gentle rescue breaths after every 30 compressions.</p>
+
+      <h4 style="color:#f39c12;margin:16px 0 4px;"><i class="fas fa-fire"></i> Burns & Scalds</h4>
+      <p>Cool immediately under clean running tap water for 15-20 minutes. DO NOT use ice, butter, or paste. Cover loosely with sterile plastic cling film.</p>
+
+      <h4 style="color:#9b59b6;margin:16px 0 4px;"><i class="fas fa-staff-snake"></i> Snakebite Management</h4>
+      <p>Keep victim totally still and calm. Splint the bitten limb below heart level. Transport immediately to hospital for Anti-Snake Venom (ASV). <strong>NEVER cut, suck, or apply tourniquet!</strong></p>
+    </div>
+  `;
+  openGenericModal(getStr('firstAidModalTitle', 'Emergency First Aid Protocols'), html);
+}
+
+function openGuideModal(guideId) {
+  fetch('/api/guides')
+    .then(r => r.json())
+    .then(data => {
+      const g = (data.guides || []).find(x => x.id === guideId);
+      if (!g) return;
+      const lang = window.I18N ? window.I18N.currentLang : 'hi';
+      const isEnglish = lang === 'en';
+      const getStr = (k, fb) => (window.I18N ? window.I18N.get(k) : fb);
+
+      const title = !isEnglish && (g['title_' + lang] || g.title_hi) ? (g['title_' + lang] || g.title_hi) : g.title;
+      const summary = !isEnglish && (g['summary_' + lang] || g.summary_hi) ? (g['summary_' + lang] || g.summary_hi) : g.summary;
+      const beforeList = !isEnglish && (g['before_' + lang] || g.before_hi) ? (g['before_' + lang] || g.before_hi) : (g.before || []);
+      const duringList = !isEnglish && (g['during_' + lang] || g.during_hi) ? (g['during_' + lang] || g.during_hi) : (g.during || []);
+      const afterList = !isEnglish && (g['after_' + lang] || g.after_hi) ? (g['after_' + lang] || g.after_hi) : (g.after || []);
+
+      const html = `
+        <div style="font-size:13px;line-height:1.6;">
+          <p style="font-size:14px;color:var(--text2);margin-bottom:14px;"><strong>${escapeHtml(summary)}</strong></p>
+          
+          <h4 style="color:var(--primary);margin:12px 0 6px;"><i class="fas fa-circle-check"></i> ${getStr('guideBefore', 'Before the Event')}</h4>
+          <ul>${beforeList.map(b => `<li style="margin-bottom:6px;">${escapeHtml(b)}</li>`).join('')}</ul>
+
+          <h4 style="color:var(--primary);margin:14px 0 6px;"><i class="fas fa-triangle-exclamation"></i> ${getStr('guideDuring', 'During the Event')}</h4>
+          <ul>${duringList.map(d => `<li style="margin-bottom:6px;">${escapeHtml(d)}</li>`).join('')}</ul>
+
+          <h4 style="color:var(--primary);margin:14px 0 6px;"><i class="fas fa-shield"></i> ${getStr('guideAfter', 'After the Event')}</h4>
+          <ul>${afterList.map(a => `<li style="margin-bottom:6px;">${escapeHtml(a)}</li>`).join('')}</ul>
+        </div>
+      `;
+      openGenericModal(title, html);
+    });
+}
+
+function openHazardReportModal() {
+  const currentCity = (AppState.userLocation && AppState.userLocation.city) || 'Near my location';
+  const getStr = (k, fb) => (window.I18N ? window.I18N.get(k) : fb);
+
+  const html = `
+    <form onsubmit="submitHazardReport(event)" style="display:flex;flex-direction:column;gap:14px;">
+      <div>
+        <label style="display:block;font-size:13px;font-weight:800;margin-bottom:8px;">
+          ${getStr('hazardSelectType', 'Select Hazard Type:')}
+        </label>
+        
+        <input type="hidden" id="repType" value="waterlogging">
+        
+        <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:8px;" id="hazardTypeGrid">
+          <button type="button" class="city-picker-btn active-hazard" onclick="setHazardType('waterlogging', this)" style="border-color:var(--primary);background:var(--danger-bg);">
+            <span style="font-size:14px;">🌊 ${getStr('hazardWaterlogging', 'Waterlogging / Flood')}</span>
+            <small>${getStr('hazardWaterloggingSub', 'Flooded road / street')}</small>
+          </button>
+          <button type="button" class="city-picker-btn" onclick="setHazardType('fallen_tree', this)">
+            <span style="font-size:14px;">🌲 ${getStr('hazardFallenTree', 'Fallen Tree')}</span>
+            <small>${getStr('hazardFallenTreeSub', 'Blocked road / route')}</small>
+          </button>
+          <button type="button" class="city-picker-btn" onclick="setHazardType('live_wire', this)">
+            <span style="font-size:14px;">⚡ ${getStr('hazardLiveWire', 'Live Wire Down')}</span>
+            <small>${getStr('hazardLiveWireSub', 'Electric shock risk')}</small>
+          </button>
+          <button type="button" class="city-picker-btn" onclick="setHazardType('landslide', this)">
+            <span style="font-size:14px;">🏔️ ${getStr('hazardLandslide', 'Landslide / Debris')}</span>
+            <small>${getStr('hazardLandslideSub', 'Rockfall / mud obstruction')}</small>
+          </button>
+          <button type="button" class="city-picker-btn" onclick="setHazardType('fire', this)">
+            <span style="font-size:14px;">🔥 ${getStr('hazardFire', 'Fire Hazard')}</span>
+            <small>${getStr('hazardFireSub', 'Flames / smoke')}</small>
+          </button>
+          <button type="button" class="city-picker-btn" onclick="setHazardType('bridge_damage', this)">
+            <span style="font-size:14px;">🏚️ ${getStr('hazardBridgeDamage', 'Bridge Damage')}</span>
+            <small>${getStr('hazardBridgeDamageSub', 'Collapsed structure')}</small>
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label style="display:block;font-size:12px;font-weight:700;margin-bottom:4px;">
+          ${getStr('hazardLocationLabel', 'Location / Landmark')}
+        </label>
+        <input type="text" id="repAddress" value="${escapeHtml(currentCity)}" required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:14px;">
+      </div>
+
+      <div>
+        <label style="display:block;font-size:12px;font-weight:700;margin-bottom:4px;">
+          ${getStr('hazardDescLabel', 'Situation Details')}
+        </label>
+        <textarea id="repDesc" rows="2" placeholder="${getStr('hazardDescPlaceholder', 'Describe urgency, water depth, traffic blockage...')}" required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:13px;"></textarea>
+      </div>
+
+      <div>
+        <label style="display:block;font-size:12px;font-weight:700;margin-bottom:4px;">
+          ${getStr('hazardNameLabel', 'Your Name (Optional)')}
+        </label>
+        <input type="text" id="repName" placeholder="${getStr('hazardNamePlaceholder', 'Local Citizen')}" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text);">
+      </div>
+
+      <button type="submit" class="btn-locate" style="background:var(--primary);padding:12px;font-size:14px;justify-content:center;margin-top:6px;width:100%;">
+        <i class="fas fa-paper-plane"></i> ${getStr('hazardSubmitBtn', 'Publish to Community Map')}
+      </button>
+    </form>
+  `;
+  openGenericModal(getStr('hazardModalTitle', 'Report Local Hazard / Obstruction'), html);
+}
+
+function setHazardType(type, btn) {
+  document.getElementById('repType').value = type;
+  document.querySelectorAll('#hazardTypeGrid .city-picker-btn').forEach(b => {
+    b.style.borderColor = 'var(--border)';
+    b.style.background = 'var(--bg2)';
+  });
+  btn.style.borderColor = 'var(--primary)';
+  btn.style.background = 'var(--danger-bg)';
+}
+window.setHazardType = setHazardType;
+
+async function submitHazardReport(e) {
+  e.preventDefault();
+  const type = document.getElementById('repType').value;
+  const address = document.getElementById('repAddress').value;
+  const description = document.getElementById('repDesc').value;
+  const reporterName = document.getElementById('repName').value || 'Citizen Reporter';
+
+  const lat = AppState.userLocation.lat;
+  const lon = AppState.userLocation.lon;
+
+  try {
+    const res = await fetch('/api/reports', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type, address, description, reporterName, lat, lon, severity: 'high' })
+    });
+    if (res.ok) {
+      showToast('Hazard reported to community map!', 'success');
+      closeGenericModal();
+      fetchHazardReports();
+      if (window.MapController) MapController.loadAllFacilities();
+    }
+  } catch (err) {
+    showToast('Failed to submit report', 'error');
+  }
+}
+
+function openProfileEditModal() {
+  const p = AppState.userProfile || {};
+  const med = p.medicalInfo || {};
+  const contacts = p.emergencyContacts || [{ name: '', phone: '' }];
+  const getStr = (k, fb) => (window.I18N ? window.I18N.get(k) : fb);
+
+  const html = `
+    <form onsubmit="handleProfileFormSubmit(event)" style="display:flex;flex-direction:column;gap:12px;max-height:70vh;overflow-y:auto;padding-right:6px;">
+      <div>
+        <label style="display:block;font-size:12px;font-weight:700;margin-bottom:4px;">${getStr('profileFullNameLabel', 'Full Name')}</label>
+        <input type="text" id="profName" value="${escapeHtml(p.name || '')}" required placeholder="${getStr('profileFullNameLabel', 'Full Name')}" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text);">
+      </div>
+
+      <div>
+        <label style="display:block;font-size:12px;font-weight:700;margin-bottom:4px;">${getStr('profilePhoneLabel', 'Your Phone Number')}</label>
+        <input type="tel" id="profPhone" value="${escapeHtml(p.phone || '')}" required placeholder="+91 98765 43210" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text);">
+      </div>
+
+      <div>
+        <label style="display:block;font-size:12px;font-weight:700;margin-bottom:4px;">${getStr('profileBloodLabel', 'Blood Group')}</label>
+        <select id="profBlood" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text);">
+          <option value="">${getStr('profileSelectBlood', 'Select Blood Group')}</option>
+          ${['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map(bg => `<option value="${bg}" ${med.bloodGroup === bg ? 'selected' : ''}>${bg}</option>`).join('')}
+        </select>
+      </div>
+
+      <div style="border-top:1px solid var(--border);padding-top:10px;">
+        <label style="display:block;font-size:13px;font-weight:800;margin-bottom:6px;">${getStr('profilePrimaryContact', 'Primary Emergency Contact')}</label>
+        <input type="text" id="profContactName" value="${escapeHtml((contacts[0] && contacts[0].name) || '')}" placeholder="${getStr('profileContactNamePlaceholder', 'Contact Name (e.g. Father/Spouse)')}" required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text);margin-bottom:6px;">
+        <input type="tel" id="profContactPhone" value="${escapeHtml((contacts[0] && contacts[0].phone) || '')}" placeholder="${getStr('profileContactPhonePlaceholder', 'Contact Phone (+91 98765 43210)')}" required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text);">
+      </div>
+
+      <button type="submit" class="btn-locate" style="background:var(--primary);padding:12px;font-size:14px;justify-content:center;margin-top:10px;">
+        <i class="fas fa-floppy-disk"></i> ${getStr('profileSaveBtn', 'Save Profile to Cloud')}
+      </button>
+    </form>
+  `;
+  openGenericModal(getStr('profileModalTitle', 'Edit Emergency Profile'), html);
+}
+
+function handleProfileFormSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('profName').value.trim();
+  const phone = document.getElementById('profPhone').value.trim();
+  const bloodGroup = document.getElementById('profBlood').value;
+  const cName = document.getElementById('profContactName').value.trim();
+  const cPhone = document.getElementById('profContactPhone').value.trim();
+
+  const profileData = {
+    name,
+    phone,
+    medicalInfo: { bloodGroup },
+    emergencyContacts: [{ name: cName, phone: cPhone }]
+  };
+
+  saveUserProfile(profileData);
+  closeGenericModal();
+}
+</script>
+
+</body>
+</html>

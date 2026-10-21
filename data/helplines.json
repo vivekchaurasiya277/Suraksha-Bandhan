@@ -1,0 +1,122 @@
+[
+  {
+    "number": "112",
+    "title": "National Emergency Response Support System (ERSS)",
+    "title_hi": "राष्ट्रीय आपातकालीन हेल्पलाइन (पुलिस, दमकल, एम्बुलेंस)",
+    "category": "universal",
+    "description": "Unified single national emergency response number across all States and Union Territories in India.",
+    "icon": "fa-phone-volume",
+    "color": "#e74c3c",
+    "isPrimary": true
+  },
+  {
+    "number": "108",
+    "title": "Emergency Medical Services & Ambulance",
+    "title_hi": "आपातकालीन चिकित्सा एवं एम्बुलेंस सेवा",
+    "category": "medical",
+    "description": "24x7 Free emergency life support and patient transport ambulance dispatch.",
+    "icon": "fa-ambulance",
+    "color": "#e74c3c",
+    "isPrimary": true
+  },
+  {
+    "number": "101",
+    "title": "Fire Brigade & Rescue Services",
+    "title_hi": "दमकल एवं बचाव सेवा",
+    "category": "fire",
+    "description": "Rapid response for structure fire, LPG explosions, and trapped rescue operations.",
+    "icon": "fa-fire-extinguisher",
+    "color": "#e67e22",
+    "isPrimary": true
+  },
+  {
+    "number": "100",
+    "title": "Police Control Room",
+    "title_hi": "पुलिस नियंत्रण कक्ष",
+    "category": "police",
+    "description": "Law and order emergencies, crowd safety, and immediate law enforcement.",
+    "icon": "fa-shield-halved",
+    "color": "#3498db",
+    "isPrimary": true
+  },
+  {
+    "number": "1070",
+    "title": "State Emergency Operations Centre (SEOC) / Relief Commissioner",
+    "title_hi": "राज्य आपदा नियंत्रण कक्ष / राहत आयुक्त",
+    "category": "disaster",
+    "description": "Direct link to State Disaster Management Authority (SDMA) for NDRF/SDRF deployment.",
+    "icon": "fa-house-flood-water",
+    "color": "#27ae60",
+    "isPrimary": true
+  },
+  {
+    "number": "1077",
+    "title": "District Emergency Operations Centre (DEOC)",
+    "title_hi": "जिला आपदा नियंत्रण कक्ष",
+    "category": "disaster",
+    "description": "District Collectorate emergency line for local disaster relief, shelters, and boat rescues.",
+    "icon": "fa-building-shield",
+    "color": "#16a085",
+    "isPrimary": false
+  },
+  {
+    "number": "1078",
+    "title": "NDMA National Disaster Control Helpline",
+    "title_hi": "राष्ट्रीय आपदा प्रबंधन प्राधिकरण (NDMA)",
+    "category": "disaster",
+    "description": "National Disaster Management Authority central incident management helpline.",
+    "icon": "fa-landmark",
+    "color": "#8e44ad",
+    "isPrimary": false
+  },
+  {
+    "number": "1913",
+    "title": "Central Water Commission (CWC) Flood Helpline",
+    "title_hi": "केंद्रीय जल आयोग (बाढ़ पूर्वानुमान हेल्पलाइन)",
+    "category": "flood",
+    "description": "Real-time river water levels, dam release advisories, and flood crest status.",
+    "icon": "fa-water",
+    "color": "#2980b9",
+    "isPrimary": false
+  },
+  {
+    "number": "1098",
+    "title": "Childline India (Ministry of WCD)",
+    "title_hi": "चाइल्डलाइन (बच्चों की आपातकालीन सहायता)",
+    "category": "child",
+    "description": "Protection, rescue, and shelter for missing, displaced, or distressed children.",
+    "icon": "fa-child",
+    "color": "#f39c12",
+    "isPrimary": false
+  },
+  {
+    "number": "1091",
+    "title": "Women in Distress Helpline",
+    "title_hi": "महिला हेल्पलाइन",
+    "category": "women",
+    "description": "24-hour dedicated crisis intervention and rescue for women.",
+    "icon": "fa-person-dress",
+    "color": "#e84393",
+    "isPrimary": false
+  },
+  {
+    "number": "14416",
+    "title": "Tele-MANAS Mental Health Support",
+    "title_hi": "टेली-मानस (मानसिक स्वास्थ्य परामर्श)",
+    "category": "health",
+    "description": "Free trauma counselling and post-disaster psychological first aid.",
+    "icon": "fa-headset",
+    "color": "#00b894",
+    "isPrimary": false
+  },
+  {
+    "number": "1066",
+    "title": "National Poison Information Center",
+    "title_hi": "राष्ट्रीय विष सूचना केंद्र (AIIMS)",
+    "category": "medical",
+    "description": "Immediate toxic exposure and chemical ingestion antidote instructions.",
+    "icon": "fa-skull-crossbones",
+    "color": "#6c5ce7",
+    "isPrimary": false
+  }
+]
