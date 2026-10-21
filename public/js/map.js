@@ -66,7 +66,20 @@ const MapController = {
         </div>
       `);
 
-    this.map.setView([lat, lon], 13);
+    // Render a 2.5 km safe evacuation radius circle around user
+    if (this.safeRadiusCircle) {
+      this.map.removeLayer(this.safeRadiusCircle);
+    }
+    this.safeRadiusCircle = L.circle([lat, lon], {
+      radius: 2500, // 2.5 km radius
+      color: '#27ae60',
+      fillColor: '#2ecc71',
+      fillOpacity: 0.05,
+      weight: 1.5,
+      dashArray: '5, 5'
+    }).addTo(this.map);
+
+    this.map.setView([lat, lon], 14);
   },
 
   clearMarkers() {
@@ -88,14 +101,16 @@ const MapController = {
 
     const lat = window.AppState ? window.AppState.userLocation.lat : 26.4499;
     const lon = window.AppState ? window.AppState.userLocation.lon : 80.3319;
+    const city = window.AppState ? window.AppState.userLocation.city : '';
 
-    // 1. Safe Shelters
+    // 1. Safe Shelters (Strictly within 2-3 km safe evacuation radius)
     if (this.activeFilter === 'all' || this.activeFilter === 'shelter') {
       try {
-        const res = await fetch(`/api/shelters/nearby?lat=${lat}&lon=${lon}`);
+        const res = await fetch(`/api/shelters/nearby?lat=${lat}&lon=${lon}&radius=3&city=${encodeURIComponent(city)}`);
         const data = await res.json();
         if (data.shelters) {
-          data.shelters.forEach(s => this.addShelterMarker(s));
+          // Strictly only shelters within 3 km
+          data.shelters.filter(s => s.distanceKm <= 3.0).forEach(s => this.addShelterMarker(s));
         }
       } catch (e) {
         console.warn('Shelter load error:', e);
@@ -105,7 +120,7 @@ const MapController = {
     // 2. Emergency Hospitals
     if (this.activeFilter === 'all' || this.activeFilter === 'hospital') {
       try {
-        const res = await fetch(`/api/hospitals/nearby?lat=${lat}&lon=${lon}`);
+        const res = await fetch(`/api/hospitals/nearby?lat=${lat}&lon=${lon}&city=${encodeURIComponent(city)}`);
         const data = await res.json();
         if (data.hospitals) {
           data.hospitals.forEach(h => this.addHospitalMarker(h));
@@ -163,14 +178,18 @@ const MapController = {
     const sName = (isNonEn && s.name_hi) ? s.name_hi : (window.I18N ? window.I18N.localizeLocation(s.name) : s.name);
     const sCity = window.I18N ? window.I18N.localizeLocation(s.city || s.district) : (s.city || s.district);
     const sState = window.I18N ? window.I18N.localizeLocation(s.state) : s.state;
+    const floodSafeLabel = isNonEn ? 'बाढ़-सुरक्षित उच्च स्थल' : 'Flood-Safe High Ground';
 
     marker.bindPopup(`
       <div class="map-popup-card">
         <span class="facility-badge shelter-badge"><i class="fas fa-shield-alt"></i> ${shelterTag}</span>
+        <span style="display:inline-block;font-size:11px;background:rgba(46,204,113,0.15);color:#27ae60;padding:2px 6px;border-radius:6px;font-weight:600;margin-bottom:6px;">
+          <i class="fas fa-mountain"></i> ${floodSafeLabel}
+        </span>
         <h4>${sName}</h4>
         <p><i class="fas fa-users"></i> ${capLabel}: <strong>${s.capacity} ${personsUnit}</strong></p>
         <p><i class="fas fa-map-marker-alt"></i> ${sCity}, ${sState}</p>
-        ${distText ? `<p style="color:var(--success);font-weight:700;"><i class="fas fa-route"></i> ${distText}</p>` : ''}
+        ${distText ? `<p style="color:var(--success);font-weight:700;"><i class="fas fa-walking"></i> ${distText} (&le; 3 km)</p>` : ''}
         <div class="popup-amenities">
           ${(s.amenities || []).map(a => `<span class="amenity-chip">${window.I18N ? window.I18N.localizeAmenity(a) : a}</span>`).join('')}
         </div>

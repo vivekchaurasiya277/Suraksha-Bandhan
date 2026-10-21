@@ -88,5 +88,53 @@
     "amenities": ["High-volume Kitchen", "Ambulance Staging Hub", "NDRF Camp Site", "Potable RO Water"],
     "inCharge": "West Bengal Disaster Management Department",
     "phone": "1070"
+  },
+  {
+    "id": "SHL-007",
+    "name": "Nawabganj Government Inter College Flood Safe Relief Shelter",
+    "name_hi": "नवाबगंज राजकीय इंटर कॉलेज बाढ़-सुरक्षित राहत आश्रय",
+    "city": "Nawabganj",
+    "district": "Barabanki / Lucknow Outer",
+    "state": "Uttar Pradesh",
+    "lat": 26.8655,
+    "lon": 80.9520,
+    "capacity": 1100,
+    "type": "Elevated Multi-Purpose Flood & Storm Safe Zone",
+    "amenities": ["Elevated 2nd Floor Refuge", "Drinking Water Tanker", "Emergency Generator", "Primary Health Desk"],
+    "inCharge": "Block Development Officer (BDO)",
+    "phone": "112 / 1077",
+    "isHighGround": true
+  },
+  {
+    "id": "SHL-008",
+    "name": "Nawabganj Nagar Palika Community Safe Center",
+    "name_hi": "नवाबगंज नगर पालिका सामुदायिक सुरक्षित केंद्र",
+    "city": "Nawabganj",
+    "district": "Barabanki / Lucknow Outer",
+    "state": "Uttar Pradesh",
+    "lat": 26.8580,
+    "lon": 80.9480,
+    "capacity": 650,
+    "type": "Concrete Community Safe Sanctuary",
+    "amenities": ["First Aid Desk", "Clean Toilets", "Mobile Charging Station", "Dry Ration Supply"],
+    "inCharge": "Nagar Palika Disaster Desk",
+    "phone": "112",
+    "isHighGround": true
+  },
+  {
+    "id": "SHL-009",
+    "name": "Nawabganj Tehsil High-Ground Evacuation Ground",
+    "name_hi": "नवाबगंज तहसील सुरक्षित उच्च आपदा स्थल",
+    "city": "Nawabganj",
+    "district": "Barabanki / Lucknow Outer",
+    "state": "Uttar Pradesh",
+    "lat": 26.8720,
+    "lon": 80.9410,
+    "capacity": 1500,
+    "type": "Elevated Staging Ground (High Elevation, Away from Rivers)",
+    "amenities": ["High Elevation Ground (Flood Safe)", "Ambulance Staging Hub", "Potable Water Tanker", "Solar Lighting"],
+    "inCharge": "Sub-Divisional Magistrate (SDM) / Tehsildar",
+    "phone": "1077",
+    "isHighGround": true
   }
 ]

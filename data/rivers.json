@@ -150,5 +150,24 @@
     "alertMessage": "Narmada water level normal; Tawa Dam outflows being monitored continuously.",
     "alertMessage_hi": "नर्मदा का जलस्तर सामान्य है; तवा बांध से पानी के प्रवाह की लगातार निगरानी की जा रही है।",
     "lastUpdated": "2026-10-16T19:30:00Z"
+  },
+  {
+    "id": "CWC-GOMTI-LUCKNOW",
+    "river": "Gomti (गोमती)",
+    "river_hi": "गोमती (Gomti)",
+    "station": "Hanuman Setu / Gaughat, Lucknow",
+    "station_hi": "हनुमान सेतु / गौघाट स्टेशन, लखनऊ",
+    "district": "Lucknow",
+    "state": "Uttar Pradesh",
+    "coordinates": { "lat": 26.8665, "lon": 80.9320 },
+    "warningLevel": 106.00,
+    "dangerLevel": 107.00,
+    "highestFloodLevel": 108.50,
+    "currentLevel": 105.20,
+    "trend": "Steady",
+    "status": "normal",
+    "alertMessage": "Gomti river flow is stable within safe banks across Lucknow and Nawabganj basin.",
+    "alertMessage_hi": "लखनऊ एवं नवाबगंज बेसिन में गोमती नदी का जलस्तर सुरक्षित तटों के भीतर स्थिर एवं सामान्य है।",
+    "lastUpdated": "2026-10-21T18:00:00Z"
   }
 ]

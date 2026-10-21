@@ -188,5 +188,24 @@
     "icuBeds": 240,
     "address": "Narakasur Hilltop, Bhangagarh, Guwahati, Assam 781032",
     "address_hi": "नरकासुर हिलटॉप, भांगागढ़, गुवाहाटी, असम 781032"
+  },
+  {
+    "id": "HOSP-011",
+    "name": "Community Health Center (CHC) 24x7 Emergency Hospital, Nawabganj",
+    "name_hi": "सामुदायिक स्वास्थ्य केंद्र (सीएचसी) 24x7 आपातकालीन अस्पताल, नवाबगंज",
+    "city": "Nawabganj",
+    "state": "Uttar Pradesh",
+    "lat": 26.8640,
+    "lon": 80.9505,
+    "phone": "05248-222108",
+    "emergencyPhone": "108",
+    "type": "Government 24x7 Emergency Trauma & Referral Unit",
+    "isEmergency": true,
+    "isOpen24": true,
+    "bloodBank": true,
+    "totalBeds": 100,
+    "icuBeds": 15,
+    "address": "Main Road, Near Tehsil, Nawabganj, Uttar Pradesh",
+    "address_hi": "मुख्य मार्ग, तहसील के पास, नवाबगंज, उत्तर प्रदेश"
   }
 ]

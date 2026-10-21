@@ -458,9 +458,21 @@ async function fetchRiverMonitor() {
       const r = data.closestStation;
       AppState.closestRiver = r;
 
-      if (nameEl) nameEl.textContent = `${r.river} - ${r.station}`;
-      if (descEl) descEl.textContent = r.alertMessage;
-      if (distEl) distEl.textContent = `${r.distanceKm} km`;
+      const lang = window.I18N ? window.I18N.currentLang : 'hi';
+      const isNonEn = lang !== 'en';
+      const rRiver = (isNonEn && r.river_hi) ? r.river_hi : r.river;
+      const rStation = (isNonEn && r.station_hi) ? r.station_hi : r.station;
+      const rMsg = (isNonEn && r.alertMessage_hi) ? r.alertMessage_hi : r.alertMessage;
+
+      if (nameEl) nameEl.textContent = `${rRiver} - ${rStation}`;
+      if (descEl) descEl.textContent = rMsg;
+      if (distEl) {
+        if (r.distanceKm > 30) {
+          distEl.textContent = `${r.distanceKm} km (${isNonEn ? 'क्षेत्रीय स्टेशन' : 'Regional Station'})`;
+        } else {
+          distEl.textContent = `${r.distanceKm} km`;
+        }
+      }
 
       let riskBadge = '🟢 ' + (window.I18N ? window.I18N.get('riverNormal') : 'Normal Flow');
       if (r.status === 'critical') riskBadge = '🔴 ' + (window.I18N ? window.I18N.get('riverCritical') : 'CRITICAL');
@@ -482,7 +494,8 @@ async function fetchRiverMonitor() {
           gaugeFill.style.background = '#2ecc71';
         }
       }
-      if (gaugePct) gaugePct.textContent = `${pct}% of Danger Mark (${r.trend})`;
+      const trendLabel = isNonEn ? (r.trend === 'Rising' ? 'बढ़ रहा है' : r.trend === 'Falling' ? 'घट रहा है' : 'स्थिर') : r.trend;
+      if (gaugePct) gaugePct.textContent = `${pct}% of Danger Mark (${trendLabel})`;
 
       if (updateEl) updateEl.textContent = new Date(r.lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       if (card) card.style.display = 'block';
@@ -571,8 +584,9 @@ window.renderAlertCards = renderAlertCards;
 async function fetchNearbyHospitals() {
   const lat = AppState.userLocation.lat;
   const lon = AppState.userLocation.lon;
+  const city = AppState.userLocation.city || '';
   try {
-    const res = await fetch(`/api/hospitals/nearby?lat=${lat}&lon=${lon}`);
+    const res = await fetch(`/api/hospitals/nearby?lat=${lat}&lon=${lon}&city=${encodeURIComponent(city)}`);
     const data = await res.json();
     AppState.hospitals = data.hospitals || [];
     renderHospitalsModalContent();
@@ -617,14 +631,16 @@ function renderHospitalsModalContent() {
   window.HospitalsModalHTML = html;
 }
 
-// 4. Nearby Shelters
+// 4. Nearby Shelters (Strictly 2-3 km safe radius)
 async function fetchNearbyShelters() {
   const lat = AppState.userLocation.lat;
   const lon = AppState.userLocation.lon;
+  const city = AppState.userLocation.city || '';
   try {
-    const res = await fetch(`/api/shelters/nearby?lat=${lat}&lon=${lon}`);
+    const res = await fetch(`/api/shelters/nearby?lat=${lat}&lon=${lon}&radius=3&city=${encodeURIComponent(city)}`);
     const data = await res.json();
-    AppState.shelters = data.shelters || [];
+    // Strictly filter out any shelter beyond 3.0 km
+    AppState.shelters = (data.shelters || []).filter(s => s.distanceKm <= 3.0);
     renderSheltersList();
   } catch (err) {
     console.warn('Shelters fetch error:', err);
@@ -634,19 +650,27 @@ async function fetchNearbyShelters() {
 function renderSheltersList() {
   const container = document.getElementById('nearbyFacilitiesList');
   if (!container) return;
-  const shelters = AppState.shelters;
-
-  if (!shelters.length) {
-    const noShelters = window.I18N ? window.I18N.get('mapNoShelters') : 'No shelters loaded.';
-    container.innerHTML = `<p style="padding:16px;text-align:center;color:var(--text2);">${noShelters}</p>`;
-    return;
-  }
+  const shelters = (AppState.shelters || []).filter(s => s.distanceKm <= 3.0);
 
   const lang = window.I18N ? window.I18N.currentLang : 'hi';
   const isNonEn = lang !== 'en';
   const capLabel = window.I18N ? window.I18N.get('mapCapacity') : 'Capacity';
   const personsLabel = isNonEn ? 'व्यक्ति' : 'persons';
   const distUnit = isNonEn ? 'किमी' : 'km';
+  const highGroundBadge = isNonEn ? 'बाढ़-सुरक्षित उच्च स्थल' : 'Flood-Safe High Ground';
+
+  if (!shelters.length) {
+    const noSheltersMsg = isNonEn 
+      ? 'आपके 2-3 किमी के दायरे में कोई सुरक्षित शरणस्थल उपलब्ध नहीं है। तुरंत निकटतम ऊंचे पक्के भवन / स्कूल में शरण लें अथवा 112 डायल करें।' 
+      : 'No safe shelters detected within 2-3 km. Immediately move to the nearest high-ground pucca building / concrete roof or dial 112.';
+    container.innerHTML = `
+      <div style="padding:16px;text-align:center;background:rgba(231,76,60,0.08);border-radius:12px;margin:8px 0;border:1px dashed var(--danger);">
+        <p style="color:var(--danger);font-weight:600;margin-bottom:8px;font-size:13px;"><i class="fas fa-exclamation-triangle"></i> ${noSheltersMsg}</p>
+        <a href="tel:112" class="btn" style="display:inline-block;background:var(--danger);color:#fff;padding:6px 16px;border-radius:8px;font-size:13px;text-decoration:none;"><i class="fas fa-phone-alt"></i> Call 112</a>
+      </div>
+    `;
+    return;
+  }
 
   container.innerHTML = shelters.slice(0, 6).map(s => {
     const sName = (isNonEn && s.name_hi) ? s.name_hi : (window.I18N ? window.I18N.localizeLocation(s.name) : s.name);
@@ -657,9 +681,15 @@ function renderSheltersList() {
         </div>
         <div class="contact-info">
           <h4>${escapeHtml(sName)}</h4>
-          <p><i class="fas fa-users"></i> ${capLabel}: <strong>${s.capacity} ${personsLabel}</strong> &bull; ${s.distanceKm} ${distUnit}</p>
+          <p>
+            <i class="fas fa-users"></i> ${capLabel}: <strong>${s.capacity} ${personsLabel}</strong> &bull; 
+            <span style="color:var(--success);font-weight:700;"><i class="fas fa-walking"></i> ${s.distanceKm} ${distUnit}</span>
+            <span style="display:inline-block;margin-left:6px;font-size:11px;background:rgba(46,204,113,0.15);color:#27ae60;padding:2px 6px;border-radius:6px;font-weight:600;">
+              <i class="fas fa-mountain"></i> ${highGroundBadge}
+            </span>
+          </p>
         </div>
-        <button class="contact-call" style="background:var(--info);" onclick="event.stopPropagation();window.open('https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lon}','_blank')">
+        <button class="contact-call" style="background:var(--info);" title="${isNonEn ? 'गूगल मैप्स नेविगेशन' : 'Google Maps Navigation'}" onclick="event.stopPropagation();window.open('https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lon}','_blank')">
           <i class="fas fa-directions"></i>
         </button>
       </div>
