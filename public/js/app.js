@@ -894,6 +894,11 @@ function renderProfileView() {
       `).join('');
     }
   }
+
+  // Render Emergency Device Permissions & Readiness status
+  if (window.RescueToolkit && window.RescueToolkit.permissions) {
+    window.RescueToolkit.permissions.render();
+  }
 }
 window.renderProfileView = renderProfileView;
 

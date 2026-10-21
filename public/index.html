@@ -34,6 +34,17 @@
     </div>
   </div>
 
+  <!-- OFFLINE TELECOM SMS EMERGENCY BANNER -->
+  <div class="offline-sms-ribbon" id="offlineSmsBanner" style="display:none;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <i class="fas fa-triangle-exclamation" style="font-size:16px;"></i>
+      <span><strong>Offline Mode:</strong> Internet down. Zero-Internet 112 SMS dispatch active.</span>
+    </div>
+    <button class="offline-sms-btn" onclick="RescueToolkit.sms.sendOfflineSos('112')">
+      <i class="fas fa-paper-plane"></i> Send 112 SMS
+    </button>
+  </div>
+
   <!-- HEADER -->
   <header class="header">
     <div class="header-top">
@@ -184,6 +195,42 @@
         <button class="btn-share-whatsapp-direct" onclick="SosController.triggerSafeCheckin()">
           <i class="fab fa-whatsapp"></i> <span data-i18n="shareWhatsAppBtn">Share on WhatsApp</span>
         </button>
+      <!-- EMERGENCY RESCUE TOOLKIT (Torch, SOS Strobe, Evac Compass, Rain Radar) -->
+      <div class="rescue-toolkit-card">
+        <div class="section-header" style="margin-bottom:12px;">
+          <div class="section-title">
+            <i class="fas fa-toolbox" style="color:var(--primary);"></i>
+            <span data-i18n="rescueToolkitTitle">Disaster Rescue Tools & Field Hardware</span>
+          </div>
+          <span class="badge" style="background:rgba(231,76,60,0.12);color:var(--primary);font-size:11px;font-weight:800;padding:3px 8px;border-radius:12px;">
+            <i class="fas fa-microchip"></i> Hardware Active
+          </span>
+        </div>
+        <div class="rescue-tools-grid">
+          <button class="rescue-tool-btn" id="quickTorchBtn" onclick="RescueToolkit.torch.toggleTorch()" title="Flashlight Torch">
+            <div class="tool-icon torch-icon"><i class="fas fa-flashlight"></i></div>
+            <strong data-i18n="toolTorch">Torch Light</strong>
+            <span data-i18n="toolTorchSub">Night Safety</span>
+          </button>
+
+          <button class="rescue-tool-btn" id="quickStrobeBtn" onclick="RescueToolkit.torch.toggleSosStrobe()" title="SOS Strobe Signal">
+            <div class="tool-icon strobe-icon"><i class="fas fa-bolt"></i></div>
+            <strong data-i18n="toolStrobe">SOS Strobe</strong>
+            <span data-i18n="toolStrobeSub">Morse ··· — ···</span>
+          </button>
+
+          <button class="rescue-tool-btn" onclick="RescueToolkit.compass.open()" title="Shelter Evacuation Compass">
+            <div class="tool-icon compass-icon"><i class="fas fa-compass"></i></div>
+            <strong data-i18n="toolCompass">Evac Compass</strong>
+            <span data-i18n="toolCompassSub">Nearest Shelter</span>
+          </button>
+
+          <button class="rescue-tool-btn" onclick="switchPage('map'); RescueToolkit.radar.start();" title="Doppler Rain Radar">
+            <div class="tool-icon radar-icon"><i class="fas fa-cloud-showers-heavy"></i></div>
+            <strong data-i18n="toolRadar">Rain Radar</strong>
+            <span data-i18n="toolRadarSub">Live Doppler</span>
+          </button>
+        </div>
       </div>
 
       <!-- Responsive Grid Layout -->
@@ -490,9 +537,26 @@
           <button class="map-control-btn" data-filter="hazards" onclick="MapController.setFilter('hazards')">
             <i class="fas fa-triangle-exclamation" style="color:#e17055;"></i> <span data-i18n="mapCommunityHazards">Community Hazards</span>
           </button>
+          <button class="map-control-btn radar-toggle-btn" id="mapRadarBtn" onclick="RescueToolkit.radar.toggle()" title="Toggle Live Doppler Rain & Storm Radar">
+            <i class="fas fa-satellite-dish" style="color:#0984e3;"></i> <span data-i18n="mapRainRadar">Rain Radar</span>
+          </button>
         </div>
 
         <div id="shelterMap"></div>
+
+        <!-- Floating Doppler Radar Player Bar -->
+        <div class="radar-player-bar" id="mapRadarPill" style="display:none;">
+          <button class="radar-play-btn" id="radarPlayBtn" onclick="RescueToolkit.radar.togglePlay()" title="Play / Pause Radar Loop">
+            <i class="fas fa-pause"></i>
+          </button>
+          <div class="radar-info">
+            <span class="radar-badge"><i class="fas fa-satellite"></i> LIVE DOPPLER RADAR</span>
+            <strong id="radarTimeText">Loading frames...</strong>
+          </div>
+          <button class="radar-close-btn" onclick="RescueToolkit.radar.stop()" title="Close Radar">
+            <i class="fas fa-xmark"></i>
+          </button>
+        </div>
       </div>
 
       <div class="section-card">
@@ -633,6 +697,25 @@
           <!-- Populated by JS -->
         </div>
       </div>
+
+      <!-- DEVICE PERMISSIONS & EMERGENCY READINESS CARD -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-shield-halved" style="color:var(--primary);"></i>
+            <span data-i18n="profilePermissionsTitle">Emergency Permissions & Hardware Readiness</span>
+          </div>
+          <span class="badge" style="background:rgba(39,174,96,0.15);color:var(--success);font-size:11px;font-weight:800;padding:3px 8px;border-radius:12px;">
+            <i class="fas fa-lock-open"></i> Disaster Access
+          </span>
+        </div>
+        <p style="font-size:12.5px;color:var(--text2);margin-bottom:14px;line-height:1.4;" data-i18n="profilePermissionsDesc">
+          Grant required device sensors and capabilities so Suraksha Bandhan can guide you during floods, electrical blackouts, and night rescue operations.
+        </p>
+        <div id="devicePermissionsList">
+          <!-- Populated dynamically by RescueToolkit.permissions.render() -->
+        </div>
+      </div>
     </section>
 
   </main>
@@ -668,6 +751,62 @@
   </div>
 </div>
 
+<!-- EVACUATION COMPASS MODAL -->
+<div class="modal-overlay" id="compassModal">
+  <div class="modal-box compass-modal-box">
+    <div class="mobile-sheet-handle"></div>
+    <div class="modal-header">
+      <h3 style="display:flex;align-items:center;gap:8px;">
+        <i class="fas fa-compass" style="color:var(--success);"></i>
+        <span data-i18n="compassModalTitle">Shelter Evacuation Compass</span>
+      </h3>
+      <button class="modal-close-btn" onclick="RescueToolkit.compass.close()">&times;</button>
+    </div>
+    
+    <div class="compass-body">
+      <!-- Target Shelter Info Pill -->
+      <div class="compass-target-banner">
+        <div class="target-badge"><i class="fas fa-mountain"></i> Safe Elevation</div>
+        <h4 id="compassTargetName">Locating Nearest Safe Shelter...</h4>
+        <div class="target-meta">
+          <span><i class="fas fa-walking"></i> <strong id="compassTargetDist">-- km</strong> away</span>
+          <span><i class="fas fa-diamond-turn-right"></i> Heading: <strong id="compassCardinalDir">--</strong></span>
+        </div>
+      </div>
+
+      <!-- 3D Compass Dial Visualizer -->
+      <div class="compass-stage">
+        <div class="compass-outer-ring">
+          <div class="compass-dial" id="compassDial">
+            <span class="cardinal north">N</span>
+            <span class="cardinal east">E</span>
+            <span class="cardinal south">S</span>
+            <span class="cardinal west">W</span>
+          </div>
+          <!-- Live Target Shelter Arrow Needle -->
+          <div class="compass-needle-wrap" id="compassTargetArrow">
+            <div class="compass-needle-arrow"></div>
+          </div>
+          <div class="compass-center-hub">
+            <span id="compassDegreesText">0°</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="compass-instruction">
+        <i class="fas fa-location-arrow"></i>
+        <span>Point your phone forward and walk in the direction of the <strong>green arrow</strong> to reach elevated safe ground.</span>
+      </p>
+
+      <div class="compass-actions" style="width:100%;margin-top:10px;">
+        <button class="btn-locate" id="compassNavBtn" style="background:var(--info);width:100%;padding:12px;font-size:14px;justify-content:center;">
+          <i class="fas fa-directions"></i> <span>Open Google Maps Walking Route</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- PERSISTENT MOBILE-SAFE AUDIO ELEMENT -->
 <audio id="surakshaVoiceAudio" preload="auto" playsinline style="display:none;"></audio>
 
@@ -680,6 +819,7 @@
 <script src="/js/speech.js"></script>
 <script src="/js/map.js"></script>
 <script src="/js/sos.js"></script>
+<script src="/js/rescue.js"></script>
 <script src="/js/app.js"></script>
 
 <script>
