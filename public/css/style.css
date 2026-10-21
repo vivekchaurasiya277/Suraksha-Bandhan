@@ -68,13 +68,118 @@ body.high-contrast-mode * {
   border-color: #ffff00 !important;
 }
 
-/* Dynamic Font Sizes - Fluid responsive typography without clipping */
-html.font-size-large {
-  font-size: 110%;
+/* ============ ACCESSIBILITY FONT SIZE SCALING ============ */
+.header-btn.active-font-scale {
+  background: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
-html.font-size-xlarge {
-  font-size: 120%;
+/* Large Font Mode (+15% Scaling) */
+body.font-size-large {
+  font-size: 115%;
+}
+
+body.font-size-large h1:not(.leaflet-container *),
+body.font-size-large h2:not(.leaflet-container *),
+body.font-size-large h3:not(.leaflet-container *),
+body.font-size-large h4:not(.leaflet-container *),
+body.font-size-large h5:not(.leaflet-container *),
+body.font-size-large .section-title,
+body.font-size-large .logo-text h1,
+body.font-size-large .contact-info h4,
+body.font-size-large .alert-title,
+body.font-size-large .modal-header h3,
+body.font-size-large .call-label strong {
+  font-size: 1.15em !important;
+  line-height: 1.35 !important;
+}
+
+body.font-size-large p:not(.leaflet-container *),
+body.font-size-large span:not(.live-dot):not(.icon):not(#fontSizeBadge):not(.leaflet-container *),
+body.font-size-large label:not(.leaflet-container *),
+body.font-size-large small:not(.leaflet-container *),
+body.font-size-large .ticker-content span,
+body.font-size-large .contact-info p,
+body.font-size-large .guide-summary,
+body.font-size-large .guide-step,
+body.font-size-large .alert-body,
+body.font-size-large .weather-desc,
+body.font-size-large .weather-feels,
+body.font-size-large .location-info span,
+body.font-size-large .btn-locate span,
+body.font-size-large .call-label span,
+body.font-size-large .modal-box p,
+body.font-size-large .modal-box label {
+  font-size: 1.14em !important;
+  line-height: 1.45 !important;
+}
+
+body.font-size-large button:not(#fontSizeBtn),
+body.font-size-large .btn,
+body.font-size-large input,
+body.font-size-large select,
+body.font-size-large textarea {
+  font-size: 1.12em !important;
+}
+
+body.font-size-large .lang-chip,
+body.font-size-large .lang-option,
+body.font-size-large .bottom-nav .nav-item span {
+  font-size: 1.10em !important;
+}
+
+/* Extra Large Font Mode (+28% Scaling) */
+body.font-size-xlarge {
+  font-size: 128%;
+}
+
+body.font-size-xlarge h1:not(.leaflet-container *),
+body.font-size-xlarge h2:not(.leaflet-container *),
+body.font-size-xlarge h3:not(.leaflet-container *),
+body.font-size-xlarge h4:not(.leaflet-container *),
+body.font-size-xlarge h5:not(.leaflet-container *),
+body.font-size-xlarge .section-title,
+body.font-size-xlarge .logo-text h1,
+body.font-size-xlarge .contact-info h4,
+body.font-size-xlarge .alert-title,
+body.font-size-xlarge .modal-header h3,
+body.font-size-xlarge .call-label strong {
+  font-size: 1.28em !important;
+  line-height: 1.35 !important;
+}
+
+body.font-size-xlarge p:not(.leaflet-container *),
+body.font-size-xlarge span:not(.live-dot):not(.icon):not(#fontSizeBadge):not(.leaflet-container *),
+body.font-size-xlarge label:not(.leaflet-container *),
+body.font-size-xlarge small:not(.leaflet-container *),
+body.font-size-xlarge .ticker-content span,
+body.font-size-xlarge .contact-info p,
+body.font-size-xlarge .guide-summary,
+body.font-size-xlarge .guide-step,
+body.font-size-xlarge .alert-body,
+body.font-size-xlarge .weather-desc,
+body.font-size-xlarge .weather-feels,
+body.font-size-xlarge .location-info span,
+body.font-size-xlarge .btn-locate span,
+body.font-size-xlarge .call-label span,
+body.font-size-xlarge .modal-box p,
+body.font-size-xlarge .modal-box label {
+  font-size: 1.26em !important;
+  line-height: 1.45 !important;
+}
+
+body.font-size-xlarge button:not(#fontSizeBtn),
+body.font-size-xlarge .btn,
+body.font-size-xlarge input,
+body.font-size-xlarge select,
+body.font-size-xlarge textarea {
+  font-size: 1.22em !important;
+}
+
+body.font-size-xlarge .lang-chip,
+body.font-size-xlarge .lang-option,
+body.font-size-xlarge .bottom-nav .nav-item span {
+  font-size: 1.18em !important;
 }
 
 /* ============ RESET & BASE ============ */

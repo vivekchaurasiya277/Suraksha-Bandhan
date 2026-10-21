@@ -973,14 +973,23 @@ function updateFontSizeBadge(size) {
   const btn = document.getElementById('fontSizeBtn');
   if (!badge) return;
   if (size === 'large') {
-    badge.innerHTML = 'A<sup style="font-size:9px;color:#f1c40f;">+</sup>';
-    if (btn) btn.title = 'Current: Large Font (बड़ा आकार +15%) - Tap for Extra Large';
+    badge.innerHTML = 'A<sup style="font-size:9px;color:#f1c40f;font-weight:900;">+</sup>';
+    if (btn) {
+      btn.title = 'Current: Large Font (बड़ा आकार +15%) - Tap for Extra Large';
+      btn.classList.add('active-font-scale');
+    }
   } else if (size === 'xlarge') {
-    badge.innerHTML = 'A<sup style="font-size:9px;color:#e74c3c;">++</sup>';
-    if (btn) btn.title = 'Current: Extra Large Font (अति बड़ा आकार +28%) - Tap for Normal';
+    badge.innerHTML = 'A<sup style="font-size:9px;color:#ff7675;font-weight:900;">++</sup>';
+    if (btn) {
+      btn.title = 'Current: Extra Large Font (अति बड़ा आकार +28%) - Tap for Normal';
+      btn.classList.add('active-font-scale');
+    }
   } else {
     badge.innerHTML = 'A';
-    if (btn) btn.title = 'Current: Normal Font (सामान्य आकार) - Tap to Enlarge';
+    if (btn) {
+      btn.title = 'Current: Normal Font (सामान्य आकार) - Tap to Enlarge';
+      btn.classList.remove('active-font-scale');
+    }
   }
 }
 
@@ -999,8 +1008,10 @@ function updateDarkToggleUI(isDark) {
 function cycleFontSize() {
   const sizes = ['normal', 'large', 'xlarge'];
   let currentIdx = sizes.indexOf(AppState.accessibility.fontSize);
+  if (currentIdx === -1) currentIdx = 0;
   let nextIdx = (currentIdx + 1) % sizes.length;
-  AppState.accessibility.fontSize = sizes[nextIdx];
+  const nextSize = sizes[nextIdx];
+  AppState.accessibility.fontSize = nextSize;
 
   const root = document.documentElement;
   const body = document.body;
@@ -1008,25 +1019,30 @@ function cycleFontSize() {
   root.classList.remove('font-size-normal', 'font-size-large', 'font-size-xlarge');
   body.classList.remove('font-size-normal', 'font-size-large', 'font-size-xlarge');
 
-  if (AppState.accessibility.fontSize === 'large') {
+  if (nextSize === 'large') {
     root.classList.add('font-size-large');
     body.classList.add('font-size-large');
-  } else if (AppState.accessibility.fontSize === 'xlarge') {
+  } else if (nextSize === 'xlarge') {
     root.classList.add('font-size-xlarge');
     body.classList.add('font-size-xlarge');
+  } else {
+    root.classList.add('font-size-normal');
+    body.classList.add('font-size-normal');
   }
 
-  updateFontSizeBadge(AppState.accessibility.fontSize);
-  localStorage.setItem('suraksha_font_size', AppState.accessibility.fontSize);
+  updateFontSizeBadge(nextSize);
+  localStorage.setItem('suraksha_font_size', nextSize);
 
+  const isHindi = window.I18N && window.I18N.currentLang === 'hi';
   const labels = {
-    normal: 'Font Size: Normal (सामान्य आकार 100%)',
-    large: 'Font Size: Large (बड़ा आकार +15%)',
-    xlarge: 'Font Size: Extra Large (अति बड़ा आकार +28%)'
+    normal: isHindi ? 'फॉन्ट आकार: सामान्य (100%)' : 'Font Size: Normal (100%)',
+    large: isHindi ? 'फॉन्ट आकार: बड़ा (+15%)' : 'Font Size: Large (+15%)',
+    xlarge: isHindi ? 'फॉन्ट आकार: अति बड़ा (+28%)' : 'Font Size: Extra Large (+28%)'
   };
-  showToast(labels[AppState.accessibility.fontSize] || 'Font Size Changed', 'info');
+  showToast(labels[nextSize] || 'Font Size Changed', 'info');
   if (navigator.vibrate) navigator.vibrate(25);
 }
+window.cycleFontSize = cycleFontSize;
 
 // Helpers
 function escapeHtml(str) {
@@ -1055,6 +1071,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add(`font-size-${savedFontSize}`);
   }
   updateFontSizeBadge(savedFontSize);
+
+  // Bind Font Size button
+  const fontBtn = document.getElementById('fontSizeBtn');
+  if (fontBtn) {
+    fontBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      cycleFontSize();
+    });
+  }
 
   // Register Service Worker
   if ('serviceWorker' in navigator) {
