@@ -3,6 +3,36 @@
   "profiles": {},
   "sosEvents": [
     {
+      "id": "SOS-1792609134422-Z4S0",
+      "timestamp": 1792609134422,
+      "status": "active",
+      "resolved": false,
+      "name": "Citizen in Distress",
+      "phone": "Unknown",
+      "location": {
+        "lat": 26.925792930122782,
+        "lon": 81.19853795390267,
+        "city": "Nawabganj"
+      },
+      "medicalInfo": {},
+      "emergencyContacts": []
+    },
+    {
+      "id": "SOS-1792609112061-UEFC",
+      "timestamp": 1792609112061,
+      "status": "active",
+      "resolved": false,
+      "name": "Citizen in Distress",
+      "phone": "Unknown",
+      "location": {
+        "lat": 26.925792930122782,
+        "lon": 81.19853795390267,
+        "city": "Nawabganj"
+      },
+      "medicalInfo": {},
+      "emergencyContacts": []
+    },
+    {
       "id": "SOS-1792179684520-9N7A",
       "timestamp": 1792179684520,
       "status": "resolved",
@@ -115,6 +145,34 @@
     }
   ],
   "activityLogs": [
+    {
+      "id": "LOG-1792609134422",
+      "timestamp": 1792609134422,
+      "type": "sos_dispatched",
+      "description": "SOS emergency triggered",
+      "details": {
+        "sosId": "SOS-1792609134422-Z4S0",
+        "location": {
+          "lat": 26.925792930122782,
+          "lon": 81.19853795390267,
+          "city": "Nawabganj"
+        }
+      }
+    },
+    {
+      "id": "LOG-1792609112061",
+      "timestamp": 1792609112061,
+      "type": "sos_dispatched",
+      "description": "SOS emergency triggered",
+      "details": {
+        "sosId": "SOS-1792609112061-UEFC",
+        "location": {
+          "lat": 26.925792930122782,
+          "lon": 81.19853795390267,
+          "city": "Nawabganj"
+        }
+      }
+    },
     {
       "id": "LOG-1792261667221",
       "timestamp": 1792261667221,
